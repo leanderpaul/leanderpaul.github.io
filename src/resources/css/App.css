@@ -1,0 +1,28 @@
+.name-title {
+	font-family: 'Sigmar One', cursive;
+	letter-spacing: 3px;
+}
+
+body {
+	font-family: 'Varela Round', sans-serif;
+}
+
+.landing-img {
+	margin-top: -300px;
+}
+
+.landing-mask {
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	justify-content: center;
+}
+
+.name {
+	font-size: 90px;
+	color: #76ff03;
+}
+
+.active {
+	color: #76ff03;
+}
