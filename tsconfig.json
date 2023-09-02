@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    /** Language and Environment */
+    "jsx": "preserve",
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+
+    /** Type Checking */
+    "alwaysStrict": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUncheckedIndexedAccess": true,
+    "strict": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": false,
+
+    /** Modules */
+    "baseUrl": "./",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+
+    /** Emit */
+    "noEmit": true,
+    "outDir": "dist",
+    "removeComments": true,
+
+    /** Interop Constraints */
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+
+    /** Projects */
+    "incremental": true,
+
+    /** Completeness */
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*.ts", "src/**/*.vue", "env.d.ts"]
+}

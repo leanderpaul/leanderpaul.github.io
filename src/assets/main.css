@@ -1,0 +1,78 @@
+:root {
+  --background-default: #0f172a;
+  --text-default: #94a3b8;
+  --text-ligher: #e2e8f0;
+
+  --color-primary: #10b981;
+}
+
+html,
+body {
+  line-height: 26px;
+  font-size: 16px;
+  background-color: var(--background-default);
+  color: var(--text-default);
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+}
+
+#cursor {
+  box-shadow: 0 0 250px 250px #1b294b;
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+.container {
+  position: relative;
+  margin: 100px auto;
+  z-index: 2;
+  width: 100%;
+}
+
+h1,
+h2,
+.text-light {
+  color: var(--text-ligher);
+}
+
+.font-larger {
+  color: var(--text-ligher);
+  font-size: 20px;
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 720px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
