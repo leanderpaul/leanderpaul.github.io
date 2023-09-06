@@ -1,34 +1,53 @@
+<script lang="ts" setup>
+import CursorHighligher from './components/cursor-highlighter.component.vue';
+import Navbar from './components/navbar.component.vue';
+</script>
+
 <template>
-  <div id="app" @mousemove="updateCursor">
-    <div id="cursor" :style="cursorStyle"></div>
-    <div class="container">
-      <h1>Leander Paul</h1>
-      <div class="font-larger">Full Stack Developer</div>
-    </div>
-  </div>
+  <CursorHighligher />
+  <Navbar />
+  <div class="container"></div>
 </template>
+<style scoped>
+.container {
+  position: relative;
+  z-index: 2;
+  margin: auto;
+  padding-top: 70px;
+}
 
-<script lang="ts">
-export default {
-  data() {
-    return {
-      cursor: { x: 0, y: 0 }
-    }
-  },
+section {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
-  computed: {
-    cursorStyle() {
-      return {
-        left: `${this.cursor.x}px`,
-        top: `${this.cursor.y}px`
-      }
-    }
-  },
+.container > * {
+  flex: 1;
+}
 
-  methods: {
-    updateCursor(event: MouseEvent) {
-      this.cursor = { x: event.clientX, y: event.clientY }
-    }
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
   }
 }
-</script>
+
+@media (min-width: 720px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+</style>
