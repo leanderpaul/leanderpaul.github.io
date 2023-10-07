@@ -127,6 +127,10 @@ li {
   counter-increment: item 1;
 }
 
+li a:not(:hover) {
+  color: var(--text-lighter);
+}
+
 li a::before {
   content: '0' counter(item) '. ';
   color: var(--color-primary);

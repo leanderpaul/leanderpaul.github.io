@@ -2,6 +2,7 @@
 import CursorHighligher from './components/cursor-highlighter.component.vue';
 import Navbar from './components/navbar.component.vue';
 import Intro from './components/intro.component.vue';
+import AboutMe from './components/about-me.component.vue';
 import Footer from './components/footer.component.vue';
 </script>
 
@@ -10,6 +11,7 @@ import Footer from './components/footer.component.vue';
   <Navbar />
   <div class="container">
     <Intro />
+    <AboutMe />
   </div>
   <Footer />
 </template>

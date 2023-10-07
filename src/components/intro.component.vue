@@ -1,7 +1,7 @@
 <template>
   <div class="intro">
-    <div class="title">Hey, I am Leander Paul</div>
-    <div class="subtitle">A Full Stack Web Developer, Building Digital Dreams One Line of Code at a Time and Bringing Websites to Life</div>
+    <div class="title">Hi, I am Leander Paul</div>
+    <div class="subtitle">A Full Stack Web Developer Building Digital Dreams One Line of Code at a Time and Bringing Websites to Life</div>
     <a class="btn" href="">Projects</a>
   </div>
 </template>
@@ -27,7 +27,6 @@
   max-width: 600px;
   text-align: center;
   font-size: 1.25rem;
-  line-height: 1.5;
   font-weight: 500;
   margin-bottom: 3rem;
 }
