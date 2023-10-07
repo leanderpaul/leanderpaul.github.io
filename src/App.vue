@@ -2,6 +2,7 @@
 import CursorHighligher from './components/cursor-highlighter.component.vue';
 import Navbar from './components/navbar.component.vue';
 import Intro from './components/intro.component.vue';
+import Footer from './components/footer.component.vue';
 </script>
 
 <template>
@@ -10,6 +11,7 @@ import Intro from './components/intro.component.vue';
   <div class="container">
     <Intro />
   </div>
+  <Footer />
 </template>
 <style scoped>
 .container {
