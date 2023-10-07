@@ -41,3 +41,40 @@ h2,
 .flex {
   display: flex;
 }
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.primary {
+  color: var(--color-primary);
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-default);
+}
+
+a:hover {
+  color: var(--color-primary);
+}
+
+.btn {
+  cursor: pointer;
+  padding: 8px 25px;
+  font-size: inherit;
+  display: inline-block;
+  font-weight: 500;
+  background-color: inherit;
+  border: 1px solid var(--color-primary);
+  overflow: hidden;
+  color: var(--color-primary);
+  text-align: center;
+}
+
+.btn:hover {
+  color: var(--background-default);
+  background-color: var(--color-primary);
+}

@@ -56,6 +56,15 @@ onMounted(() => window.addEventListener('scroll', () => (isNavBorder.value = win
         ></path>
       </svg>
     </a>
+    <a href="https://github.com/leanderpaul/leanderpaul.github.io" target="_blank">
+      <svg width="25" height="25" viewBox="0 0 18 18">
+        <path
+          stroke="currentColor"
+          stroke-width="0.75"
+          d="M10.478 1.647a.5.5 0 1 0-.956-.294l-4 13a.5.5 0 0 0 .956.294l4-13zM4.854 4.146a.5.5 0 0 1 0 .708L1.707 8l3.147 3.146a.5.5 0 0 1-.708.708l-3.5-3.5a.5.5 0 0 1 0-.708l3.5-3.5a.5.5 0 0 1 .708 0zm6.292 0a.5.5 0 0 0 0 .708L14.293 8l-3.147 3.146a.5.5 0 0 0 .708.708l3.5-3.5a.5.5 0 0 0 0-.708l-3.5-3.5a.5.5 0 0 0-.708 0z"
+        />
+      </svg>
+    </a>
   </section>
 </template>
 <style scoped>
@@ -80,8 +89,8 @@ nav.bordered {
 section {
   position: fixed;
   display: flex;
-  top: calc(50% - 50px);
-  height: 120px;
+  top: calc(50% - 70px);
+  height: 160px;
   padding: 0px 25px;
   flex-direction: column;
   justify-content: space-between;
@@ -123,30 +132,7 @@ li a::before {
   color: var(--color-primary);
 }
 
-a {
-  text-decoration: none;
-  color: var(--text-default);
-}
-
-a:hover {
-  color: var(--color-primary);
-}
-
 .btn {
   margin-left: 10px;
-  cursor: pointer;
-  padding: 8px 25px;
-  font-size: inherit;
-  display: inline-block;
-  font-weight: 500;
-  background-color: inherit;
-  border: 1px solid var(--color-primary);
-  overflow: hidden;
-  color: var(--color-primary);
-}
-
-.btn:hover {
-  color: var(--background-default);
-  background-color: var(--color-primary);
 }
 </style>

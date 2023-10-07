@@ -1,12 +1,15 @@
 <script lang="ts" setup>
 import CursorHighligher from './components/cursor-highlighter.component.vue';
 import Navbar from './components/navbar.component.vue';
+import Intro from './components/intro.component.vue';
 </script>
 
 <template>
   <CursorHighligher />
   <Navbar />
-  <div class="container"></div>
+  <div class="container">
+    <Intro />
+  </div>
 </template>
 <style scoped>
 .container {
