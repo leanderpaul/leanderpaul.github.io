@@ -5,6 +5,7 @@ import Intro from './components/intro.component.vue';
 import AboutMe from './components/about-me.component.vue';
 import Footer from './components/footer.component.vue';
 import Experience from './components/experience.component.vue';
+import ContactMe from './components/contact-me.component.vue';
 </script>
 
 <template>
@@ -14,6 +15,7 @@ import Experience from './components/experience.component.vue';
     <Intro />
     <AboutMe />
     <Experience />
+    <ContactMe />
   </div>
   <Footer />
 </template>
@@ -23,10 +25,6 @@ import Experience from './components/experience.component.vue';
   z-index: 2;
   margin: auto;
   padding-top: 70px;
-}
-
-.container > * {
-  z-index: 2;
 }
 
 section {

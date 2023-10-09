@@ -74,6 +74,7 @@ onMounted(() => {
   display: flex;
   gap: 50px;
   text-align: justify;
+  height: 400px;
 }
 
 .tab-title {

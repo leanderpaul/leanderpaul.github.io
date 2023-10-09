@@ -102,8 +102,7 @@ a:hover {
 
 .section {
   scroll-margin-top: 90px;
-  margin: auto;
+  margin: 80px auto;
   padding-top: 70px;
   max-width: 900px;
-  min-height: calc(100vh - 160px);
 }

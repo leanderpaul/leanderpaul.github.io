@@ -19,16 +19,10 @@ onMounted(() => window.addEventListener('scroll', () => (isNavBorder.value = win
         <a href="#experience">Experience</a>
       </li>
       <li>
-        <a href="#experience">Projects</a>
+        <a href="#projects">Projects</a>
       </li>
       <li>
-        <a href="#experience">Education</a>
-      </li>
-      <li>
-        <a href="#experience">Certifications</a>
-      </li>
-      <li>
-        <a href="#experience">Contact</a>
+        <a href="#contact-me">Contact</a>
       </li>
       <a class="btn" href="/resume.pdf" target="_blank">Resume</a>
     </ol>
