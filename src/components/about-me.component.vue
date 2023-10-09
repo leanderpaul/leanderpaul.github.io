@@ -1,9 +1,6 @@
 <template>
-  <div id="about">
-    <div class="title">
-      <span>01.</span>
-      About Me
-    </div>
+  <div id="about" class="section">
+    <div class="heading">About Me</div>
     <div class="content">
       <div class="profile">
         <p>
@@ -42,24 +39,6 @@
   </div>
 </template>
 <style scoped>
-#about {
-  scroll-margin-top: 90px;
-  margin: 80px auto 0px auto;
-  max-width: 900px;
-}
-
-.title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text-lighter);
-  margin-bottom: 30px;
-}
-
-.title span {
-  color: var(--color-primary);
-  margin-right: 10px;
-}
-
 .content {
   display: flex;
   gap: 50px;
@@ -86,6 +65,7 @@ img {
 }
 
 ul {
+  padding-left: 20px;
   columns: 3;
 }
 </style>

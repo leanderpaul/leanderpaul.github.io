@@ -14,7 +14,7 @@ onMounted(() => window.addEventListener('mousemove', handleMouseMove));
 
 <style scoped>
 div {
-  box-shadow: 0 0 250px 250px #1b294b;
+  box-shadow: 0 0 250px 250px #131d35;
   position: fixed;
   pointer-events: none;
   z-index: 1;

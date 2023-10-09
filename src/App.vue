@@ -4,6 +4,7 @@ import Navbar from './components/navbar.component.vue';
 import Intro from './components/intro.component.vue';
 import AboutMe from './components/about-me.component.vue';
 import Footer from './components/footer.component.vue';
+import Experience from './components/experience.component.vue';
 </script>
 
 <template>
@@ -12,6 +13,7 @@ import Footer from './components/footer.component.vue';
   <div class="container">
     <Intro />
     <AboutMe />
+    <Experience />
   </div>
   <Footer />
 </template>

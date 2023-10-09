@@ -1,6 +1,7 @@
 :root {
   --background-default: #0f172a;
   --text-default: #94a3b8;
+  --text-light: #ccd6f6;
   --text-lighter: #e2e8f0;
 
   --color-primary: #10b981;
@@ -17,6 +18,7 @@ body,
   height: 100%;
   line-height: 1.5;
   scroll-behavior: smooth;
+  counter-reset: section;
 }
 
 h1,
@@ -29,9 +31,12 @@ h6 {
 }
 
 h1,
-h2,
-.text-light {
+h2 {
   color: var(--text-lighter);
+}
+
+h3 {
+  color: var(--text-light);
 }
 
 .font-larger {
@@ -79,4 +84,26 @@ a:hover {
 .btn:hover {
   color: var(--background-default);
   background-color: var(--color-primary);
+}
+
+.heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-lighter);
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+}
+
+.heading::before {
+  color: var(--color-primary);
+  counter-increment: section;
+  content: '0' counter(section) '. ';
+}
+
+.section {
+  scroll-margin-top: 90px;
+  margin: auto;
+  padding-top: 70px;
+  max-width: 900px;
+  min-height: calc(100vh - 160px);
 }
