@@ -23,6 +23,10 @@ import Footer from './components/footer.component.vue';
   padding-top: 70px;
 }
 
+.container > * {
+  z-index: 2;
+}
+
 section {
   height: 100%;
   display: flex;
