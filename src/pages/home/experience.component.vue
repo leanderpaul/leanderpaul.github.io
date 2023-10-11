@@ -33,7 +33,7 @@ onMounted(() => {
         <div id="wtv" class="active">
           <h3>
             <span>Backend Developer</span>
-            <span class="company">@ <a href="https://wtvglobal.com">WTV</a></span>
+            <span class="company">@ <a href="https://wtvglobal.com" target="_blank">WTV</a></span>
           </h3>
           <p>March 2023 - September 2023</p>
           <ul>
@@ -44,7 +44,7 @@ onMounted(() => {
         <div id="zoho">
           <h3>
             <span>Member Technical Staff</span>
-            <span class="company">@ <a href="https://zoho.com">Zoho</a></span>
+            <span class="company">@ <a href="https://zoho.com" target="_blank">Zoho</a></span>
           </h3>
           <p>January 2020 - August 2022</p>
           <ul>
@@ -55,7 +55,7 @@ onMounted(() => {
         <div id="phosphene-ai">
           <h3>
             <span>Full Stack Developer</span>
-            <span class="company">@ <a href="https://www.linkedin.com/company/phosphene-ai">Phosphene AI</a></span>
+            <span class="company">@ <a href="https://www.linkedin.com/company/phosphene-ai" target="_blank">Phosphene AI</a></span>
           </h3>
           <p>April 2018 - January 2020</p>
           <ul>

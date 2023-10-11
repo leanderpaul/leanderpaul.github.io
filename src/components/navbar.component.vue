@@ -6,11 +6,11 @@ onMounted(() => window.addEventListener('scroll', () => (isNavBorder.value = win
 </script>
 <template>
   <nav :class="{ bordered: isNavBorder }">
-    <a href="/">
+    <router-link to="/">
       <svg width="50" height="50" viewBox="0 0 24 24">
         <text x="2.5" y="17">LP</text>
       </svg>
-    </a>
+    </router-link>
     <ol>
       <li>
         <a href="#about">About</a>

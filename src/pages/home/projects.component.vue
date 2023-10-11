@@ -73,7 +73,7 @@ const projects: Project[] = [
       </li>
     </ul>
     <div class="flex-center">
-      <a class="btn" href="/project-archive">View Full Project Archive</a>
+      <router-link class="btn" to="/project-archive">View Full Project Archive</router-link>
     </div>
   </div>
 </template>

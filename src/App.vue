@@ -1,23 +1,14 @@
 <script lang="ts" setup>
 import CursorHighligher from './components/cursor-highlighter.component.vue';
 import Navbar from './components/navbar.component.vue';
-import Intro from './components/intro.component.vue';
-import AboutMe from './components/about-me.component.vue';
 import Footer from './components/footer.component.vue';
-import Experience from './components/experience.component.vue';
-import Projects from './components/projects.component.vue';
-import ContactMe from './components/contact-me.component.vue';
 </script>
 
 <template>
   <CursorHighligher />
   <Navbar />
   <div class="container">
-    <Intro />
-    <AboutMe />
-    <Experience />
-    <Projects />
-    <ContactMe />
+    <router-view />
   </div>
   <Footer />
 </template>
@@ -27,6 +18,8 @@ import ContactMe from './components/contact-me.component.vue';
   z-index: 2;
   margin: auto;
   padding-top: 70px;
+  min-height: calc(100vh - 220px);
+  display: flex;
 }
 
 section {

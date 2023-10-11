@@ -9,9 +9,10 @@
         </p>
         <p>
           Fast-forward to today, and I've had the privilege of working at
-          <a href="https://www.linkedin.com/company/phosphene-ai">a startup</a>, <a href="https://wtvglobal.com/">a mid-size company</a>,
-          and <a href="https://www.zoho.com/">a huge corportaion</a>. My main focus these days is building full stack web applications that
-          are able to scale and perform well.
+          <a href="https://www.linkedin.com/company/phosphene-ai" target="_blank">a startup</a>,
+          <a href="https://wtvglobal.com" target="_blank">a mid-size company</a>, and
+          <a href="https://www.zoho.com" target="_blank">a huge corportaion</a>. My main focus these days is building full stack web
+          applications that are able to scale and perform well.
         </p>
         <p>
           I also recently started developing a few microservices for my own personal use using Node, React, Vue, Angular, Astro & MongoDB.
