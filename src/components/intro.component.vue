@@ -2,7 +2,7 @@
   <div class="intro">
     <div class="title">Hi, I am Leander Paul</div>
     <div class="subtitle">A Full Stack Web Developer Building Digital Dreams One Line of Code at a Time and Bringing Websites to Life</div>
-    <a class="btn" href="">Projects</a>
+    <a class="btn" href="#projects">Projects</a>
   </div>
 </template>
 <style scoped>

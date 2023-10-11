@@ -5,6 +5,7 @@ import Intro from './components/intro.component.vue';
 import AboutMe from './components/about-me.component.vue';
 import Footer from './components/footer.component.vue';
 import Experience from './components/experience.component.vue';
+import Projects from './components/projects.component.vue';
 import ContactMe from './components/contact-me.component.vue';
 </script>
 
@@ -15,6 +16,7 @@ import ContactMe from './components/contact-me.component.vue';
     <Intro />
     <AboutMe />
     <Experience />
+    <Projects />
     <ContactMe />
   </div>
   <Footer />

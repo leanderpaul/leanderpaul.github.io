@@ -33,7 +33,7 @@
         </ul>
       </div>
       <div>
-        <img src="/me.jpeg" alt="Leander Paul" />
+        <img src="/images/me.jpeg" alt="Leander Paul" />
       </div>
     </div>
   </div>
