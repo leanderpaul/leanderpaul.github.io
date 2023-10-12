@@ -20,6 +20,12 @@ import './assets/main.css';
  */
 const router = createRouter({
   history: createWebHistory(),
+  scrollBehavior: (to, from, savedPosition) => {
+    console.log(to, from, savedPosition, window);
+    if (savedPosition) return savedPosition;
+    if (to.hash) return { el: to.hash, behavior: 'smooth' };
+    return { top: 1, left: 0, behavior: 'smooth' };
+  },
   routes: [
     { path: '/', name: 'Home', component: () => import('./pages/home/home.page.vue') },
     { path: '/project-archive', name: 'ProjectArchive', component: () => import('./pages/project-archive/project-archive.page.vue') },

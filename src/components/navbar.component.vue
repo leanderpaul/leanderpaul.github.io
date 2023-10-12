@@ -13,16 +13,16 @@ onMounted(() => window.addEventListener('scroll', () => (isNavBorder.value = win
     </router-link>
     <ol>
       <li>
-        <a href="#about">About</a>
+        <router-link to="/#about">About</router-link>
       </li>
       <li>
-        <a href="#experience">Experience</a>
+        <router-link to="/#experience">Experience</router-link>
       </li>
       <li>
-        <a href="#projects">Projects</a>
+        <router-link to="/#projects">Projects</router-link>
       </li>
       <li>
-        <a href="#contact-me">Contact</a>
+        <router-link to="/#contact-me">Contact</router-link>
       </li>
       <a class="btn" href="/resume.pdf" target="_blank">Resume</a>
     </ol>
