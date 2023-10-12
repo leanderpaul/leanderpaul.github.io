@@ -8,8 +8,6 @@ import { createRouter, createWebHistory } from 'vue-router';
  * Importing user defined packages
  */
 import App from './App.vue';
-import Home from './pages/home/home.page.vue';
-import PageNotFound from './pages/page-not-found/page-not-found.page.vue';
 
 import './assets/main.css';
 
@@ -23,8 +21,9 @@ import './assets/main.css';
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: '/', name: 'Home', component: Home },
-    { path: '/:pathMatch(.*)*', name: 'NotFound', component: PageNotFound },
+    { path: '/', name: 'Home', component: () => import('./pages/home/home.page.vue') },
+    { path: '/project-archive', name: 'ProjectArchive', component: () => import('./pages/project-archive/project-archive.page.vue') },
+    { path: '/:pathMatch(.*)*', name: 'NotFound', component: () => import('./pages/page-not-found/page-not-found.page.vue') },
   ],
 });
 
