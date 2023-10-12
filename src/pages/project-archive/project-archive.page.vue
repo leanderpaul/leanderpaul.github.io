@@ -201,14 +201,6 @@ th {
   padding: 10px 10px;
 }
 
-table .year {
-  padding: 10px 20px;
-}
-
-table .links {
-  padding-right: 20px;
-}
-
 td.year {
   color: var(--color-primary);
 }
@@ -216,6 +208,7 @@ td.year {
 td.title {
   font-weight: bold;
   color: var(--text-light);
+  padding-right: 20px;
 }
 
 td.company {
