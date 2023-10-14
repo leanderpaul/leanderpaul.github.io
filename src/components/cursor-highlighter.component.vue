@@ -9,7 +9,7 @@ onMounted(() => window.addEventListener('mousemove', handleMouseMove));
 </script>
 
 <template>
-  <div :style="cursorStyle"></div>
+  <div class="sm-hide" :style="cursorStyle"></div>
 </template>
 
 <style scoped>

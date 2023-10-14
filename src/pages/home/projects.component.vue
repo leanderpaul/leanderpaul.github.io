@@ -117,7 +117,7 @@ svg {
 
 .project .desc {
   padding: 25px;
-  background-color: var(--background-paper);
+  background-color: var(--background-light);
   margin: 20px 0px;
 }
 

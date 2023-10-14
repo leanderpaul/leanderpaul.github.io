@@ -1,6 +1,7 @@
 :root {
   --background-default: #0f172a;
-  --background-paper: #1a2138;
+  --background-dark: #090e1a;
+  --background-light: #1a2138;
 
   --text-default: #94a3b8;
   --text-light: #ccd6f6;
@@ -107,4 +108,28 @@ a:hover {
   margin: 80px auto;
   padding-top: 70px;
   max-width: 900px;
+}
+
+.d-none {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .sm-hide {
+    display: none !important;
+  }
+
+  .heading {
+    margin-bottom: 10px;
+  }
+
+  .section {
+    max-width: calc(100vw - 50px);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .md-hide {
+    display: none !important;
+  }
 }

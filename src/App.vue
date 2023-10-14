@@ -33,21 +33,10 @@ section {
   flex: 1;
 }
 
-@media (min-width: 640px) {
-  .container {
-    max-width: 640px;
-  }
-}
-
-@media (min-width: 720px) {
-  .container {
-    max-width: 720px;
-  }
-}
-
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   .container {
     max-width: 768px;
+    padding: 0px 25px;
   }
 }
 
