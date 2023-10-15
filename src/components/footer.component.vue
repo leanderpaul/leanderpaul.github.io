@@ -73,11 +73,15 @@ section svg:hover {
 @media (max-width: 768px) {
   section {
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
+  }
+
+  section a {
+    margin: 0px 20px;
   }
 
   a.footer {
-    margin-top: 25px;
+    margin: 25px 0px;
   }
 }
 

@@ -155,7 +155,6 @@ li a::before {
   ol {
     margin-top: 0px;
     flex-direction: column;
-    width: 100vw;
     background-color: var(--background-default);
     align-items: flex-start;
     padding: 25px;
@@ -163,7 +162,13 @@ li a::before {
   }
 
   li {
-    margin: 10px 0px;
+    margin: 0px;
+    width: 100%;
+  }
+
+  li a {
+    display: block;
+    padding: 10px 0px;
   }
 
   .btn {
