@@ -35,4 +35,15 @@
   width: 200px;
   padding: 12px;
 }
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+}
 </style>

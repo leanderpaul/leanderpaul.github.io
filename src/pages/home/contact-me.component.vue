@@ -38,4 +38,14 @@ a {
   margin-top: 50px;
   width: 100px;
 }
+
+@media (max-width: 768px) {
+  .content {
+    margin-bottom: 125px;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+}
 </style>

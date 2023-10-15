@@ -17,7 +17,7 @@ onMounted(() => window.addEventListener('scroll', () => (isNavBorder.value = win
       <span></span>
       <span></span>
     </div>
-    <div class="nav-links">
+    <div class="nav-links" @click="isNavOpen = false">
       <ol>
         <li>
           <router-link to="/#about">About</router-link>
@@ -146,7 +146,7 @@ li a::before {
   overflow: hidden;
 }
 
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
   nav {
     padding: 0px 25px;
     width: calc(100% - 50px);

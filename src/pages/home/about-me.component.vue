@@ -69,4 +69,18 @@ ul {
   padding-left: 20px;
   columns: 3;
 }
+
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  ul {
+    columns: 2;
+  }
+}
 </style>

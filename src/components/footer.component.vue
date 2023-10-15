@@ -81,7 +81,7 @@ section svg:hover {
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   section {
     position: fixed;
     top: calc(50vh - 70px);

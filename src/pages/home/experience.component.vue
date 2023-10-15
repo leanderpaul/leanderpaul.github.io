@@ -1,7 +1,8 @@
 <script lang="ts" setup>
-import { onMounted, reactive } from 'vue';
+import { onMounted, reactive, ref } from 'vue';
 
-const activeIndicatorStyle = reactive<{ top?: string }>({});
+const activeTab = ref('wtv');
+const activeIndicatorStyle = reactive<{ top?: string; left?: string }>({});
 const getTabTitles = () => document.querySelectorAll('.tab-title button') as NodeListOf<HTMLButtonElement>;
 const getTabContents = () => document.querySelectorAll('.tab-content > div') as NodeListOf<HTMLDivElement>;
 const activate = (state: boolean, element: HTMLElement) => (state ? element.classList.add('active') : element.classList.remove('active'));
@@ -9,14 +10,24 @@ const activate = (state: boolean, element: HTMLElement) => (state ? element.clas
 function handleClick(event: MouseEvent) {
   const btn = event.target as HTMLButtonElement;
   activeIndicatorStyle.top = `${btn.offsetTop}px`;
+  activeIndicatorStyle.left = `${btn.offsetLeft}px`;
+  activeTab.value = btn.dataset.target as string;
   getTabTitles().forEach(tabTitle => activate(btn === tabTitle, tabTitle));
   getTabContents().forEach(tabContent => activate(btn.dataset.target === tabContent.id, tabContent));
 }
 
+function handleResize() {
+  const tabTitles = getTabTitles();
+  const activeTabTitle = tabTitles[Array.from(tabTitles).findIndex(tabTitle => tabTitle.dataset.target === activeTab.value)];
+  activeIndicatorStyle.top = `${activeTabTitle.offsetTop}px`;
+  activeIndicatorStyle.left = `${activeTabTitle.offsetLeft}px`;
+}
+
 onMounted(() => {
   const tabTitles = getTabTitles();
-  activeIndicatorStyle.top = `${tabTitles[0]?.offsetTop}px`;
   tabTitles.forEach(tabTitle => tabTitle.addEventListener('click', handleClick));
+  window.addEventListener('resize', handleResize);
+  window.addEventListener('load', handleResize);
 });
 </script>
 <template>
@@ -79,14 +90,12 @@ onMounted(() => {
 
 .tab-title {
   display: flex;
-  flex-direction: column;
 }
 
 .tab-title > button {
   background: none;
   color: inherit;
   border: none;
-  border-left: 2px solid #233554;
   padding: 10px 25px;
   font: inherit;
   cursor: pointer;
@@ -100,14 +109,13 @@ onMounted(() => {
 }
 
 .tab-title > button.active {
-  background-color: #112240;
   color: var(--color-primary);
 }
 
 .active-indicator {
   position: absolute;
   background-color: var(--color-primary);
-  transition: top 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   width: 3px;
   height: 45px;
 }
@@ -146,5 +154,39 @@ onMounted(() => {
 
 .tab-content li {
   margin-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+  .tab-title {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .tab-title > button {
+    width: 130px;
+    padding: 10px;
+    text-align: center;
+    flex-shrink: 0;
+    border-bottom: 2px solid #233554;
+  }
+  .content {
+    flex-direction: column;
+  }
+
+  .active-indicator {
+    width: 120px;
+    height: 3px;
+    margin-top: 43px;
+  }
+}
+
+@media (min-width: 768px) {
+  .tab-title {
+    flex-direction: column;
+  }
+
+  .tab-title > button {
+    border-left: 2px solid #233554;
+  }
 }
 </style>

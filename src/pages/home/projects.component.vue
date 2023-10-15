@@ -46,7 +46,9 @@ const projects: Project[] = [
           <img :src="project.image" :alt="project.title" />
         </div>
         <div class="content">
-          <h2>{{ project.title }}</h2>
+          <a :href="project.demo" target="_blank">
+            <h2>{{ project.title }}</h2>
+          </a>
           <div class="desc">{{ project.description }}</div>
           <ul class="tech-list">
             <li v-for="tech in project.tech">{{ tech }}</li>
@@ -97,7 +99,6 @@ svg {
 }
 
 .project {
-  margin-bottom: 100px;
   display: grid;
   gap: 10px;
   grid-template-columns: repeat(12, 1fr);
@@ -109,6 +110,8 @@ svg {
 
 .project img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .project .content {
@@ -118,44 +121,93 @@ svg {
 .project .desc {
   padding: 25px;
   background-color: var(--background-light);
-  margin: 20px 0px;
-}
-
-.project:nth-child(odd) .image {
-  grid-column: 1 / 8;
-}
-
-.project:nth-child(odd) .content {
-  grid-column: 7 / -1;
-  text-align: right;
-}
-
-.project:nth-child(even) .content {
-  grid-column: 1 / 7;
-}
-
-.project:nth-child(even) .image {
-  grid-column: 6 / -1;
 }
 
 .project .tech-list {
   display: flex;
-  gap: 20px;
-}
-
-.project:nth-child(odd) .tech-list {
-  justify-content: flex-end;
+  gap: 5px 20px;
+  white-space: nowrap;
+  flex-wrap: wrap;
+  font-size: 14px;
 }
 
 .project .links {
   margin-top: 20px;
 }
 
-.project .links a {
-  margin-left: 20px;
-}
-
 .btn {
   padding: 10px 25px;
+}
+
+@media (max-width: 768px) {
+  .project {
+    margin-bottom: 25px;
+  }
+
+  .project .content {
+    background: rgba(26, 33, 56, 0.6);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3px);
+    border: 1px solid rgba(26, 33, 56, 0.1);
+    padding: 25px;
+    border-radius: 2px;
+  }
+
+  .project .desc {
+    padding: 25px 0px;
+    background-color: transparent;
+  }
+
+  .project .image,
+  .project .content {
+    grid-column: 1 / -1;
+  }
+
+  .project .image {
+    opacity: 0.35;
+  }
+
+  .project .links a {
+    margin-right: 20px;
+  }
+
+  .btn {
+    margin-top: 25px;
+  }
+}
+
+@media (min-width: 768px) {
+  .project {
+    margin-bottom: 100px;
+  }
+
+  .project:nth-child(odd) .image {
+    grid-column: 1 / 8;
+  }
+
+  .project:nth-child(odd) .content {
+    grid-column: 7 / -1;
+    text-align: right;
+  }
+
+  .project:nth-child(even) .content {
+    grid-column: 1 / 7;
+  }
+
+  .project:nth-child(even) .image {
+    grid-column: 6 / -1;
+  }
+
+  .project:nth-child(odd) .tech-list {
+    justify-content: flex-end;
+  }
+
+  .project .links a {
+    margin-left: 20px;
+  }
+
+  .project .desc {
+    margin: 20px 0px;
+  }
 }
 </style>
