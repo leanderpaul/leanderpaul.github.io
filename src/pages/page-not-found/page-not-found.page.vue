@@ -28,4 +28,18 @@ h2 {
   margin-top: 2rem;
   padding: 12px 25px;
 }
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 8rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  .btn {
+    margin-top: 4rem;
+  }
+}
 </style>

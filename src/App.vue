@@ -18,7 +18,6 @@ import Footer from './components/footer.component.vue';
   z-index: 2;
   margin: auto;
   padding-top: 70px;
-  min-height: calc(100vh - 220px);
   display: flex;
   max-width: 1024px;
 }
@@ -36,6 +35,7 @@ section {
 
 @media (max-width: 768px) {
   .container {
+    min-height: calc(100vh - 105px);
     max-width: 768px;
     padding: 0px 25px;
   }
