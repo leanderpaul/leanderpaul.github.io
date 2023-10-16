@@ -1,9 +1,10 @@
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watchEffect } from 'vue';
 
 const isNavOpen = ref(false);
 const isNavBorder = ref(window.scrollY > 0);
 onMounted(() => window.addEventListener('scroll', () => (isNavBorder.value = window.scrollY > 0)));
+watchEffect(() => (document.body.style.overflow = isNavOpen.value ? 'hidden' : 'auto'));
 </script>
 <template>
   <nav :class="{ bordered: isNavBorder, open: isNavOpen }">
@@ -49,11 +50,15 @@ nav {
   z-index: 10;
   font-size: 14px;
   transition: height 0.2s;
+  background-color: var(--background-default);
 }
 
 nav.bordered {
   height: 70px;
-  background-color: var(--background-default);
+}
+
+nav.bordered:not(.open) {
+  box-shadow: 0 10px 30px -10px var(--background-dark);
 }
 
 svg {
@@ -179,10 +184,14 @@ li a::before {
     position: fixed;
     width: 100vw;
     height: 0px;
-    top: 70px;
+    top: 100px;
     left: 0;
     overflow: hidden;
     transition: all 0.23s ease-in-out;
+  }
+
+  .bordered .nav-links {
+    top: 70px;
   }
 
   .open div.nav-links {
