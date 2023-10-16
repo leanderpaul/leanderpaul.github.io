@@ -239,4 +239,26 @@ svg {
 svg:hover {
   stroke: var(--color-primary);
 }
+
+@media (max-width: 768px) {
+  table {
+    margin: 50px 0px;
+  }
+
+  table .company {
+    display: none;
+  }
+
+  table .tech-stack {
+    display: none;
+  }
+
+  table .year {
+    padding-left: 0px;
+  }
+
+  table .links {
+    padding-right: 0px;
+  }
+}
 </style>
