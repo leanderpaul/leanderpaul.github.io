@@ -10,43 +10,30 @@
  * Defining types
  */
 
-export interface WorkExperience {
+interface WorkExperience {
   fromDate: string;
   toDate?: string;
   company: string;
   companyUrl?: string;
   designation: string;
-  description: string | string[];
+  description: string[];
 }
 
-export interface Education {
+interface Education {
   fromDate: string;
   toDate: string;
   university: string;
   universityUrl?: string;
   degree: string;
-  description: string | string[];
 }
 
-export interface Project {
-  name: string;
+interface Project {
+  title: string;
   description: string;
-  url: string;
-  techStack: string[];
-  githubUrl: string;
   image: string;
-}
-
-export interface Skill {
-  name: string;
-  level: number;
-}
-
-export interface Certificate {
-  name: string;
-  url: string;
-  issuer: string;
-  issueDate: string;
+  tech: string[];
+  source: string;
+  demo: string;
 }
 
 /**
@@ -94,7 +81,6 @@ export const education: Education[] = [
     university: 'Queen Mary University of London',
     universityUrl: 'https://www.qmul.ac.uk',
     degree: "Master's in Computer Science",
-    description: ['Completed the course with distinction'],
   },
   {
     fromDate: '2016',
@@ -102,8 +88,34 @@ export const education: Education[] = [
     university: 'Anna University',
     universityUrl: 'https://www.annauniv.edu',
     degree: "Bachelor's in Information Technology",
-    description: ['Lead the technical Symposium', 'Graduated with 1st Class Degree'],
   },
 ];
 
-export const projects: Project[] = [];
+export const projects: Project[] = [
+  {
+    title: 'Shadow Accounts',
+    description: 'A Web app to manage your account for all the shadow services. View and manage your profile, and sessions.',
+    image: '/images/accounts.jpg',
+    tech: ['Astro', 'Tailwind CSS', 'Vercel'],
+    source: 'https://github.com/leanderpaul/shadow-accounts',
+    demo: 'https://accounts.shadow-apps.com',
+  },
+  {
+    title: 'Shadow Chronicle',
+    description:
+      'A web app to track your daily activities and to keep a journal of your life. It also tracks your expenses, workouts, and other activities.',
+    image: '/images/chronicle.jpg',
+    tech: ['Angular', 'Tailwind CSS', 'GraphQL', 'Vercel'],
+    source: 'https://github.com/leanderpaul/shadow-chronicle',
+    demo: 'https://chronicle.shadow-apps.com',
+  },
+  {
+    title: 'Shadow Archive',
+    description:
+      'A backend service to store data from the shadow services and exposes the data using GraphQL API. It stores all the date required by other the shadow services such as accounts, chronicle, etc.',
+    image: '/images/archive.jpg',
+    tech: ['NestJS', 'Fastify', 'GraphQL', 'MongoDB', 'AWS EC2'],
+    source: 'https://github.com/leanderpaul/shadow-archive',
+    demo: 'https://archive.shadow-apps.com',
+  },
+];

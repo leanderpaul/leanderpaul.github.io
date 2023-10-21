@@ -1,41 +1,5 @@
 <script lang="ts" setup>
-interface Project {
-  title: string;
-  description: string;
-  image: string;
-  tech: string[];
-  source: string;
-  demo: string;
-}
-
-const projects: Project[] = [
-  {
-    title: 'Shadow Accounts',
-    description: 'A Web app to manage your account for all the shadow services. View and manage your profile, and sessions.',
-    image: '/images/accounts.jpg',
-    tech: ['Astro', 'Tailwind CSS', 'Vercel'],
-    source: 'https://github.com/leanderpaul/shadow-accounts',
-    demo: 'https://accounts.shadow-apps.com',
-  },
-  {
-    title: 'Shadow Chronicle',
-    description:
-      'A web app to track your daily activities and to keep a journal of your life. It also tracks your expenses, workouts, and other activities.',
-    image: '/images/chronicle.jpg',
-    tech: ['Angular', 'Tailwind CSS', 'GraphQL', 'Vercel'],
-    source: 'https://github.com/leanderpaul/shadow-chronicle',
-    demo: 'https://chronicle.shadow-apps.com',
-  },
-  {
-    title: 'Shadow Archive',
-    description:
-      'A backend service to store data from the shadow services and exposes the data using GraphQL API. It stores all the date required by other the shadow services such as accounts, chronicle, etc.',
-    image: '/images/archive.jpg',
-    tech: ['NestJS', 'Fastify', 'GraphQL', 'MongoDB', 'AWS EC2'],
-    source: 'https://github.com/leanderpaul/shadow-archive',
-    demo: 'https://archive.shadow-apps.com',
-  },
-];
+import { projects } from '@app/data';
 </script>
 <template>
   <div id="projects" class="section">
