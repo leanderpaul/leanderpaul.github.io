@@ -1,81 +1,49 @@
 <script lang="ts" setup>
 import { onMounted, reactive, ref } from 'vue';
+import { experiences, type Experience } from '@app/data';
 
-const activeTab = ref('wtv');
-const activeIndicatorStyle = reactive<{ top?: string; left?: string }>({});
-const getTabTitles = () => document.querySelectorAll('.tab-title button') as NodeListOf<HTMLButtonElement>;
-const getTabContents = () => document.querySelectorAll('.tab-content > div') as NodeListOf<HTMLDivElement>;
-const activate = (state: boolean, element: HTMLElement) => (state ? element.classList.add('active') : element.classList.remove('active'));
+const activeTab = ref(experiences[0] as Experience);
+const activeIndicatorStyle = reactive<{ top: string; left: string; display?: 'none' }>({ top: '1000px', left: '0px', display: 'none' });
 
-function handleClick(event: MouseEvent) {
+function handleClick(event: MouseEvent, experience: Experience) {
+  activeTab.value = experience;
   const btn = event.target as HTMLButtonElement;
   activeIndicatorStyle.top = `${btn.offsetTop}px`;
   activeIndicatorStyle.left = `${btn.offsetLeft}px`;
-  activeTab.value = btn.dataset.target as string;
-  getTabTitles().forEach(tabTitle => activate(btn === tabTitle, tabTitle));
-  getTabContents().forEach(tabContent => activate(btn.dataset.target === tabContent.id, tabContent));
 }
 
-function handleResize() {
-  const tabTitles = getTabTitles();
-  const activeTabTitle = tabTitles[Array.from(tabTitles).findIndex(tabTitle => tabTitle.dataset.target === activeTab.value)];
+function positionActiveIndicator() {
+  const activeTabTitle = document.querySelector('.tab-title > .active') as HTMLButtonElement;
   activeIndicatorStyle.top = `${activeTabTitle.offsetTop}px`;
   activeIndicatorStyle.left = `${activeTabTitle.offsetLeft}px`;
+  activeIndicatorStyle.display = undefined;
 }
 
-onMounted(() => {
-  const tabTitles = getTabTitles();
-  tabTitles.forEach(tabTitle => tabTitle.addEventListener('click', handleClick));
-  window.addEventListener('resize', handleResize);
-  window.addEventListener('load', handleResize);
-});
+onMounted(() => (window.addEventListener('resize', positionActiveIndicator), positionActiveIndicator()));
 </script>
 <template>
   <div id="experience" class="section">
     <div class="heading">Where I've Worked</div>
     <div class="content">
       <div class="tab-title">
-        <button class="active" data-target="wtv">WTV</button>
-        <button data-target="zoho">Zoho</button>
-        <button data-target="phosphene-ai">Phosphene AI</button>
+        <button
+          v-for="experience in experiences"
+          :class="{ active: activeTab.company === experience.company }"
+          @click="handleClick($event, experience)"
+        >
+          {{ experience.company }}
+        </button>
         <div :style="activeIndicatorStyle" class="active-indicator"></div>
       </div>
       <div class="tab-content">
-        <div id="wtv" class="active">
-          <h3>
-            <span>Backend Developer</span>
-            <span class="company">@ <a href="https://wtvglobal.com" target="_blank">WTV</a></span>
-          </h3>
-          <p>March 2023 - September 2023</p>
-          <ul>
-            <li>API Development for micro service architecture using RabbitMQ</li>
-            <li>Developed REST logic and tests to validate the working of theapplication</li>
-          </ul>
-        </div>
-        <div id="zoho">
-          <h3>
-            <span>Member Technical Staff</span>
-            <span class="company">@ <a href="https://zoho.com" target="_blank">Zoho</a></span>
-          </h3>
-          <p>January 2020 - August 2022</p>
-          <ul>
-            <li>API Development using XML for internal service teams</li>
-            <li>Maintained Redis Cache in Accounts for all API queries</li>
-          </ul>
-        </div>
-        <div id="phosphene-ai">
-          <h3>
-            <span>Full Stack Developer</span>
-            <span class="company">@ <a href="https://www.linkedin.com/company/phosphene-ai" target="_blank">Phosphene AI</a></span>
-          </h3>
-          <p>April 2018 - January 2020</p>
-          <ul>
-            <li>Maintained positive work ethic and commitment to providingexcellent service</li>
-            <li>Designed the API and Database design for the application</li>
-            <li>Developed the back-end server using Express, NodeJS andMongoDB</li>
-            <li>Deployed the application to AWS and setup the internal VPCnetworking routes and SSL certificates</li>
-          </ul>
-        </div>
+        <h3>
+          <span>{{ activeTab.designation }}</span>
+          <a class="company" :href="activeTab.companyUrl" target="_blank">{{ activeTab.company }}</a>
+        </h3>
+        <p>{{ activeTab.startDate }} - {{ activeTab.endDate }}</p>
+        <ul>
+          <li v-for="item in activeTab.description">{{ item }}</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -85,7 +53,7 @@ onMounted(() => {
   display: flex;
   gap: 50px;
   text-align: justify;
-  height: 400px;
+  height: 600px;
 }
 
 .tab-title {
@@ -125,17 +93,13 @@ onMounted(() => {
   flex-grow: 1;
 }
 
-.tab-content > div {
-  display: none;
-}
-
-.tab-content > div.active {
-  display: block;
-}
-
 .tab-content .company {
   margin-left: 5px;
   color: var(--color-primary);
+}
+
+.tab-content .company::before {
+  content: '@ ';
 }
 
 .tab-content .company a {
@@ -169,8 +133,10 @@ onMounted(() => {
     flex-shrink: 0;
     border-bottom: 2px solid #233554;
   }
+
   .content {
     flex-direction: column;
+    height: 1100px;
   }
 
   .active-indicator {

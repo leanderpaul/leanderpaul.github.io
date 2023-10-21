@@ -104,9 +104,8 @@ a:hover {
 }
 
 .section {
-  scroll-margin-top: 90px;
   margin: 80px auto;
-  padding-top: 70px;
+  padding-top: 120px;
   max-width: 900px;
 }
 

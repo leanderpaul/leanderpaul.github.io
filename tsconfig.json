@@ -44,5 +44,5 @@
     /** Completeness */
     "skipLibCheck": true
   },
-  "include": ["src/**/*.(ts|vue)", "env.d.ts"]
+  "include": ["src/**/*", "env.d.ts"]
 }
