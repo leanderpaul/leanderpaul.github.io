@@ -74,6 +74,7 @@ export const experiences: Experience[] = [
     startDate: 'April 2018',
     endDate: 'January 2020',
     company: 'Phosphene AI',
+    companyUrl: 'https://www.linkedin.com/company/phosphene-ai',
     designation: 'Full Stack Web Developer',
     description: [
       "Architected and created the web application, orchestrating the various components to ensure a coherent and efficient user experience. This included designing the application's structure, identifying key functionalities, and establishing the overall flow of data and interactions.",
