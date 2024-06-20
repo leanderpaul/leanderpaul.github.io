@@ -12,7 +12,7 @@
 
 export interface Experience {
   startDate: string;
-  endDate?: string;
+  endDate: string;
   company: string;
   companyUrl?: string;
   designation: string;
@@ -42,17 +42,30 @@ interface Project {
 
 export const experiences: Experience[] = [
   {
+    startDate: 'March 2024',
+    endDate: 'Present',
+    company: 'Sphere IT Consultants',
+    companyUrl: 'https://sphereitglobal.com',
+    designation: 'NodeJS Developer',
+    description: [
+      '*Reporting to Emirates NBD* and working on their digital banking application for the Egypt branch',
+      'Collaborated with cross-functional teams to deliver high-quality software solutions within tight deadlines',
+      'Documented 100% of the technical specifications and dependencies of the application',
+    ],
+  },
+  {
     startDate: 'March 2023',
     endDate: 'September 2023',
     company: 'WTV',
     companyUrl: 'https://wtvglobal.com',
     designation: 'Backend NodeJS Developer',
     description: [
-      "Designed and architected the microservices that make up the application. This involved breaking down the application's functionality into smaller, manageable services that can communicate with each other via RabbitMQ, promoting scalability and maintainability.",
-      'Played a key role in designing, developing, and maintaining the APIs that power the application. This encompassed creating endpoints that allowed data input and retrieval, ensuring seamless interactions between the different microservices.',
-      'Enhanced the usability of the APIs by utilizing Swagger to create comprehensive documentation. This documentation detailed the API endpoints, their functionality, and request/response data structures, making it easier for the team and stakeholders to work with the APIs effectively.',
-      'Ensured the reliability and functionality of the APIs by employing Jest, a widely-used JavaScript testing framework, to write unit and integration tests for our microservices. This comprehensive testing strategy helped us identify and address issues early in development, maintaining the quality of our application.',
-      "Collaborated and engaged in regular communication with the frontend team to understand their requirements and ensure that the APIs were designed and implemented in a way that aligned with the user interface's needs. This collaborative approach facilitated the seamless integration of the frontend and backend components in the application.",
+      'Designed and architected the microservices that make up the application',
+      'Developed 30+ new software features by following the best practices',
+      'Wrote 100+ integration tests to verify the functionality of the application',
+      'Documented 100% of the technical specifications and dependencies of the application',
+      'Improved bug detection to 99%, reducing customer inquiries to less than 5 per week',
+      'Optimized microservice architecture by implementing RabbitMQ as a message broker, increasing system reliability and enabling horizontal scalability; achieved a *40% reduction in downtime* and improved overall system performance',
     ],
   },
   {
@@ -62,12 +75,12 @@ export const experiences: Experience[] = [
     companyUrl: 'https://zoho.com',
     designation: 'Member Technical Staff',
     description: [
-      'Maintained an application that played a critical role in the organization by overseeing Authentication and Authorization for other services. This application served as a fundamental microservice, establishing communication through REST APIs and XML data exchange, ensuring secure access to resources.',
-      "Created and maintained essential APIs vital for different service teams within the organization, addressing their specific requirements and enabling seamless interaction between systems. These APIs were instrumental in facilitating data transfer and user access, contributing to the overall effectiveness of the organization's services.",
-      "Managed the application's caching strategy, optimizing performance by reducing data redundancy and enhancing response times. This effort significantly improved the efficiency and responsiveness of the system, resulting in a smoother user experience.",
-      'Implemented SAML authentication within the application to bolster security and access control, safeguarding sensitive resources and data. This enhancement further solidified the robustness of the Authentication and Authorization mechanisms in place.',
-      'Wrote migration scripts to execute the seamless transfer of data from one database to another, ensuring data integrity and consistency. This data migration was essential for maintaining the continuity of services during database transitions.',
-      "Demonstrated a keen eye for detail by identifying and rectifying various bugs present in the application. These efforts not only improved the application's functionality but also enhanced the overall user experience, eliminating potential issues and bottlenecks.",
+      'Collaborated with 10 client service teams to understand and solve bottlenecks and proposed feature expansions',
+      'Mentored 3 junior developers on the team and documented best practices within the organization',
+      "Optimized application's data processing speed by over 40% using advanced cache management techniques in Redis",
+      '*Reduced Redis CPU usage by 60%* and improved the reliability of the caching system',
+      'Identified and resolved slow queries in the application thereby increasing the response time of certain queries by 20%',
+      'Introduced a hierarchy-based role management system to facilitate authorization like Linux file system permissions improving performance by 40%',
     ],
   },
   {
@@ -77,11 +90,13 @@ export const experiences: Experience[] = [
     companyUrl: 'https://www.linkedin.com/company/phosphene-ai',
     designation: 'Full Stack Web Developer',
     description: [
-      "Architected and created the web application, orchestrating the various components to ensure a coherent and efficient user experience. This included designing the application's structure, identifying key functionalities, and establishing the overall flow of data and interactions.",
-      "Orchestrated the creation and management of authentication and authorization systems within the backend application, as well as the development and maintenance of the essential APIs. This involved implementing secure access control, user authentication, and role-based permissions to safeguard sensitive data and resources, thereby enhancing the application's overall security.",
-      "Designed the database schema, meticulously defining the structure and relationships of the tables to support the application's data requirements. These decisions were instrumental in ensuring data integrity and efficient data retrieval, improving the overall performance of the application.",
-      "Developed the frontend React application to seamlessly interact with the backend, creating a cohesive user interface that facilitated a smooth and intuitive user experience. This included implementing data retrieval and display, user interactions, and dynamic content rendering to meet the application's requirements effectively.",
-      'Deployed the application in the AWS (Amazon Web Services) environment, ensuring it was accessible and reliable. This deployment encompassed configuring cloud infrastructure, managing resources, and optimizing application performance to provide users with a dependable and responsive web application.',
+      'Led architecture, design and development of 20+ new features',
+      'Deployed applications on AWS, achieving a 99% uptime on small-sized servers, saving 30% in cost',
+      'Implemented auto-scaling mechanism in the application logic for image upscaling application, *reducing the cost by 75%*',
+      'Developed and documented RESTful APIs, allowing other developers to leverage APIs for their daily tasks',
+      'Conducted weekly code reviews, ensuring the reliability of the application and helping the team find 40% more bugs in the application',
+      'Implemented rich user experiences by creating 35+ new components in react',
+      'Reduced load time by 30% and made the web application SEO compliant',
     ],
   },
 ];

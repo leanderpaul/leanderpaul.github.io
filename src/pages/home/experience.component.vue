@@ -19,6 +19,12 @@ function positionActiveIndicator() {
   activeIndicatorStyle.display = undefined;
 }
 
+function parseDescription(description: string) {
+  const parts = description.split(/(\*.*?\*)/g);
+  const isBold = (part: string) => part.startsWith('*') && part.endsWith('*');
+  return parts.map(part => ({ isBold: isBold(part), text: part.replace(/\*/g, '') }));
+}
+
 onMounted(() => (window.addEventListener('resize', positionActiveIndicator), positionActiveIndicator()));
 </script>
 <template>
@@ -42,7 +48,9 @@ onMounted(() => (window.addEventListener('resize', positionActiveIndicator), pos
         </h3>
         <p>{{ activeTab.startDate }} - {{ activeTab.endDate }}</p>
         <ul>
-          <li v-for="item in activeTab.description">{{ item }}</li>
+          <li v-for="item in activeTab.description">
+            <span v-for="part in parseDescription(item)" :class="{ bold: part.isBold }">{{ part.text }}</span>
+          </li>
         </ul>
       </div>
     </div>
@@ -118,6 +126,11 @@ onMounted(() => (window.addEventListener('resize', positionActiveIndicator), pos
 
 .tab-content li {
   margin-bottom: 5px;
+}
+
+.tab-content .bold {
+  font-weight: 600;
+  color: var(--text-light);
 }
 
 @media (max-width: 768px) {
