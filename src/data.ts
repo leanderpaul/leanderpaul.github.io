@@ -13,7 +13,9 @@
 export interface Experience {
   startDate: string;
   endDate: string;
-  company: string;
+  company?: string;
+  client?: string;
+  clientUrl?: string;
   companyUrl?: string;
   designation: string;
   description: string[];
@@ -45,12 +47,16 @@ export const experiences: Experience[] = [
     startDate: 'March 2024',
     endDate: 'Present',
     company: 'Sphere IT Consultants',
+    client: 'Emirates NBD Bank',
+    clientUrl: 'https://www.emiratesnbd.com/en',
     companyUrl: 'https://sphereitglobal.com',
     designation: 'NodeJS Developer',
     description: [
-      '*Reporting to Emirates NBD* and working on their digital banking application for the Egypt branch',
-      'Collaborated with cross-functional teams to deliver high-quality software solutions within tight deadlines',
-      'Documented 100% of the technical specifications and dependencies of the application',
+      'Built 9+ NodeJS microservices using Express framework to support the credit card application journey',
+      'Integrated multi-factor authentication (MFA) using SMS, IVR, and Number Matching authentication based on configurable flows',
+      'Engineered APIs for fetching customer credit card details and dynamic credit limit computation via external services',
+      'Developed end-to-end STP (Straight Through Processing) flow for onboarding new-to-bank customers',
+      'Automated testing for all APIs using a custom-built suite, achieving 95% code coverage and reducing manual testing time by 50%',
     ],
   },
   {
@@ -60,12 +66,11 @@ export const experiences: Experience[] = [
     companyUrl: 'https://wtvglobal.com',
     designation: 'Backend NodeJS Developer',
     description: [
-      'Designed and architected the microservices that make up the application',
-      'Developed 30+ new software features by following the best practices',
-      'Wrote 100+ integration tests to verify the functionality of the application',
-      'Documented 100% of the technical specifications and dependencies of the application',
-      'Improved bug detection to 99%, reducing customer inquiries to less than 5 per week',
-      'Optimized microservice architecture by implementing RabbitMQ as a message broker, increasing system reliability and enabling horizontal scalability; achieved a *40% reduction in downtime* and improved overall system performance',
+      'Architected scalable microservices with inter-service communication using RabbitMQ for enhanced reliability',
+      'Developed MongoDB schemas optimized for performance under real-world query patterns',
+      'Adopted TDD methodology with Jest for unit and integration tests, improving test coverage and code quality',
+      'Created comprehensive API documentation using Swagger for seamless frontend integration',
+      '*Achieved a 30% reduction in system downtime* by optimizing microservice messaging with RabbitMQ and Docker-based deployments',
     ],
   },
   {
@@ -75,12 +80,11 @@ export const experiences: Experience[] = [
     companyUrl: 'https://zoho.com',
     designation: 'Member Technical Staff',
     description: [
-      'Collaborated with 10 client service teams to understand and solve bottlenecks and proposed feature expansions',
-      'Mentored 3 junior developers on the team and documented best practices within the organization',
       "Optimized application's data processing speed by over 40% using advanced cache management techniques in Redis",
       '*Reduced Redis CPU usage by 60%* and improved the reliability of the caching system',
       'Identified and resolved slow queries in the application thereby increasing the response time of certain queries by 20%',
       'Introduced a hierarchy-based role management system to facilitate authorization like Linux file system permissions improving performance by 40%',
+      'Mentored 3 junior developers on the team and documented best practices within the organization',
     ],
   },
   {
@@ -90,13 +94,23 @@ export const experiences: Experience[] = [
     companyUrl: 'https://www.linkedin.com/company/phosphene-ai',
     designation: 'Full Stack Web Developer',
     description: [
-      'Led architecture, design and development of 20+ new features',
+      'Led architecture, design and development of 20+ new features and 35+ components in react',
       'Deployed applications on AWS, achieving a 99% uptime on small-sized servers, saving 30% in cost',
       'Implemented auto-scaling mechanism in the application logic for image upscaling application, *reducing the cost by 75%*',
-      'Developed and documented RESTful APIs, allowing other developers to leverage APIs for their daily tasks',
       'Conducted weekly code reviews, ensuring the reliability of the application and helping the team find 40% more bugs in the application',
-      'Implemented rich user experiences by creating 35+ new components in react',
       'Reduced load time by 30% and made the web application SEO compliant',
+    ],
+  },
+  {
+    startDate: 'April 2017',
+    endDate: 'March 2018',
+    designation: 'Freelance Web Developer',
+    description: [
+      'Built and deployed 2 web applications (Bluebell - a frontend form app, and Jute Emporium - an e-commerce site)',
+      'Integrated Razorpay for secure online payments and implemented dynamic order tracking with email notifications',
+      'Developed custom admin panels for stock and order management',
+      'Deployed both apps on AWS EC2, ensuring scalability and uptime',
+      'Noteworthy: Delivered a complete e-commerce solution with real-time order updates and admin control, including email automation for customer communication',
     ],
   },
 ];
