@@ -10,6 +10,8 @@
  * Defining types
  */
 
+type LinkType = 'Github' | 'Demo' | 'NPM';
+
 export interface Experience {
   startDate: string;
   endDate: string;
@@ -29,13 +31,16 @@ interface Education {
   degree: string;
 }
 
+interface Link {
+  type: LinkType;
+  url: string;
+}
+
 interface Project {
   title: string;
   description: string;
-  image: string;
   tech: string[];
-  source: string;
-  demo: string;
+  links?: Link[];
 }
 
 /**
@@ -134,29 +139,30 @@ export const education: Education[] = [
 
 export const projects: Project[] = [
   {
+    title: 'Shadow Applications',
+    description:
+      'A dependency-injection-based framework inspired by NestJS with enhanced modular architecture. Eliminates global modules and duplicate tokens while supporting SOLID principles, lifecycle hooks, and circular dependency resolution.',
+    tech: ['Bun', 'TypeScript', 'Jest'],
+    links: [
+      { type: 'Github', url: 'https://github.com/shadow-library/app' },
+      { type: 'NPM', url: 'https://www.npmjs.com/package/@shadow-library/app' },
+    ],
+  },
+  {
+    title: 'Shadow Class Schema',
+    description:
+      'Generates JSON schemas from class decorators. Supports discriminators, `anyOf`, `allOf`, and maintains a central registry for seamless Ajv integration.',
+    tech: ['Bun', 'TypeScript'],
+    links: [
+      { type: 'Github', url: 'https://github.com/shadow-library/class-schema' },
+      { type: 'NPM', url: 'https://www.npmjs.com/package/@shadow-library/class-schema' },
+    ],
+  },
+  {
     title: 'Shadow Accounts',
-    description: 'A Web app to manage your account for all the shadow services. View and manage your profile, and sessions.',
-    image: '/images/accounts.jpg',
+    description:
+      'A centralized IAM system for managing authentication and authorization across microservices. Built with NestJS and designed for multi-service environments.',
     tech: ['Astro', 'Tailwind CSS', 'Vercel'],
-    source: 'https://github.com/leanderpaul/shadow-accounts',
-    demo: 'https://accounts.shadow-apps.com',
-  },
-  {
-    title: 'Shadow Chronicle',
-    description:
-      'A web app to track your daily activities and to keep a journal of your life. It also tracks your expenses, workouts, and other activities.',
-    image: '/images/chronicle.jpg',
-    tech: ['Angular', 'Tailwind CSS', 'GraphQL', 'Vercel'],
-    source: 'https://github.com/leanderpaul/shadow-chronicle',
-    demo: 'https://chronicle.shadow-apps.com',
-  },
-  {
-    title: 'Shadow Archive',
-    description:
-      'A backend service to store data from the shadow services and exposes the data using GraphQL API. It stores all the date required by other the shadow services such as accounts, chronicle, etc.',
-    image: '/images/archive.jpg',
-    tech: ['NestJS', 'Fastify', 'GraphQL', 'MongoDB', 'AWS EC2'],
-    source: 'https://github.com/leanderpaul/shadow-archive',
-    demo: 'https://archive.shadow-apps.com',
+    links: [{ type: 'Github', url: 'https://github.com/leanderpaul/shadow-accounts' }],
   },
 ];
