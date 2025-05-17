@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted, reactive, ref } from 'vue';
+import { onMounted, onUnmounted, reactive, ref } from 'vue';
 import { experiences, type Experience } from '@app/data';
 
 const activeTab = ref(experiences[0] as Experience);
@@ -25,7 +25,14 @@ function parseDescription(description: string) {
   return parts.map(part => ({ isBold: isBold(part), text: part.replace(/\*/g, '') }));
 }
 
-onMounted(() => (window.addEventListener('resize', positionActiveIndicator), positionActiveIndicator()));
+onMounted(() => {
+  window.addEventListener('resize', positionActiveIndicator);
+  setTimeout(positionActiveIndicator, window.innerWidth <= 768 ? 100 : 0);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', positionActiveIndicator);
+});
 </script>
 <template>
   <div id="experience" class="section">
@@ -66,6 +73,7 @@ onMounted(() => (window.addEventListener('resize', positionActiveIndicator), pos
 
 .tab-title {
   display: flex;
+  position: relative;
 }
 
 .tab-title > button {
@@ -75,7 +83,7 @@ onMounted(() => (window.addEventListener('resize', positionActiveIndicator), pos
   padding: 10px 25px;
   font: inherit;
   cursor: pointer;
-  width: 100%;
+  width: 160px;
   text-align: left;
 }
 
@@ -153,7 +161,7 @@ onMounted(() => (window.addEventListener('resize', positionActiveIndicator), pos
   }
 
   .active-indicator {
-    width: 120px;
+    width: 130px;
     height: 3px;
     margin-top: 43px;
   }

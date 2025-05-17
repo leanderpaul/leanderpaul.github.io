@@ -51,17 +51,17 @@ export const experiences: Experience[] = [
   {
     startDate: 'March 2024',
     endDate: 'Present',
-    company: 'Sphere IT Consultants',
+    company: 'Sphere IT',
     client: 'Emirates NBD Bank',
     clientUrl: 'https://www.emiratesnbd.com/en',
     companyUrl: 'https://sphereitglobal.com',
     designation: 'NodeJS Developer',
     description: [
       'Built 9+ NodeJS microservices using Express framework to support the credit card application journey',
-      'Integrated multi-factor authentication (MFA) using SMS, IVR, and Number Matching authentication based on configurable flows',
+      'Built multi-factor authentication (MFA) using SMS, IVR, and Number Matching authentication based on configurable flows',
       'Engineered APIs for fetching customer credit card details and dynamic credit limit computation via external services',
       'Developed end-to-end STP (Straight Through Processing) flow for onboarding new-to-bank customers',
-      'Automated testing for all APIs using a custom-built suite, achieving 95% code coverage and reducing manual testing time by 50%',
+      'Automated testing for all APIs using a custom-built suite, *achieving 95% code coverage and reducing manual testing time by 50%*',
     ],
   },
   {
@@ -109,9 +109,10 @@ export const experiences: Experience[] = [
   {
     startDate: 'April 2017',
     endDate: 'March 2018',
+    company: 'Freelance',
     designation: 'Freelance Web Developer',
     description: [
-      'Built and deployed 2 web applications (Bluebell - a frontend form app, and Jute Emporium - an e-commerce site)',
+      '*Built and deployed 2 web applications* (Bluebell - a frontend form app, and Jute Emporium - an e-commerce site)',
       'Integrated Razorpay for secure online payments and implemented dynamic order tracking with email notifications',
       'Developed custom admin panels for stock and order management',
       'Deployed both apps on AWS EC2, ensuring scalability and uptime',

@@ -4,7 +4,7 @@
     <div class="content">
       <div class="profile">
         <p>
-          Hello! My name is Leander and I enjoying creating applications for the web. My interest in web development started back in 2018
+          Hello! My name is Leander and I enjoying creating applications for the web. My interest in web development started back in 2017
           when I learnt about web development using NodeJS in a bootcamp. I have been learning and building web applications ever since.
         </p>
         <p>
@@ -19,18 +19,20 @@
         </p>
         <p>Here are some of the technologies I am proficient in:</p>
         <ul>
-          <li>Node</li>
+          <li>Node & Bun</li>
+          <li>Java</li>
+          <li>Rust</li>
+          <li>Bash</li>
+
+          <li>TypeScript</li>
           <li>React</li>
           <li>Angular</li>
           <li>Vue</li>
+
           <li>SQL</li>
           <li>MongoDB</li>
-          <li>Java</li>
-          <li>Rust</li>
           <li>Docker</li>
-          <li>Bash</li>
           <li>AWS</li>
-          <li>REST & GraphQL APIs</li>
         </ul>
       </div>
       <div>
