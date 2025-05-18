@@ -53,7 +53,11 @@ onUnmounted(() => {
           <span>{{ activeTab.designation }}</span>
           <a class="company" :href="activeTab.companyUrl" target="_blank">{{ activeTab.company }}</a>
         </h3>
-        <p>{{ activeTab.startDate }} - {{ activeTab.endDate }}</p>
+        <p class="client" v-if="activeTab.client">
+          <span>Client:</span>
+          <a :href="activeTab.clientUrl" target="_blank">{{ activeTab.client }}</a>
+        </p>
+        <p class="period">{{ activeTab.startDate }} - {{ activeTab.endDate }}</p>
         <ul>
           <li v-for="item in activeTab.description">
             <span v-for="part in parseDescription(item)" :class="{ bold: part.isBold }">{{ part.text }}</span>
@@ -124,8 +128,16 @@ onUnmounted(() => {
 
 .tab-content p {
   font-size: 14px;
-  margin-top: 5px;
   letter-spacing: 1px;
+  margin-top: 5px;
+}
+
+.tab-content .client {
+  margin-bottom: 5px;
+}
+
+.tab-content .client a {
+  margin-left: 5px;
 }
 
 .tab-content ul {
