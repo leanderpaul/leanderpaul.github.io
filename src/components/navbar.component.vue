@@ -1,10 +1,17 @@
 <script lang="ts" setup>
 import { onMounted, ref, watchEffect } from 'vue';
+import { resumeLinks } from '@app/data';
+import { getCountryByDate, getCountryByIP } from '@app/utils';
 
+const location = ref(getCountryByDate());
 const isNavOpen = ref(false);
 const isNavBorder = ref(window.scrollY > 0);
-onMounted(() => window.addEventListener('scroll', () => (isNavBorder.value = window.scrollY > 0)));
+
 watchEffect(() => (document.body.style.overflow = isNavOpen.value ? 'hidden' : 'auto'));
+onMounted(() => {
+  window.addEventListener('scroll', () => (isNavBorder.value = window.scrollY > 0));
+  getCountryByIP().then(country => (location.value = country));
+});
 </script>
 <template>
   <nav :class="{ bordered: isNavBorder, open: isNavOpen }">
@@ -32,7 +39,7 @@ watchEffect(() => (document.body.style.overflow = isNavOpen.value ? 'hidden' : '
         <li>
           <router-link to="/#contact-me">Contact</router-link>
         </li>
-        <a class="btn" href="/resume.pdf" target="_blank">Resume</a>
+        <a class="btn" :href="resumeLinks[location]" download="Leander_Paul-Resume.pdf">Resume</a>
       </ol>
     </div>
   </nav>

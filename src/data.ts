@@ -47,6 +47,12 @@ interface Project {
  * Declaring the constants
  */
 
+export const resumeLinks: Record<string, string> = {
+  IN: '/resumes/Resume-IN.pdf',
+  AE: '/resumes/Resume-AE.pdf',
+  GLOBAL: '/resumes/Resume-Global.pdf',
+};
+
 export const experiences: Experience[] = [
   {
     startDate: 'March 2024',
@@ -116,7 +122,7 @@ export const experiences: Experience[] = [
       'Integrated Razorpay for secure online payments and implemented dynamic order tracking with email notifications',
       'Developed custom admin panels for stock and order management',
       'Deployed both apps on AWS EC2, ensuring scalability and uptime',
-      'Noteworthy: Delivered a complete e-commerce solution with real-time order updates and admin control, including email automation for customer communication',
+      'Delivered a complete e-commerce solution with real-time order updates and admin control, including email automation for customer communication',
     ],
   },
 ];
