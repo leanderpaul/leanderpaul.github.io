@@ -43,7 +43,7 @@
 <style scoped>
 a.footer {
   margin-top: 100px;
-  margin-bottom: 25px;
+  padding-bottom: 15px;
   cursor: pointer;
 }
 
