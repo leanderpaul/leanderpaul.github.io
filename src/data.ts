@@ -89,7 +89,7 @@ export const experiences: Experience[] = [
     endDate: 'August 2022',
     company: 'Zoho',
     companyUrl: 'https://zoho.com',
-    designation: 'Member Technical Staff',
+    designation: 'Software Engineer',
     description: [
       'Worked on the IAM platform (accounts.zoho.com) implementing SAML authorization and designing a hierarchy-based role and permission management system',
       'Diagnosed and resolved a critical Redis bottleneck caused by TTL overhead, *reducing CPU usage by 60%* across the caching infrastructure',
@@ -116,7 +116,7 @@ export const experiences: Experience[] = [
     startDate: 'April 2017',
     endDate: 'March 2018',
     company: 'Freelance',
-    designation: 'Freelance Web Developer',
+    designation: 'Software Developer',
     description: [
       '*Built and deployed 2 full-stack web applications* — Bluebell (a form-based app using Node.js and Handlebars) and Jute Emporium (an e-commerce platform)',
       'Architected the e-commerce backend with Razorpay payment integration, dynamic order tracking, and automated email notifications',
