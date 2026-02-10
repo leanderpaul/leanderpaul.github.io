@@ -4,8 +4,8 @@
     <div class="content">
       <h1>Get In Touch</h1>
       <p>
-        Feel free to contact to me for any projects or opportunities, my inbox is always open. Whether you have a question or just want to
-        say hi, I'll try my best to get back to you!
+        I'm currently open to Software Architect and Full Stack Developer roles. Whether you have an opportunity, a challenging project, or
+        just want to connect — my inbox is always open.
       </p>
       <a href="mailto:leanderpaul97@gmail.com" class="btn">Say Hello</a>
     </div>

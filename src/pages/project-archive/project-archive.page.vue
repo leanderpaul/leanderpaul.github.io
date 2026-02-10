@@ -13,6 +13,36 @@ interface Project {
 const projects: Project[] = [
   {
     year: 2025,
+    title: 'Shadow Identity',
+    tech: ['NestJS', 'TypeScript', 'MongoDB', 'Redis'],
+    links: {
+      github: 'https://github.com/shadow-library/identity',
+    },
+  },
+  {
+    year: 2025,
+    title: 'Shadow Pulse Server',
+    tech: ['NestJS', 'TypeScript', 'RabbitMQ', 'MongoDB'],
+    links: {
+      github: 'https://github.com/shadow-library/pulse-server',
+    },
+  },
+  {
+    year: 2025,
+    title: 'Shadow Pulse Web',
+    tech: ['React', 'TanStack Router', 'Tailwind CSS', 'Ant Design'],
+    links: {},
+  },
+  {
+    year: 2025,
+    title: 'Shadow Modules',
+    tech: ['Bun', 'TypeScript', 'NestJS'],
+    links: {
+      github: 'https://github.com/shadow-library/modules',
+    },
+  },
+  {
+    year: 2025,
     title: 'Shadow Mongoose',
     tech: ['Bun', 'TypeScript', 'Mongoose'],
     links: {
@@ -81,7 +111,7 @@ const projects: Project[] = [
     },
   },
   {
-    title: 'Shadow Accounts',
+    title: 'Shadow Accounts (v1)',
     year: 2023,
     tech: ['Astro', 'Tailwind CSS', 'Vercel'],
     links: {
