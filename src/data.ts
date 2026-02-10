@@ -64,7 +64,7 @@ export const experiences: Experience[] = [
     designation: 'Software Developer',
     description: [
       'Architected and built 9+ backend microservices using Node.js and Express for the retail mobile banking platform serving millions of customers',
-      'Designed a configurable multi-factor authentication system supporting OTP, IVR, and Nafath (UAE national identity) with mid-flow validation checkpoints',
+      'Designed a configurable multi-factor authentication system supporting OTP, IVR, and Nafath (KSA national identity) with mid-flow validation checkpoints',
       'Engineered the end-to-end credit card application journey integrating external credit scoring and employment verification services',
       'Developed STP (Straight Through Processing) flow for new-to-bank customer onboarding with manual review stages for partial eligibility cases',
       'Built a custom automated testing suite *achieving 95% code coverage and reducing manual testing time by 50%*',
