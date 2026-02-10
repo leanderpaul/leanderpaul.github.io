@@ -61,13 +61,13 @@ export const experiences: Experience[] = [
     client: 'Emirates NBD Bank',
     clientUrl: 'https://www.emiratesnbd.com/en',
     companyUrl: 'https://sphereitglobal.com',
-    designation: 'NodeJS Developer',
+    designation: 'Software Developer',
     description: [
-      'Built 9+ NodeJS microservices using Express framework to support the credit card application journey',
-      'Built multi-factor authentication (MFA) using SMS, IVR, and Number Matching authentication based on configurable flows',
-      'Engineered APIs for fetching customer credit card details and dynamic credit limit computation via external services',
-      'Developed end-to-end STP (Straight Through Processing) flow for onboarding new-to-bank customers',
-      'Automated testing for all APIs using a custom-built suite, *achieving 95% code coverage and reducing manual testing time by 50%*',
+      'Architected and built 9+ backend microservices using Node.js and Express for the retail mobile banking platform serving millions of customers',
+      'Designed a configurable multi-factor authentication system supporting OTP, IVR, and Nafath (UAE national identity) with mid-flow validation checkpoints',
+      'Engineered the end-to-end credit card application journey integrating external credit scoring and employment verification services',
+      'Developed STP (Straight Through Processing) flow for new-to-bank customer onboarding with manual review stages for partial eligibility cases',
+      'Built a custom automated testing suite *achieving 95% code coverage and reducing manual testing time by 50%*',
     ],
   },
   {
@@ -75,13 +75,13 @@ export const experiences: Experience[] = [
     endDate: 'September 2023',
     company: 'WTV',
     companyUrl: 'https://wtvglobal.com',
-    designation: 'Backend NodeJS Developer',
+    designation: 'Full Stack Developer',
     description: [
-      'Architected scalable microservices with inter-service communication using RabbitMQ for enhanced reliability',
-      'Developed MongoDB schemas optimized for performance under real-world query patterns',
-      'Adopted TDD methodology with Jest for unit and integration tests, improving test coverage and code quality',
-      'Created comprehensive API documentation using Swagger for seamless frontend integration',
-      '*Achieved a 30% reduction in system downtime* by optimizing microservice messaging with RabbitMQ and Docker-based deployments',
+      'Designed the system architecture for Capture — a carbon footprint calculation platform built with 3 NestJS microservices communicating via RabbitMQ',
+      'Architected service boundaries: auth & user management, project & permissions, and carbon footprint calculations as independent microservices',
+      'Built the full backend using NestJS and Fastify with MongoDB, and contributed to the React + Tailwind CSS frontend',
+      'Initiated and implemented end-to-end testing infrastructure with automated database seeding, *achieving 30% reduction in system downtime*',
+      'Containerized all services with Docker for consistent deployment across environments',
     ],
   },
   {
@@ -91,11 +91,11 @@ export const experiences: Experience[] = [
     companyUrl: 'https://zoho.com',
     designation: 'Member Technical Staff',
     description: [
-      "Optimized application's data processing speed by over 40% using advanced cache management techniques in Redis",
-      '*Reduced Redis CPU usage by 60%* and improved the reliability of the caching system',
-      'Identified and resolved slow queries in the application thereby increasing the response time of certain queries by 20%',
-      'Introduced a hierarchy-based role management system to facilitate authorization like Linux file system permissions improving performance by 40%',
-      'Mentored 3 junior developers on the team and documented best practices within the organization',
+      'Worked on the IAM platform (accounts.zoho.com) implementing SAML authorization and designing a hierarchy-based role and permission management system',
+      'Diagnosed and resolved a critical Redis bottleneck caused by TTL overhead, *reducing CPU usage by 60%* across the caching infrastructure',
+      'Built a POC integrating Apache Directory Server with PostgreSQL, replacing the built-in storage layer to enable LDAP queries against the production database',
+      'Designed and executed data migration scripts for application-level sharded databases across service boundaries',
+      'Mentored 3 junior developers and established internal best practices documentation for the IAM team',
     ],
   },
   {
@@ -103,13 +103,13 @@ export const experiences: Experience[] = [
     endDate: 'January 2020',
     company: 'Phosphene AI',
     companyUrl: 'https://www.linkedin.com/company/phosphene-ai',
-    designation: 'Full Stack Web Developer',
+    designation: 'Full Stack Developer & Team Lead',
     description: [
-      'Led architecture, design and development of 20+ new features and 35+ components in react',
-      'Deployed applications on AWS, achieving a 99% uptime on small-sized servers, saving 30% in cost',
-      'Implemented auto-scaling mechanism in the application logic for image upscaling application, *reducing the cost by 75%*',
-      'Conducted weekly code reviews, ensuring the reliability of the application and helping the team find 40% more bugs in the application',
-      'Reduced load time by 30% and made the web application SEO compliant',
+      'Designed the full system architecture for Pixelview — an image upscaling platform using Node.js, React, Python, MongoDB, and AWS (EC2, S3, Lambda, SQS)',
+      'Engineered a cost-optimized pipeline: client-side S3 uploads, Lambda triggers, SQS task queues, and auto-scaling GPU servers that idle after 5 min of inactivity, *reducing infrastructure cost by 75%*',
+      'Implemented OAuth with Google and Google Drive integration for seamless image import/export workflows',
+      'Led a team of 3 developers, owning 90% of the frontend and backend codebase while conducting weekly code reviews',
+      'Deployed all services on AWS achieving 99% uptime and reduced frontend load time by 30% with SEO optimizations',
     ],
   },
   {
@@ -118,11 +118,10 @@ export const experiences: Experience[] = [
     company: 'Freelance',
     designation: 'Freelance Web Developer',
     description: [
-      '*Built and deployed 2 web applications* (Bluebell - a frontend form app, and Jute Emporium - an e-commerce site)',
-      'Integrated Razorpay for secure online payments and implemented dynamic order tracking with email notifications',
-      'Developed custom admin panels for stock and order management',
-      'Deployed both apps on AWS EC2, ensuring scalability and uptime',
-      'Delivered a complete e-commerce solution with real-time order updates and admin control, including email automation for customer communication',
+      '*Built and deployed 2 full-stack web applications* — Bluebell (a form-based app using Node.js and Handlebars) and Jute Emporium (an e-commerce platform)',
+      'Architected the e-commerce backend with Razorpay payment integration, dynamic order tracking, and automated email notifications',
+      'Developed custom admin panels for inventory management, order status tracking, and customer communication workflows',
+      'Deployed both applications on AWS EC2, handling infrastructure setup, domain configuration, and uptime monitoring',
     ],
   },
 ];
@@ -146,30 +145,27 @@ export const education: Education[] = [
 
 export const projects: Project[] = [
   {
+    title: 'Shadow Identity',
+    description:
+      'A centralized IAM platform for user identity, authentication, and authorization across the entire ecosystem. Manages users, sessions, tokens, and access control as the single source of truth — with detailed architecture diagrams and auth flow documentation.',
+    tech: ['NestJS', 'TypeScript', 'MongoDB', 'Redis'],
+    links: [{ type: 'Github', url: 'https://github.com/shadow-library/identity' }],
+  },
+  {
+    title: 'Shadow Pulse',
+    description:
+      'A multi-channel notification platform with template management and delivery across Email, SMS, Push, and WhatsApp. Features vendor failover, retry mechanisms, configurable test modes, and an Angular dashboard for monitoring.',
+    tech: ['NestJS', 'Angular', 'TypeScript', 'RabbitMQ'],
+    links: [{ type: 'Github', url: 'https://github.com/shadow-library/pulse-server' }],
+  },
+  {
     title: 'Shadow Applications',
     description:
-      'A dependency-injection-based framework inspired by NestJS with enhanced modular architecture. Eliminates global modules and duplicate tokens while supporting SOLID principles, lifecycle hooks, and circular dependency resolution.',
+      'A platform-agnostic dependency-injection framework for Node.js built on SOLID principles. Unlike NestJS, it decouples from HTTP servers — supporting CLI tools, desktop apps, and microservices with modular architecture and lifecycle hooks.',
     tech: ['Bun', 'TypeScript', 'Jest'],
     links: [
       { type: 'Github', url: 'https://github.com/shadow-library/app' },
       { type: 'NPM', url: 'https://www.npmjs.com/package/@shadow-library/app' },
     ],
-  },
-  {
-    title: 'Shadow Class Schema',
-    description:
-      'Generates JSON schemas from class decorators. Supports discriminators, `anyOf`, `allOf`, and maintains a central registry for seamless Ajv integration.',
-    tech: ['Bun', 'TypeScript'],
-    links: [
-      { type: 'Github', url: 'https://github.com/shadow-library/class-schema' },
-      { type: 'NPM', url: 'https://www.npmjs.com/package/@shadow-library/class-schema' },
-    ],
-  },
-  {
-    title: 'Shadow Accounts',
-    description:
-      'A centralized IAM system for managing authentication and authorization across microservices. Built with NestJS and designed for multi-service environments.',
-    tech: ['Astro', 'Tailwind CSS', 'Vercel'],
-    links: [{ type: 'Github', url: 'https://github.com/leanderpaul/shadow-accounts' }],
   },
 ];

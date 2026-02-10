@@ -4,35 +4,37 @@
     <div class="content">
       <div class="profile">
         <p>
-          Hello! My name is Leander and I enjoying creating applications for the web. My interest in web development started back in 2017
-          when I learnt about web development using NodeJS in a bootcamp. I have been learning and building web applications ever since.
+          Hello! I'm Leander — a Software Architect and Full Stack Developer with 8+ years of experience designing and building
+          production-grade distributed systems. I've architected microservice platforms, IAM systems, and event-driven architectures that
+          serve millions of users across banking, SaaS, and climate-tech domains.
         </p>
         <p>
-          Fast-forward to today, and I've had the privilege of working at
-          <a href="https://www.linkedin.com/company/phosphene-ai" target="_blank">a startup</a>,
-          <a href="https://wtvglobal.com" target="_blank">a mid-size company</a>, and
-          <a href="https://www.zoho.com" target="_blank">a huge corportaion</a>. My main focus these days is building full stack web
-          applications that are able to scale and perform well.
+          I've had the privilege of working across diverse environments — from leading engineering at
+          <a href="https://www.linkedin.com/company/phosphene-ai" target="_blank">an early-stage startup</a>, to building enterprise IAM at
+          <a href="https://www.zoho.com" target="_blank">Zoho</a>, designing carbon footprint systems at
+          <a href="https://wtvglobal.com" target="_blank">WTV</a>, and now architecting backend microservices for
+          <a href="https://www.emiratesnbd.com/en" target="_blank">Emirates NBD</a>, one of the largest banks in the Middle East.
         </p>
         <p>
-          I also recently started developing a few microservices for my own personal use using Node, React, Vue, Angular, Astro & MongoDB.
+          Beyond my day job, I maintain several open-source libraries on npm and build full-stack applications from the ground up — from
+          system design and architecture to frontend interfaces and deployment pipelines.
         </p>
-        <p>Here are some of the technologies I am proficient in:</p>
+        <p>Here are the technologies I work with:</p>
         <ul>
           <li>Node & Bun</li>
           <li>Java</li>
           <li>Rust</li>
-          <li>Bash</li>
+          <li>Python</li>
 
           <li>TypeScript</li>
           <li>React</li>
           <li>Angular</li>
           <li>Vue</li>
 
-          <li>SQL</li>
-          <li>MongoDB</li>
-          <li>Docker</li>
-          <li>AWS</li>
+          <li>SQL & MongoDB</li>
+          <li>Redis & RabbitMQ</li>
+          <li>Docker & AWS</li>
+          <li>System Design</li>
         </ul>
       </div>
       <div>
