@@ -12,6 +12,22 @@ interface Project {
 
 const projects: Project[] = [
   {
+    year: 2026,
+    title: 'Novel Forge — AI Novel Generation Platform',
+    tech: ['LangChain', 'LangGraph', 'LlamaIndex', 'pgvector', 'TypeScript', 'Bun'],
+    links: {
+      demo: 'https://web-novel.shadow-apps.com',
+    },
+  },
+  {
+    year: 2026,
+    title: 'Code Atlas — AI Codebase Assistant',
+    tech: ['Python', 'FastAPI', 'LanceDB', 'SQLite FTS5', 'Tree-sitter', 'Ollama'],
+    links: {
+      github: 'https://github.com/shadow-library/code-atlas',
+    },
+  },
+  {
     year: 2025,
     title: 'Shadow Identity',
     tech: ['NestJS', 'TypeScript', 'MongoDB', 'Redis'],

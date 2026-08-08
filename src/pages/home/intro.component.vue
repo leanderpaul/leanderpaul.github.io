@@ -2,7 +2,7 @@
   <div class="intro">
     <div class="title">Hi, I am Leander Paul</div>
     <div class="subtitle">
-      Software Architect & Full Stack Developer — Designing Scalable Systems and Turning Complex Problems into Elegant Solutions
+      AI Engineer & Software Architect — Building Production LLM Systems with LangChain, LangGraph and RAG, on 8 Years of Distributed Systems
     </div>
     <a class="btn" href="#projects">Projects</a>
   </div>

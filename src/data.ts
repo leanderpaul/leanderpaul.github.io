@@ -61,9 +61,9 @@ export const experiences: Experience[] = [
     client: 'Emirates NBD Bank',
     clientUrl: 'https://www.emiratesnbd.com/en',
     companyUrl: 'https://sphereitglobal.com',
-    designation: 'Software Developer',
+    designation: 'Software Engineer',
     description: [
-      'Architected and built 9+ backend microservices using Node.js and Express for the retail mobile banking platform serving millions of customers',
+      'Architected and built 9+ backend microservices using Node.js and Express, on a team operating a platform of *30+ microservices* for retail mobile banking serving millions of customers',
       'Designed a configurable multi-factor authentication system supporting OTP, IVR, and Nafath (KSA national identity) with mid-flow validation checkpoints',
       'Engineered the end-to-end credit card application journey integrating external credit scoring and employment verification services',
       'Developed STP (Straight Through Processing) flow for new-to-bank customer onboarding with manual review stages for partial eligibility cases',
@@ -75,7 +75,7 @@ export const experiences: Experience[] = [
     endDate: 'September 2023',
     company: 'WTV',
     companyUrl: 'https://wtvglobal.com',
-    designation: 'Full Stack Developer',
+    designation: 'Full Stack Engineer',
     description: [
       'Designed the system architecture for Capture — a carbon footprint calculation platform built with 3 NestJS microservices communicating via RabbitMQ',
       'Architected service boundaries: auth & user management, project & permissions, and carbon footprint calculations as independent microservices',
@@ -103,7 +103,7 @@ export const experiences: Experience[] = [
     endDate: 'January 2020',
     company: 'Phosphene AI',
     companyUrl: 'https://www.linkedin.com/company/phosphene-ai',
-    designation: 'Full Stack Developer & Team Lead',
+    designation: 'Full Stack Engineer & Team Lead',
     description: [
       'Designed the full system architecture for Pixelview — an image upscaling platform using Node.js, React, Python, MongoDB, and AWS (EC2, S3, Lambda, SQS)',
       'Engineered a cost-optimized pipeline: client-side S3 uploads, Lambda triggers, SQS task queues, and auto-scaling GPU servers that idle after 5 min of inactivity, *reducing infrastructure cost by 75%*',
@@ -116,7 +116,7 @@ export const experiences: Experience[] = [
     startDate: 'April 2017',
     endDate: 'March 2018',
     company: 'Freelance',
-    designation: 'Software Developer',
+    designation: 'Software Engineer',
     description: [
       '*Built and deployed 2 full-stack web applications* — Bluebell (a form-based app using Node.js and Handlebars) and Jute Emporium (an e-commerce platform)',
       'Architected the e-commerce backend with Razorpay payment integration, dynamic order tracking, and automated email notifications',
@@ -144,6 +144,26 @@ export const education: Education[] = [
 ];
 
 export const projects: Project[] = [
+  {
+    title: 'Novel Forge',
+    description:
+      'An AI platform that generates full-length novels. 7 LangGraph StateGraph workflows checkpointed to PostgreSQL, so a crash mid-generation resumes at the last completed node instead of re-paying the model call. A generate → judge → repair loop where a judge model flags continuity contradictions and a repair chain applies minimal find/replace patches — applied only when the target text occurs exactly once, so untouched prose stays byte-identical.',
+    tech: ['LangChain', 'LangGraph', 'LlamaIndex', 'pgvector', 'TypeScript', 'Bun'],
+    links: [{ type: 'Demo', url: 'https://web-novel.shadow-apps.com' }],
+  },
+  {
+    title: 'AI Model Router & Retrieval Layer',
+    description:
+      'The AI infrastructure powering Novel Forge: a model router across Anthropic, OpenAI, xAI and local Ollama with 22 fine-grained roles mapped to 7 model groups, structured output enforced through 25 Zod schemas with a parse-repair ladder, hybrid retrieval over two pgvector indexes, token budgeting with tiktoken, prompt caching, and per-call telemetry capturing provider, tokens, latency and prompt version.',
+    tech: ['LangChain', 'Zod', 'pgvector', 'Ollama', 'tiktoken'],
+  },
+  {
+    title: 'Code Atlas',
+    description:
+      'A production-oriented AI codebase assistant built on hybrid retrieval — semantic search, lexical search and symbol-graph navigation over a Tree-sitter AST parse. Tool-calling agents produce grounded, citation-backed answers, measured by a real evaluation framework: Recall@K, MRR, nDCG, citation-grounding verification and LLM-as-Judge scoring across 317 automated tests.',
+    tech: ['Python', 'FastAPI', 'LanceDB', 'SQLite FTS5', 'Tree-sitter'],
+    links: [{ type: 'Github', url: 'https://github.com/shadow-library/code-atlas' }],
+  },
   {
     title: 'Shadow Identity',
     description:

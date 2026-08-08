@@ -4,15 +4,22 @@
     <div class="content">
       <div class="profile">
         <p>
-          Hello! I'm Leander — a Software Architect and Full Stack Developer with 8+ years of experience designing and building
-          production-grade distributed systems. I've architected microservice platforms, IAM systems, and event-driven architectures that
-          serve millions of users across banking, SaaS, and climate-tech domains.
+          Hello! I'm Leander — an AI Engineer and Software Architect with 8+ years of experience, now focused on building production LLM
+          systems: agentic workflow orchestration, retrieval-augmented generation, multi-provider model routing and context engineering at
+          scale.
         </p>
         <p>
-          I've had the privilege of working across diverse environments — from leading engineering at
-          <a href="https://www.linkedin.com/company/phosphene-ai" target="_blank">an early-stage startup</a>, to building enterprise IAM at
-          <a href="https://www.zoho.com" target="_blank">Zoho</a>, designing carbon footprint systems at
-          <a href="https://wtvglobal.com" target="_blank">WTV</a>, and now architecting backend microservices for
+          Most recently I built <strong>Novel Forge</strong>, an AI platform that generates full-length novels — seven LangGraph workflows
+          checkpointed to PostgreSQL so a crash mid-generation resumes at the last completed node, a judge model that catches continuity
+          contradictions, and a repair loop that patches prose without touching a byte it shouldn't. It runs on a model router spanning
+          Anthropic, OpenAI, xAI and local Ollama, with hybrid pgvector retrieval and per-call cost telemetry. I build and operate it alone,
+          as part of a four-product TypeScript platform.
+        </p>
+        <p>
+          That AI work sits on 8 years of distributed systems — from leading engineering at
+          <a href="https://www.linkedin.com/company/phosphene-ai" target="_blank">an early-stage AI startup</a>, to building enterprise IAM
+          serving millions of users at <a href="https://www.zoho.com" target="_blank">Zoho</a>, designing carbon footprint systems at
+          <a href="https://wtvglobal.com" target="_blank">WTV</a>, and now building backend microservices for
           <a href="https://www.emiratesnbd.com/en" target="_blank">Emirates NBD</a>, one of the largest banks in the Middle East.
         </p>
         <p>
@@ -21,18 +28,21 @@
         </p>
         <p>Here are the technologies I work with:</p>
         <ul>
+          <li>LangChain & LangGraph</li>
+          <li>LlamaIndex & RAG</li>
+          <li>pgvector & Embeddings</li>
+          <li>Prompt Engineering</li>
+
           <li>Node & Bun</li>
+          <li>TypeScript</li>
           <li>Java</li>
-          <li>Rust</li>
           <li>Python</li>
 
-          <li>TypeScript</li>
           <li>React</li>
-          <li>Angular</li>
-          <li>Vue</li>
-
+          <li>Vue & Angular</li>
           <li>SQL & MongoDB</li>
           <li>Redis & RabbitMQ</li>
+
           <li>Docker & AWS</li>
           <li>System Design</li>
         </ul>
