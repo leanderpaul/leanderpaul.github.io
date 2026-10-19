@@ -68,6 +68,7 @@ onBeforeUnmount(() => stopWatching?.());
   background-color: transparent;
   border: var(--sh-border-width) solid transparent;
   border-radius: var(--sh-radius-md);
+  cursor: pointer;
   transition:
     color var(--sh-duration-normal) var(--sh-ease-standard),
     background-color var(--sh-duration-normal) var(--sh-ease-standard);
