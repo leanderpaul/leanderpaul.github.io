@@ -3,18 +3,12 @@ import { join, relative, resolve } from 'node:path';
 import { chromium, type Browser, type Page } from 'playwright-core';
 import { build, preview, type PreviewServer } from 'vite';
 
-type ResumeVariant = 'ae' | 'in' | 'global';
 type XrefKind = 'table' | 'stream';
 type PhoneInjectionResult = 'ok' | 'missing-placeholder' | 'placeholder-not-empty' | 'separator-mismatch';
 
 interface ResumeContact {
   phone: string;
   tel: string;
-}
-
-interface RenderedResume {
-  variant: ResumeVariant;
-  pdf: Buffer;
 }
 
 interface AuditHtml {
@@ -48,12 +42,7 @@ const PDF_TITLE = 'Leander Paul — Résumé';
 const PDF_AUTHOR = 'Leander Paul';
 const MAX_PAGES = 2;
 
-const RESUME_OUTPUTS: Record<ResumeVariant, string> = {
-  ae: 'Resume-AE.pdf',
-  in: 'Resume-IN.pdf',
-  global: 'Resume-Global.pdf',
-};
-const RESUME_VARIANTS = Object.keys(RESUME_OUTPUTS) as ResumeVariant[];
+const RESUME_OUTPUT = 'Resume-AE.pdf';
 
 const DISPLAY_PHONE_PATTERN = /^\+?[\d ()-]{7,24}$/;
 const E164_PATTERN = /^\+[1-9]\d{6,14}$/;
@@ -260,15 +249,15 @@ async function renderUsedRulesAuditHtml(page: Page): Promise<AuditHtml> {
   });
 }
 
-async function writeAuditHtml(page: Page, variant: ResumeVariant): Promise<void> {
+async function writeAuditHtml(page: Page): Promise<void> {
   const full = await renderFullAuditHtml(page);
   const used = await renderUsedRulesAuditHtml(page);
-  await writeFile(join(AUDIT_DIR, `resume-${variant}.full.html`), full);
-  await writeFile(join(AUDIT_DIR, `resume-${variant}.html`), used.html);
-  log('Wrote audit HTML', { variant, keptRules: used.keptRules, totalRules: used.totalRules });
+  await writeFile(join(AUDIT_DIR, 'resume.full.html'), full);
+  await writeFile(join(AUDIT_DIR, 'resume.html'), used.html);
+  log('Wrote audit HTML', { keptRules: used.keptRules, totalRules: used.totalRules });
 }
 
-async function renderVariant(browser: Browser, baseUrl: string, variant: ResumeVariant, contact: ResumeContact): Promise<RenderedResume> {
+async function renderResume(browser: Browser, baseUrl: string, contact: ResumeContact): Promise<Buffer> {
   const context = await browser.newContext({ colorScheme: 'light', viewport: { width: 794, height: 1123 } });
   try {
     const page = await context.newPage();
@@ -276,7 +265,6 @@ async function renderVariant(browser: Browser, baseUrl: string, variant: ResumeV
     page.on('pageerror', error => pageErrors.push(error.message));
 
     const url = new URL('/resume', baseUrl);
-    url.searchParams.set('variant', variant);
     const response = await page.goto(url.href, { waitUntil: 'networkidle' });
     if (!response?.ok()) throw new ResumeBuildError(`${url.pathname}${url.search} returned ${response?.status() ?? 'no response'}`);
 
@@ -285,7 +273,7 @@ async function renderVariant(browser: Browser, baseUrl: string, variant: ResumeV
     await waitForFonts(page);
     await injectPhone(page, contact);
     await page.evaluate(title => (document.title = title), PDF_TITLE);
-    await writeAuditHtml(page, variant);
+    await writeAuditHtml(page);
 
     const pdf = await page.pdf({
       format: 'A4',
@@ -297,20 +285,19 @@ async function renderVariant(browser: Browser, baseUrl: string, variant: ResumeV
     });
     if (pageErrors.length > 0) throw new ResumeBuildError(`The résumé page threw: ${pageErrors.join('; ')}`);
 
-    assertPrintablePdf(pdf, variant);
-    return { variant, pdf: addDocumentInfo(pdf, { Title: PDF_TITLE, Author: PDF_AUTHOR }) };
+    assertPrintablePdf(pdf);
+    return addDocumentInfo(pdf, { Title: PDF_TITLE, Author: PDF_AUTHOR });
   } finally {
     await context.close();
   }
 }
 
-function assertPrintablePdf(pdf: Buffer, variant: ResumeVariant): void {
+function assertPrintablePdf(pdf: Buffer): void {
   const text = pdf.toString('latin1');
   const pages = text.match(/\/Type\s*\/Page(?![A-Za-z])/g)?.length ?? 0;
-  if (pages === 0 || pages > MAX_PAGES) throw new ResumeBuildError(`${variant}: expected 1–${MAX_PAGES} pages, found ${pages}`);
-  if (/\/Subtype\s*\/Type3\b/.test(text))
-    throw new ResumeBuildError(`${variant}: the PDF contains a Type3 font, which breaks text extraction`);
-  if (!/\/FontFile2\b/.test(text)) throw new ResumeBuildError(`${variant}: no embedded TrueType font found`);
+  if (pages === 0 || pages > MAX_PAGES) throw new ResumeBuildError(`Expected 1–${MAX_PAGES} pages, found ${pages}`);
+  if (/\/Subtype\s*\/Type3\b/.test(text)) throw new ResumeBuildError('The PDF contains a Type3 font, which breaks text extraction');
+  if (!/\/FontFile2\b/.test(text)) throw new ResumeBuildError('No embedded TrueType font found');
 }
 
 function isWhitespace(char: string | undefined): boolean {
@@ -501,20 +488,18 @@ function assertIncrementalUpdate(pdf: Buffer, previous: PreviousRevision, infoNu
   if (!text.startsWith(`${infoNumber} 0 obj`, infoOffset)) throw new ResumeBuildError('The new Info object is not at its xref offset');
 }
 
-async function writeOutputs(resumes: RenderedResume[]): Promise<void> {
+async function writeOutput(pdf: Buffer): Promise<void> {
   await mkdir(OUTPUT_DIR, { recursive: true });
-  for (const { variant, pdf } of resumes) {
-    const target = join(OUTPUT_DIR, RESUME_OUTPUTS[variant]);
-    const staging = `${target}.partial`;
-    try {
-      await writeFile(staging, pdf);
-      await rename(staging, target);
-    } catch (error) {
-      await unlink(staging).catch(() => undefined);
-      throw error;
-    }
-    log('Wrote résumé PDF', { variant, file: relative(ROOT_DIR, target), bytes: pdf.length });
+  const target = join(OUTPUT_DIR, RESUME_OUTPUT);
+  const staging = `${target}.partial`;
+  try {
+    await writeFile(staging, pdf);
+    await rename(staging, target);
+  } catch (error) {
+    await unlink(staging).catch(() => undefined);
+    throw error;
   }
+  log('Wrote résumé PDF', { file: relative(ROOT_DIR, target), bytes: pdf.length });
 }
 
 async function main(): Promise<void> {
@@ -527,9 +512,7 @@ async function main(): Promise<void> {
   try {
     browser = await launchBrowser();
     const baseUrl = `http://${PREVIEW_HOST}:${PREVIEW_PORT}`;
-    const resumes: RenderedResume[] = [];
-    for (const variant of RESUME_VARIANTS) resumes.push(await renderVariant(browser, baseUrl, variant, contact));
-    await writeOutputs(resumes);
+    await writeOutput(await renderResume(browser, baseUrl, contact));
   } finally {
     await Promise.allSettled([browser?.close(), server.close()]);
   }

@@ -60,6 +60,7 @@ export interface Role {
   siteBullets: string[];
   resumeBullets: string[];
   technologies: string[];
+  resumeTechnologies?: string[];
 }
 
 export type Ownership = 'employer' | 'personal';

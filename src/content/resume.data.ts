@@ -2,13 +2,16 @@ import { type ContactLink, type EducationEntry, type ResumeProject } from './con
 import { toDisplayUrl } from './content.util';
 import { PROFILE } from './profile.data';
 import { SHADOW_PLATFORM_RESUME_BULLETS } from './projects.data';
+import { SKILL_GROUPS } from './skills.data';
 
 export const RESUME_DOWNLOAD_NAME = 'Leander_Paul_Resume.pdf';
 
 export const RESUME_FILE = '/resumes/Resume-AE.pdf';
 
+export const RESUME_PAGE_BREAK_BEFORE = 'Phosphene AI';
+
 export const RESUME_SUMMARY =
-  'Senior backend engineer with 8+ years of experience, most recently building banking and identity systems in Dubai. At Emirates NBD (via Sphere IT), architected an authorization microservice supporting OTP, IVR and Nafath with configurable mid-flow validation, built the manual-review stage of the in-app credit card application, and own escalated production issues and the disaster-recovery environment setup. Previously worked on Zoho Accounts IAM (SAML setup, hierarchical roles and permissions). Independently built Shadow Platform, a public TypeScript monorepo including an OIDC/OAuth 2.1 identity provider, developed with AI-assisted tooling; since 2026 also building LLM applications.';
+  'Senior backend engineer with 8+ years of experience across banking, identity and backend platforms. Currently building authorization services for Emirates NBD in Dubai, with production incident and disaster-recovery ownership. Previously worked on Zoho Accounts IAM.';
 
 export const RESUME_EDUCATION: EducationEntry[] = [
   {
@@ -27,7 +30,7 @@ export const RESUME_EDUCATION: EducationEntry[] = [
 
 export const RESUME_PROJECT: ResumeProject = {
   name: 'Shadow Platform',
-  descriptor: 'personal project, public',
+  descriptor: 'personal project; not deployed to production',
   url: 'https://github.com/shadow-library/platform',
   urlText: 'github.com/shadow-library/platform',
   startYear: 2024,
@@ -35,8 +38,7 @@ export const RESUME_PROJECT: ResumeProject = {
   bullets: SHADOW_PLATFORM_RESUME_BULLETS,
 };
 
-export const RESUME_OPEN_SOURCE_LINE =
-  'Open source: @shadow-library npm packages (app, common, class-schema, fastify, modules; MIT), now maintained in the platform monorepo.';
+export const RESUME_OPEN_SOURCE_LINE = 'Open source: @shadow-library npm packages, maintained in the platform monorepo.';
 
 export const RESUME_CONTACT_LINKS: ContactLink[] = [
   { kind: 'email', href: `mailto:${PROFILE.email}`, text: PROFILE.email },
@@ -44,3 +46,11 @@ export const RESUME_CONTACT_LINKS: ContactLink[] = [
   { kind: 'github', href: PROFILE.links.github, text: toDisplayUrl(PROFILE.links.github) },
   { kind: 'website', href: PROFILE.links.website, text: toDisplayUrl(PROFILE.links.website) },
 ];
+
+const SITE_ONLY_SKILL_GROUPS = new Set(['Applied AI (personal projects)', 'Frontend', 'Practices']);
+const SITE_ONLY_SKILLS = new Set(['Bun', 'Drizzle ORM']);
+
+export const RESUME_SKILL_GROUPS = SKILL_GROUPS.filter(group => !SITE_ONLY_SKILL_GROUPS.has(group.name)).map(group => ({
+  ...group,
+  skills: group.skills.filter(skill => !SITE_ONLY_SKILLS.has(skill)),
+}));

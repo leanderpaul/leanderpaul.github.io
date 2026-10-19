@@ -6,10 +6,10 @@ export const FEATURED_SLUGS: FeaturedSlug[] = ['identity', 'ai-platform', 'code-
 export const AI_ASSISTED_STATEMENT = "Built solo with AI-assisted development, as the repository's overview states.";
 
 export const SHADOW_PLATFORM_RESUME_BULLETS = [
-  'Built a public TypeScript monorepo of six products (identity, notifications, AI gateway, novel authoring, reading, life tracking), each a server and web app, with servers on my own dependency-injection framework; 10,000+ automated tests (unit, integration, e2e); developed solo with AI-assisted tooling.',
-  'Identity: OIDC/OAuth 2.1 provider (PKCE-only, refresh rotation with reuse detection), RBAC decision point, M2M and workload identity, SAML 2.0 IdP, passkeys, TOTP, back-channel logout, RFC 8693 delegation (single-hop).',
-  'AI platform: LangGraph workflows checkpointed in PostgreSQL with idempotent retry and a generate → judge → repair loop; model calls routed through Synapse, an internal gateway with a model catalog, failover, budgets and a usage ledger.',
-  'Self-hosted development environment using k3d/GitOps; production deployment planned.',
+  'Built an OIDC/OAuth 2.1 identity provider with PKCE, refresh-token rotation and reuse detection, RBAC, SAML 2.0, passkeys and TOTP.',
+  'Implemented token-family and session revocation on refresh-token reuse, plus back-channel logout through a database outbox with retries and dead-lettering.',
+  'AI: LangGraph workflows with a judge-and-repair loop, calling models through Synapse, my AI gateway with failover and budgets.',
+  'Built solo with AI-assisted tooling; 10,000+ automated tests across unit, integration and end-to-end suites.',
 ];
 
 const SELF_HOSTED_RUNTIME = 'runs in my self-hosted development environment · not deployed to production';
