@@ -402,4 +402,6 @@
 :root {
   --sh-text-hero: clamp(2.25rem, 1.5rem + 3vw, 3.5rem);
   --sh-text-hero--line-height: 1.1;
+  /* Chromium embeds variable fonts such as Inter in PDFs as Type 3 glyphs, which scrambles text extraction. */
+  --sh-font-print: Arial, Helvetica, sans-serif;
 }
