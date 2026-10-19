@@ -1,9 +1,8 @@
 <script lang="ts" setup>
 import LinkIcon from '@app/components/link-icon.component.vue';
-import { LINK_TYPE_LABELS, OPEN_SOURCE_INTRO, OPEN_SOURCE_PACKAGES, OPEN_SOURCE_TITLE } from '@app/content';
+import { getLinkName, LINK_TYPE_LABELS, OPEN_SOURCE_INTRO, OPEN_SOURCE_PACKAGES, OPEN_SOURCE_TITLE } from '@app/content';
 
 import HomeSection from './home-section.component.vue';
-import { getLinkName } from './link-name.util';
 
 function splitScope(name: string): [string, string] {
   const slash = name.indexOf('/');

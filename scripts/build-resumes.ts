@@ -1,6 +1,5 @@
-import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rename, unlink, writeFile } from 'node:fs/promises';
 import { join, relative, resolve } from 'node:path';
-
 import { chromium, type Browser, type Page } from 'playwright-core';
 import { build, preview, type PreviewServer } from 'vite';
 
@@ -109,8 +108,7 @@ async function readContact(): Promise<ResumeContact> {
   if (typeof phone !== 'string' || !DISPLAY_PHONE_PATTERN.test(phone.trim())) {
     throw new ResumeBuildError(`${displayPath}: "phone" must be a display string of digits, spaces, "+", "(", ")" or "-"`);
   }
-  if (typeof tel !== 'string' || !E164_PATTERN.test(tel))
-    throw new ResumeBuildError(`${displayPath}: "tel" must be an E.164 number such as +971…`);
+  if (typeof tel !== 'string' || !E164_PATTERN.test(tel)) throw new ResumeBuildError(`${displayPath}: "tel" must be an E.164 number such as +971…`);
   return { phone: phone.trim(), tel };
 }
 
@@ -237,8 +235,9 @@ async function renderUsedRulesAuditHtml(page: Page): Promise<AuditHtml> {
           return [rule.cssText];
         }
         if (rule instanceof CSSPageRule || rule instanceof CSSLayerStatementRule || rule instanceof CSSPropertyRule) return [rule.cssText];
-        if (rule instanceof CSSFontFaceRule)
+        if (rule instanceof CSSFontFaceRule) {
           return textFamilies.has(normaliseFamily(rule.style.getPropertyValue('font-family'))) ? [rule.cssText] : [];
+        }
         if (rule instanceof CSSKeyframesRule) return animationNames.has(rule.name) ? [rule.cssText] : [];
         if (rule instanceof CSSImportRule) return rule.styleSheet ? collect(rule.styleSheet.cssRules) : [];
         if (rule instanceof CSSMediaRule && !matchMedia(rule.media.mediaText).matches) return [];
@@ -269,7 +268,7 @@ async function writeAuditHtml(page: Page, variant: ResumeVariant): Promise<void>
 }
 
 async function renderVariant(browser: Browser, baseUrl: string, variant: ResumeVariant, contact: ResumeContact): Promise<RenderedResume> {
-  const context = await browser.newContext({ colorScheme: 'light' });
+  const context = await browser.newContext({ colorScheme: 'light', viewport: { width: 794, height: 1123 } });
   try {
     const page = await context.newPage();
     const pageErrors: string[] = [];
@@ -308,8 +307,7 @@ function assertPrintablePdf(pdf: Buffer, variant: ResumeVariant): void {
   const text = pdf.toString('latin1');
   const pages = text.match(/\/Type\s*\/Page(?![A-Za-z])/g)?.length ?? 0;
   if (pages === 0 || pages > MAX_PAGES) throw new ResumeBuildError(`${variant}: expected 1–${MAX_PAGES} pages, found ${pages}`);
-  if (/\/Subtype\s*\/Type3\b/.test(text))
-    throw new ResumeBuildError(`${variant}: the PDF contains a Type3 font, which breaks text extraction`);
+  if (/\/Subtype\s*\/Type3\b/.test(text)) throw new ResumeBuildError(`${variant}: the PDF contains a Type3 font, which breaks text extraction`);
   if (!/\/FontFile2\b/.test(text)) throw new ResumeBuildError(`${variant}: no embedded TrueType font found`);
 }
 
@@ -506,8 +504,13 @@ async function writeOutputs(resumes: RenderedResume[]): Promise<void> {
   for (const { variant, pdf } of resumes) {
     const target = join(OUTPUT_DIR, RESUME_OUTPUTS[variant]);
     const staging = `${target}.partial`;
-    await writeFile(staging, pdf);
-    await rename(staging, target);
+    try {
+      await writeFile(staging, pdf);
+      await rename(staging, target);
+    } catch (error) {
+      await unlink(staging).catch(() => undefined);
+      throw error;
+    }
     log('Wrote résumé PDF', { variant, file: relative(ROOT_DIR, target), bytes: pdf.length });
   }
 }

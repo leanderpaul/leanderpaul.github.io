@@ -3,27 +3,15 @@ import { computed, ref } from 'vue';
 
 import LinkIcon from '@app/components/link-icon.component.vue';
 import { ShBadge, ShTable, ShTag } from '@app/components/ui';
-import { ARCHIVE_CAPTION, ARCHIVE_ROWS, matchesArchiveFilter, type ArchiveCategory, type ArchiveFilter, type ArchiveRow, type LinkType } from '@app/content';
+import { ARCHIVE_CAPTION, ARCHIVE_ROWS, getLinkName, matchesArchiveFilter, type ArchiveCategory, type ArchiveFilter, type ArchiveRow } from '@app/content';
 
 import ArchiveFilterGroup from './archive-filter.component.vue';
-
-const LINK_NAME_BUILDERS: Record<LinkType, (title: string) => string> = {
-  github: title => `GitHub repository for ${title}`,
-  npm: title => `npm package for ${title}`,
-  docs: title => `Documentation for ${title}`,
-  employer: title => `${title} website`,
-  demo: title => `Live demo of ${title}`,
-};
 
 const CATEGORY_LABELS: Record<ArchiveCategory, string> = { employer: 'Employer', personal: 'Personal', 'open-source': 'Open source' };
 
 const filter = ref<ArchiveFilter>('all');
 const rows = computed(() => ARCHIVE_ROWS.filter(row => matchesArchiveFilter(row, filter.value)));
 const summary = computed(() => `Showing ${rows.value.length} of ${ARCHIVE_ROWS.length} projects`);
-
-function linkName(row: ArchiveRow, type: LinkType): string {
-  return LINK_NAME_BUILDERS[type](row.title);
-}
 
 function rowKey(row: ArchiveRow): string {
   return `${row.year}-${row.title}`;
@@ -32,7 +20,7 @@ function rowKey(row: ArchiveRow): string {
 
 <template>
   <div class="page">
-    <h1 class="heading">Project archive</h1>
+    <h1 class="page-title">Project archive</h1>
     <p class="intro">Things I've built, at work and on my own, newest first.</p>
 
     <ArchiveFilterGroup v-model="filter" />
@@ -72,7 +60,7 @@ function rowKey(row: ArchiveRow): string {
           <td>
             <ul class="links">
               <li v-for="link in row.links" :key="link.url">
-                <a class="link" :href="link.url" target="_blank" rel="noopener" :aria-label="linkName(row, link.type)">
+                <a class="link" :href="link.url" target="_blank" rel="noopener" :aria-label="getLinkName(link, row.title)">
                   <LinkIcon :type="link.type" />
                 </a>
               </li>
@@ -100,7 +88,7 @@ function rowKey(row: ArchiveRow): string {
           </ul>
           <ul v-if="row.links.length > 0" class="links">
             <li v-for="link in row.links" :key="link.url">
-              <a class="link" :href="link.url" target="_blank" rel="noopener" :aria-label="linkName(row, link.type)">
+              <a class="link" :href="link.url" target="_blank" rel="noopener" :aria-label="getLinkName(link, row.title)">
                 <LinkIcon :type="link.type" />
               </a>
             </li>
@@ -116,8 +104,8 @@ function rowKey(row: ArchiveRow): string {
   padding-bottom: 96px;
 }
 
-.heading {
-  margin-top: 32px;
+.page-title {
+  margin: 32px 0;
   font-size: var(--sh-text-display);
   line-height: var(--sh-text-display--line-height);
   font-weight: 700;
@@ -280,6 +268,10 @@ function rowKey(row: ArchiveRow): string {
 }
 
 @media (max-width: 767px) {
+  .page-title {
+    margin-bottom: 16px;
+  }
+
   .table {
     display: none;
   }

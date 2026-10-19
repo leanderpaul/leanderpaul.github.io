@@ -264,7 +264,7 @@ li {
   margin: 0px 10px;
 }
 
-li a:not(.btn) {
+li > a {
   text-decoration: none;
 }
 

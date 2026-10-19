@@ -1,10 +1,9 @@
 <script lang="ts" setup>
 import LinkIcon from '@app/components/link-icon.component.vue';
 import { ShBadge, ShCard, ShTag } from '@app/components/ui';
-import { FEATURED_PROJECTS, type Ownership } from '@app/content';
+import { FEATURED_PROJECTS, getLinkName, type Ownership } from '@app/content';
 
 import HomeSection from './home-section.component.vue';
-import { getLinkName } from './link-name.util';
 
 const OWNERSHIP_LABELS: Record<Ownership, string> = { employer: 'Employer project', personal: 'Personal project' };
 </script>

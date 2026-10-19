@@ -2,6 +2,8 @@
 import { ShBadge, ShTag, ShTimeline } from '@app/components/ui';
 import { EMPLOYMENT_LABELS, EXPERIENCE, formatYearMonth, type Present, type YearMonth } from '@app/content';
 
+import HomeSection from './home-section.component.vue';
+
 function toDateTime(date: YearMonth): string {
   return `${date.year}-${String(date.month).padStart(2, '0')}`;
 }
@@ -12,8 +14,7 @@ function isPresent(end: YearMonth | Present): end is Present {
 </script>
 
 <template>
-  <section id="experience" class="section" aria-labelledby="experience-title">
-    <h2 id="experience-title" class="heading">Experience</h2>
+  <HomeSection id="experience" title="Experience">
     <ShTimeline :items="EXPERIENCE">
       <template #default="{ item }">
         <article v-if="item.kind === 'role'" class="role">
@@ -56,7 +57,7 @@ function isPresent(end: YearMonth | Present): end is Present {
         </p>
       </template>
     </ShTimeline>
-  </section>
+  </HomeSection>
 </template>
 
 <style scoped>
