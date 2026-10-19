@@ -3,6 +3,8 @@ import { onMounted, ref, watchEffect } from 'vue';
 import { RESUME_FILES } from '@app/content';
 import { getResumeVariant } from '@app/utils';
 
+import ThemeToggle from './theme-toggle.component.vue';
+
 const resumeFile = RESUME_FILES[getResumeVariant()].file;
 const isNavOpen = ref(false);
 const isNavBorder = ref(window.scrollY > 0);
@@ -40,6 +42,9 @@ onMounted(() => {
         </li>
         <li class="resume">
           <a class="btn" :href="resumeFile" target="_blank" rel="noopener">Resume</a>
+        </li>
+        <li class="theme" @click.stop>
+          <ThemeToggle />
         </li>
       </ol>
     </div>
@@ -165,6 +170,10 @@ li.resume {
   counter-increment: none;
 }
 
+li.theme {
+  counter-increment: none;
+}
+
 li.resume a::before {
   content: none;
 }
@@ -216,6 +225,10 @@ li.resume a:hover {
     padding: 10px 0px;
   }
 
+  li.theme {
+    margin-top: 10px;
+  }
+
   .btn {
     margin-top: 20px;
     margin-left: 0px;
@@ -238,7 +251,7 @@ li.resume a:hover {
   }
 
   .open div.nav-links {
-    height: 410px;
+    height: 470px;
   }
 }
 </style>
