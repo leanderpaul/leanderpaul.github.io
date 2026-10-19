@@ -234,6 +234,10 @@ h1 {
   color: var(--sh-text-secondary);
 }
 
+.contact {
+  text-wrap: wrap;
+}
+
 .resume a {
   color: var(--sh-text-primary);
   text-decoration: none;

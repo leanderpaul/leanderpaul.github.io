@@ -2,10 +2,12 @@
   "name": "portfolio",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "postbuild": "cp dist/index.html dist/404.html",
+    "build:resumes": "node scripts/build-resumes.ts",
     "preview": "vite preview",
     "format": "prettier --write src/",
     "type-check": "vue-tsc --noEmit"
@@ -17,6 +19,7 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.4",
     "@vitejs/plugin-vue-jsx": "^4.1.2",
+    "playwright-core": "1.62.1",
     "prettier": "^3.0.0",
     "typescript": "^5.4.5",
     "vite": "^6.3.5",
