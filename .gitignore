@@ -13,3 +13,10 @@ node_modules
 dist
 
 
+
+# Local-only working files
+review/
+.serena/
+scratch-pad/
+.tmp/
+.local/
