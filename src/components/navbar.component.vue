@@ -44,21 +44,26 @@ onMounted(() => {
       </ol>
     </div>
   </nav>
-  <div :class="{ blur: isNavOpen }"></div>
+  <div :class="{ scrim: isNavOpen }"></div>
 </template>
 <style scoped>
 nav {
   position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 50px;
-  width: calc(100% - 100px);
   height: 100px;
-  z-index: 10;
-  font-size: 14px;
-  transition: height 0.2s;
-  background-color: var(--background-default);
+  padding: 0px 48px;
+  z-index: var(--sh-z-shell);
+  font-size: var(--sh-text-body);
+  background-color: var(--sh-surface-app);
+  border-bottom: var(--sh-border-width) solid transparent;
+  transition:
+    height var(--sh-duration-normal) var(--sh-ease-standard),
+    border-color var(--sh-duration-normal) var(--sh-ease-standard);
 }
 
 nav.bordered {
@@ -66,30 +71,33 @@ nav.bordered {
 }
 
 nav.bordered:not(.open) {
-  box-shadow: 0 10px 30px -10px var(--background-dark);
+  border-bottom-color: var(--sh-border-default);
+  box-shadow: var(--sh-shadow-e1);
 }
 
 svg {
-  fill: var(--color-primary);
+  fill: var(--sh-accent-text);
 }
 
 .hamburger {
+  position: relative;
   width: 30px;
   height: 30px;
-  cursor: pointer;
-  position: relative;
 }
 
 .hamburger span {
-  display: block;
   position: absolute;
-  height: 2px;
-  background-color: var(--color-primary);
+  display: block;
   width: 30px;
+  height: 2px;
   margin-left: auto;
-  transition: all 0.23s ease-in-out;
+  background-color: var(--sh-accent-text);
   transform-origin: top right;
   transform: rotate(0deg);
+  transition:
+    transform var(--sh-duration-normal) var(--sh-ease-standard),
+    width var(--sh-duration-normal) var(--sh-ease-standard),
+    opacity var(--sh-duration-normal) var(--sh-ease-standard);
 }
 
 .hamburger span:nth-child(2) {
@@ -135,13 +143,22 @@ li {
   counter-increment: item 1;
 }
 
+li a {
+  text-decoration: none;
+}
+
 li a:not(:hover) {
-  color: var(--text-lighter);
+  color: var(--sh-text-primary);
+}
+
+li a:hover {
+  color: var(--sh-accent-text);
 }
 
 li a::before {
   content: '0' counter(item) '. ';
-  color: var(--color-primary);
+  font-family: var(--sh-font-mono);
+  color: var(--sh-accent-text);
 }
 
 li.resume {
@@ -153,37 +170,40 @@ li.resume a::before {
 }
 
 li.resume a:not(:hover) {
-  color: var(--color-primary);
+  color: var(--sh-accent-text);
+}
+
+li.resume a:hover {
+  color: var(--sh-on-accent);
 }
 
 .btn {
   margin-left: 10px;
 }
 
-.blur {
+.scrim {
   position: fixed;
-  width: 100vw;
-  height: 100vh;
-  backdrop-filter: blur(5px) brightness(0.7);
-  z-index: 5;
   top: 0;
   left: 0;
+  z-index: var(--sh-z-sticky);
+  width: 100vw;
+  height: var(--sh-viewport-height);
   overflow: hidden;
+  background-color: var(--sh-scrim);
 }
 
 @media (max-width: 768px) {
   nav {
-    padding: 0px 25px;
-    width: calc(100% - 50px);
+    padding: 0px 24px;
   }
 
   ol {
-    margin-top: 0px;
     flex-direction: column;
-    background-color: var(--background-default);
     align-items: flex-start;
-    padding: 25px;
-    border-bottom: 1px solid var(--background-light);
+    margin-top: 0px;
+    padding: 24px;
+    background-color: var(--sh-surface-app);
+    border-bottom: var(--sh-border-width) solid var(--sh-border-default);
   }
 
   li {
@@ -198,16 +218,19 @@ li.resume a:not(:hover) {
 
   .btn {
     margin-top: 20px;
+    margin-left: 0px;
   }
 
   .nav-links {
     position: fixed;
-    width: 100vw;
-    height: 0px;
     top: 100px;
     left: 0;
+    width: 100vw;
+    height: 0px;
     overflow: hidden;
-    transition: all 0.23s ease-in-out;
+    transition:
+      height var(--sh-duration-normal) var(--sh-ease-standard),
+      top var(--sh-duration-normal) var(--sh-ease-standard);
   }
 
   .bordered .nav-links {

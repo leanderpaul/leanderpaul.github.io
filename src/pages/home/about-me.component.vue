@@ -8,7 +8,7 @@ import { ABOUT_TEXT } from '@app/content';
       <div class="profile">
         <p>{{ ABOUT_TEXT }}</p>
       </div>
-      <div>
+      <div class="photo">
         <img src="/images/me.jpeg" alt="Leander Paul" />
       </div>
     </div>
@@ -17,27 +17,19 @@ import { ABOUT_TEXT } from '@app/content';
 <style scoped>
 .content {
   display: flex;
-  gap: 50px;
-  text-align: justify;
+  gap: 48px;
+  color: var(--sh-text-secondary);
 }
 
-.content a {
-  color: var(--color-primary);
-  background: linear-gradient(currentColor 0 0) var(--p, 0) 100% / var(--d, 0) 1px no-repeat;
-  transition:
-    0.3s,
-    background-position 0s 0.3s;
-}
-
-.content a:hover {
-  --d: 100%;
-  --p: 100%;
+.photo {
+  flex: 0 0 300px;
 }
 
 img {
-  border-radius: 5px;
-  width: 300px;
+  width: 100%;
   object-fit: cover;
+  border: var(--sh-border-width) solid var(--sh-border-default);
+  border-radius: var(--sh-radius-lg);
 }
 
 @media (max-width: 768px) {
@@ -45,8 +37,8 @@ img {
     flex-direction: column;
   }
 
-  img {
-    width: 100%;
+  .photo {
+    flex-basis: auto;
   }
 }
 </style>

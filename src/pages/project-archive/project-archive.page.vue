@@ -41,65 +41,91 @@ import LinkIcon from '@app/components/link-icon.component.vue';
 </template>
 <style scoped>
 h1 {
-  font-size: 3em;
-  margin-top: 2rem;
+  margin-top: 32px;
+  font-size: var(--sh-text-display);
+  line-height: var(--sh-text-display--line-height);
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 p {
-  font-size: 1em;
-  margin-top: 5px;
-  color: var(--color-primary);
+  margin-top: 8px;
+  color: var(--sh-text-secondary);
 }
 
 table {
-  margin: 100px 0px;
-  text-align: left;
+  width: 100%;
+  margin: 64px 0px 100px;
   border-collapse: collapse;
+  text-align: left;
+}
+
+th {
+  font-size: var(--sh-text-caption);
+  line-height: var(--sh-text-caption--line-height);
+  font-weight: 500;
+  color: var(--sh-text-tertiary);
+  border-bottom: var(--sh-border-width) solid var(--sh-border-default);
 }
 
 td,
 th {
-  padding: 10px 10px;
+  padding: 12px 10px;
+}
+
+td {
+  border-bottom: var(--sh-border-width) solid var(--sh-border-subtle);
+  color: var(--sh-text-secondary);
 }
 
 td.year {
-  color: var(--color-primary);
+  font-family: var(--sh-font-mono);
+  font-size: var(--sh-text-code);
+  color: var(--sh-text-tertiary);
 }
 
 td.title {
-  font-weight: bold;
-  color: var(--text-light);
   padding-right: 20px;
+  font-weight: 600;
+  color: var(--sh-text-primary);
+}
+
+td.links {
+  white-space: nowrap;
 }
 
 td.company {
-  font-size: 15px;
+  font-size: var(--sh-text-body);
 }
 
 td.tech-stack {
-  font-size: 13px;
+  font-size: var(--sh-text-body-sm);
+  line-height: var(--sh-text-body-sm--line-height);
 }
 
 td.links a {
+  display: inline-flex;
   margin-right: 10px;
+  color: var(--sh-text-secondary);
+}
+
+td.links a:hover {
+  color: var(--sh-accent-text);
 }
 
 svg {
-  fill: none;
   width: 18px;
-  stroke: var(--text-default);
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
-svg:hover {
-  stroke: var(--color-primary);
-}
-
 @media (max-width: 768px) {
   table {
-    margin: 50px 0px;
+    margin: 48px 0px;
   }
 
   table .company {

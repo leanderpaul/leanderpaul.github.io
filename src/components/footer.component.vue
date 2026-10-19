@@ -41,33 +41,41 @@
   </a>
 </template>
 <style scoped>
+a {
+  color: var(--sh-text-secondary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--sh-text-primary);
+}
+
 a.footer {
   margin-top: 100px;
-  padding-bottom: 15px;
-  cursor: pointer;
+  padding-bottom: 16px;
+}
+
+a.footer:hover span {
+  text-decoration: underline;
 }
 
 span {
-  z-index: 2;
-  font-size: 14px;
+  font-size: var(--sh-text-body-sm);
+  line-height: var(--sh-text-body-sm--line-height);
+  color: var(--sh-text-tertiary);
 }
 
 section {
   display: flex;
-  padding: 0px 25px;
   flex-direction: column;
   justify-content: space-between;
-  z-index: 10;
+  align-items: center;
+  padding: 0px 24px;
+  z-index: var(--sh-z-sticky);
 }
 
 section svg {
-  fill: var(--text-default);
-}
-
-section svg:hover {
-  cursor: pointer;
-  fill: var(--text-lighter);
-  color: var(--text-lighter);
+  fill: currentColor;
 }
 
 @media (max-width: 768px) {
@@ -81,7 +89,7 @@ section svg:hover {
   }
 
   a.footer {
-    margin: 25px 0px;
+    margin: 24px 0px;
   }
 }
 

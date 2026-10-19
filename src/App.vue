@@ -1,11 +1,9 @@
 <script lang="ts" setup>
-import CursorHighligher from './components/cursor-highlighter.component.vue';
 import Navbar from './components/navbar.component.vue';
 import Footer from './components/footer.component.vue';
 </script>
 
 <template>
-  <CursorHighligher />
   <Navbar />
   <div class="container">
     <router-view />
@@ -14,20 +12,11 @@ import Footer from './components/footer.component.vue';
 </template>
 <style scoped>
 .container {
-  position: relative;
-  z-index: 2;
-  margin: auto;
-  padding: 70px 80px 0px 80px;
   display: flex;
   max-width: 1024px;
-  min-height: calc(100vh - 220px);
-}
-
-section {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  min-height: calc(var(--sh-viewport-height) - 220px);
+  margin: auto;
+  padding: 70px 80px 0px 80px;
 }
 
 .container > * {
@@ -36,9 +25,9 @@ section {
 
 @media (max-width: 768px) {
   .container {
-    min-height: calc(100vh - 105px);
+    min-height: calc(var(--sh-viewport-height) - 105px);
     max-width: 768px;
-    padding: 70px 25px 0px 25px;
+    padding: 70px 24px 0px 24px;
   }
 }
 

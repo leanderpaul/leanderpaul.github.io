@@ -7,39 +7,31 @@
 </template>
 <style scoped>
 div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
   margin: auto;
   text-align: center;
-  align-self: center;
 }
 
 h1 {
-  font-size: 15rem;
-  color: var(--color-primary);
-  line-height: 1;
+  font-family: var(--sh-font-mono);
+  font-size: var(--sh-text-hero);
+  line-height: var(--sh-text-hero--line-height);
+  font-weight: 500;
+  color: var(--sh-accent-text);
 }
 
 h2 {
-  font-size: 3rem;
+  margin-top: 16px;
+  font-size: var(--sh-text-h1);
+  line-height: var(--sh-text-h1--line-height);
   font-weight: 400;
-  color: var(--text-light);
+  color: var(--sh-text-secondary);
 }
 
 .btn {
-  margin-top: 2rem;
-  padding: 12px 25px;
-}
-
-@media (max-width: 768px) {
-  h1 {
-    font-size: 8rem;
-  }
-
-  h2 {
-    font-size: 2rem;
-  }
-
-  .btn {
-    margin-top: 4rem;
-  }
+  margin-top: 32px;
 }
 </style>

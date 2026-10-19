@@ -11,49 +11,48 @@ import { PROFILE } from '@app/content';
 </template>
 <style scoped>
 .intro {
-  height: calc(100vh - 140px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: calc(var(--sh-viewport-height) - 140px);
 }
 
 .title {
-  color: var(--text-lighter);
-  font-size: 3rem;
-  letter-spacing: 5px;
-  text-transform: uppercase;
+  margin-bottom: 32px;
+  font-size: var(--sh-text-hero);
+  line-height: var(--sh-text-hero--line-height);
   font-weight: 700;
-  margin-bottom: 2rem;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: var(--sh-text-primary);
 }
 
 .subtitle {
   max-width: 600px;
-  text-align: center;
-  font-size: 1.25rem;
+  margin-bottom: 24px;
+  font-size: var(--sh-text-h2);
+  line-height: var(--sh-text-h2--line-height);
   font-weight: 500;
-  margin-bottom: 1.5rem;
+  text-align: center;
+  color: var(--sh-text-primary);
 }
 
 .tagline {
   max-width: 600px;
+  margin-bottom: 48px;
   text-align: center;
-  margin-bottom: 3rem;
+  color: var(--sh-text-secondary);
 }
 
 .btn {
   width: 200px;
-  padding: 12px;
 }
 
 @media (max-width: 768px) {
-  .title {
-    font-size: 1.5rem;
-    letter-spacing: 1px;
-  }
-
   .subtitle {
-    font-size: 1rem;
+    font-size: var(--sh-text-h3);
+    line-height: var(--sh-text-h3--line-height);
   }
 }
 </style>

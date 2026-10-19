@@ -32,18 +32,19 @@ import { CONTACT_SECTION, PROFILE, RESUME_FILES, RESUME_VARIANTS } from '@app/co
 
 .heading {
   text-align: center;
-  color: var(--color-primary);
 }
 
 p {
   max-width: 500px;
   text-align: center;
+  color: var(--sh-text-secondary);
 }
 
 .email {
-  margin-top: 30px;
-  font-size: 1.25rem;
-  color: var(--color-primary);
+  margin-top: 32px;
+  font-size: var(--sh-text-h2);
+  line-height: var(--sh-text-h2--line-height);
+  font-weight: 500;
 }
 
 .links {
@@ -53,9 +54,9 @@ p {
 }
 
 .resumes {
-  list-style: none;
+  margin-top: 32px;
   padding: 0;
-  margin-top: 30px;
+  list-style: none;
 }
 
 .resumes li {
@@ -65,8 +66,8 @@ p {
   margin-bottom: 8px;
 }
 
-.resumes a {
-  color: var(--color-primary);
+.resumes span {
+  color: var(--sh-text-secondary);
 }
 
 @media (max-width: 768px) {

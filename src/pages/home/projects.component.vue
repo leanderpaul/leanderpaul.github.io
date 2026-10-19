@@ -35,65 +35,72 @@ import LinkIcon from '@app/components/link-icon.component.vue';
 </template>
 <style scoped>
 .heading {
-  margin-bottom: 50px;
+  margin-bottom: 48px;
 }
 
 ul {
-  list-style: none;
   padding: 0;
+  list-style: none;
 }
 
 svg {
-  fill: none;
   width: 20px;
-  stroke: var(--text-default);
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
 .project {
-  padding: 25px;
-  background-color: var(--background-light);
+  padding: 24px;
+  background-color: var(--sh-surface-card);
+  border: var(--sh-border-width) solid var(--sh-border-default);
+  border-radius: var(--sh-radius-lg);
+  box-shadow: var(--sh-shadow-e1);
+}
+
+.project .desc {
+  color: var(--sh-text-secondary);
 }
 
 .project .footer {
   align-items: center;
-  font-size: 14px;
 }
 
 .project .tech-list {
   display: flex;
-  gap: 5px 20px;
-  white-space: nowrap;
   flex-wrap: wrap;
+  gap: 4px 20px;
+  font-family: var(--sh-font-mono);
+  font-size: var(--sh-text-code);
+  line-height: var(--sh-text-code--line-height);
+  color: var(--sh-text-tertiary);
+  white-space: nowrap;
 }
 
 .project .links {
-  margin-top: 15px;
+  display: flex;
+  margin-top: 16px;
 }
 
-.btn {
-  padding: 10px 25px;
+.project .links a {
+  display: inline-flex;
+  color: var(--sh-text-secondary);
+}
+
+.project .links a:hover {
+  color: var(--sh-accent-text);
 }
 
 @media (max-width: 768px) {
   .project {
-    margin-bottom: 25px;
-  }
-
-  .project .content {
-    background: rgba(26, 33, 56, 0.6);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(3px);
-    border: 1px solid rgba(26, 33, 56, 0.1);
-    padding: 25px;
-    border-radius: 2px;
+    margin-bottom: 24px;
   }
 
   .project .desc {
-    padding: 25px 0px;
-    background-color: transparent;
+    padding: 24px 0px;
   }
 
   .project .links a {
@@ -101,13 +108,17 @@ svg {
   }
 
   .btn {
-    margin-top: 25px;
+    margin-top: 24px;
   }
 }
 
 @media (min-width: 768px) {
   .project {
-    margin-bottom: 50px;
+    margin-bottom: 48px;
+  }
+
+  .project .links {
+    margin-top: 0px;
   }
 
   .project .links a {
@@ -119,9 +130,9 @@ svg {
   }
 
   .project .footer {
-    margin-top: 20px;
     display: flex;
     justify-content: space-between;
+    margin-top: 20px;
   }
 }
 </style>

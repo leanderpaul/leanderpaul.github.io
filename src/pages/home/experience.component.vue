@@ -68,74 +68,79 @@ onUnmounted(() => {
 <style scoped>
 .content {
   display: flex;
-  gap: 50px;
-  text-align: justify;
+  gap: 48px;
   min-height: 600px;
 }
 
 .tab-title {
-  display: flex;
   position: relative;
+  display: flex;
 }
 
 .tab-title > button {
-  background: none;
-  color: inherit;
-  border: none;
-  padding: 10px 25px;
-  font: inherit;
-  cursor: pointer;
   width: 160px;
+  padding: 10px 24px;
+  border: none;
+  background: none;
+  font-family: var(--sh-font-mono);
+  font-size: var(--sh-text-code);
+  color: var(--sh-text-secondary);
   text-align: left;
 }
 
 .tab-title > button:hover {
-  background-color: #112240;
-  color: var(--color-primary);
+  background-color: var(--sh-bg-hover);
+  color: var(--sh-accent-text);
 }
 
 .tab-title > button.active {
-  color: var(--color-primary);
+  color: var(--sh-accent-text);
 }
 
 .active-indicator {
   position: absolute;
-  background-color: var(--color-primary);
-  transition: all 0.2s ease-in-out;
-  width: 3px;
-  height: 45px;
+  width: 2px;
+  height: 44px;
+  background-color: var(--sh-accent);
+  transition:
+    top var(--sh-duration-normal) var(--sh-ease-standard),
+    left var(--sh-duration-normal) var(--sh-ease-standard);
 }
 
 .tab-content {
   flex-basis: min-content;
   flex-grow: 1;
+  color: var(--sh-text-secondary);
+}
+
+.tab-content h3 {
+  font-size: var(--sh-text-h2);
+  line-height: var(--sh-text-h2--line-height);
 }
 
 .tab-content .company {
-  margin-left: 5px;
-  color: var(--color-primary);
+  margin-left: 6px;
+  color: var(--sh-accent-text);
 }
 
 .tab-content .company::before {
   content: '@ ';
 }
 
-.tab-content .company a {
-  color: var(--color-primary);
-}
-
 .tab-content p {
-  font-size: 14px;
-  letter-spacing: 1px;
-  margin-top: 5px;
+  margin-top: 4px;
+  font-family: var(--sh-font-mono);
+  font-size: var(--sh-text-code);
+  line-height: var(--sh-text-code--line-height);
+  color: var(--sh-text-tertiary);
 }
 
 .tab-content .client {
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 
 .tab-content .client a {
-  margin-left: 5px;
+  margin-left: 6px;
 }
 
 .tab-content ul {
@@ -143,7 +148,11 @@ onUnmounted(() => {
 }
 
 .tab-content li {
-  margin-bottom: 5px;
+  margin-bottom: 8px;
+}
+
+.tab-content li::marker {
+  color: var(--sh-accent-text);
 }
 
 @media (max-width: 768px) {
@@ -153,11 +162,11 @@ onUnmounted(() => {
   }
 
   .tab-title > button {
-    width: 130px;
+    flex-shrink: 0;
+    width: 190px;
     padding: 10px;
     text-align: center;
-    flex-shrink: 0;
-    border-bottom: 2px solid #233554;
+    border-bottom: 2px solid var(--sh-border-default);
   }
 
   .content {
@@ -166,9 +175,9 @@ onUnmounted(() => {
   }
 
   .active-indicator {
-    width: 130px;
-    height: 3px;
-    margin-top: 43px;
+    width: 190px;
+    height: 2px;
+    margin-top: 44px;
   }
 }
 
@@ -178,7 +187,7 @@ onUnmounted(() => {
   }
 
   .tab-title > button {
-    border-left: 2px solid #233554;
+    border-left: 2px solid var(--sh-border-default);
   }
 }
 </style>
