@@ -94,22 +94,31 @@ export type FeaturedSlug = 'identity' | 'ai-platform' | 'code-atlas';
 
 export interface KeyDecision {
   decision: string;
-  rejected: string;
+  rejected?: string;
   why: string;
+}
+
+export interface CaseStudyDiagram {
+  text: string;
+  caption: string;
+  source: ProjectLink;
 }
 
 export interface CaseStudyArchitecture {
   text: string[];
-  diagram?: string;
+  diagram?: CaseStudyDiagram;
 }
 
 export interface CaseStudy {
+  runtime: string;
   context: string[];
   role: string[];
   architecture: CaseStudyArchitecture;
   decisions: KeyDecision[];
   failureModes: string[];
   results: string[];
+  resultsSource?: ProjectLink;
+  validityThreats?: string[];
   changes: string[];
 }
 
