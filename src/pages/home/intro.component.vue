@@ -3,7 +3,7 @@ import { PROFILE } from '@app/content';
 </script>
 <template>
   <div class="intro">
-    <div class="title">Hi, I am {{ PROFILE.name }}</div>
+    <h1 class="title">Hi, I am {{ PROFILE.name }}</h1>
     <div class="subtitle">{{ PROFILE.headline }}</div>
     <p class="tagline">{{ PROFILE.tagline }}</p>
     <a class="btn" href="#projects">Projects</a>

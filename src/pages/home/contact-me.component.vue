@@ -3,7 +3,7 @@ import { CONTACT_SECTION, PROFILE, RESUME_FILES, RESUME_VARIANTS } from '@app/co
 </script>
 <template>
   <div id="contact-me" class="section">
-    <h3 class="heading">{{ CONTACT_SECTION.heading }}</h3>
+    <h2 class="heading">{{ CONTACT_SECTION.heading }}</h2>
     <div class="content">
       <p>{{ CONTACT_SECTION.text }}</p>
       <a :href="`mailto:${PROFILE.email}`" class="email">{{ PROFILE.email }}</a>
@@ -14,8 +14,19 @@ import { CONTACT_SECTION, PROFILE, RESUME_FILES, RESUME_VARIANTS } from '@app/co
       <ul class="resumes">
         <li v-for="variant in RESUME_VARIANTS" :key="variant">
           <span>Résumé ({{ RESUME_FILES[variant].label }})</span>
-          <a :href="RESUME_FILES[variant].file" target="_blank" rel="noopener">View</a>
-          <a :href="RESUME_FILES[variant].file" :download="`Leander_Paul-Resume-${RESUME_FILES[variant].label}.pdf`">Download</a>
+          <a
+            :href="RESUME_FILES[variant].file"
+            target="_blank"
+            rel="noopener"
+            :aria-label="`View ${RESUME_FILES[variant].label} résumé (PDF)`"
+            >View</a
+          >
+          <a
+            :href="RESUME_FILES[variant].file"
+            :download="`Leander_Paul-Resume-${RESUME_FILES[variant].label}.pdf`"
+            :aria-label="`Download ${RESUME_FILES[variant].label} résumé (PDF)`"
+            >Download</a
+          >
         </li>
       </ul>
     </div>

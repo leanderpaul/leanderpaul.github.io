@@ -3,7 +3,7 @@ import { ABOUT_TEXT } from '@app/content';
 </script>
 <template>
   <div id="about" class="section">
-    <div class="heading">About Me</div>
+    <h2 class="heading">About Me</h2>
     <div class="content">
       <div class="profile">
         <p>{{ ABOUT_TEXT }}</p>

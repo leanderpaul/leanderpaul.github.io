@@ -12,7 +12,6 @@ body {
   font-size: var(--sh-text-body-lg);
   line-height: var(--sh-text-body-lg--line-height);
   background-color: var(--sh-surface-app);
-  counter-reset: section;
 }
 
 h1,
@@ -93,14 +92,6 @@ pre {
   color: var(--sh-text-primary);
 }
 
-.heading::before {
-  counter-increment: section;
-  content: '0' counter(section) '. ';
-  font-family: var(--sh-font-mono);
-  font-weight: 500;
-  color: var(--sh-accent-text);
-}
-
 .flex-center {
   display: flex;
   align-items: center;
@@ -150,11 +141,5 @@ pre {
     margin-bottom: 16px;
     font-size: var(--sh-text-h2);
     line-height: var(--sh-text-h2--line-height);
-  }
-}
-
-@media (min-width: 768px) {
-  .md-hide {
-    display: none !important;
   }
 }

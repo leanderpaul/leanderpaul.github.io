@@ -4,7 +4,7 @@ import LinkIcon from '@app/components/link-icon.component.vue';
 </script>
 <template>
   <div id="projects" class="section">
-    <h3 class="heading">What I've Built</h3>
+    <h2 class="heading">What I've Built</h2>
     <ul class="content">
       <li class="project" v-for="project in FEATURED_PROJECTS" :key="project.slug">
         <h3>{{ project.title }}</h3>

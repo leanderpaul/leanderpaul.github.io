@@ -31,7 +31,7 @@ onUnmounted(() => {
 </script>
 <template>
   <div id="experience" class="section">
-    <div class="heading">Where I've Worked</div>
+    <h2 class="heading">Where I've Worked</h2>
     <div class="content">
       <div class="tab-title">
         <button
