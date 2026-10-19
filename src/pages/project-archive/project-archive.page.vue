@@ -1,46 +1,122 @@
 <script lang="ts" setup>
-import { ARCHIVE_CAPTION, ARCHIVE_ROWS } from '@app/content';
+import { computed, ref } from 'vue';
+
 import LinkIcon from '@app/components/link-icon.component.vue';
+import { ShBadge, ShTable, ShTag } from '@app/components/ui';
+import { ARCHIVE_CAPTION, ARCHIVE_ROWS, matchesArchiveFilter, type ArchiveCategory, type ArchiveFilter, type ArchiveRow, type LinkType } from '@app/content';
+
+import ArchiveFilterGroup from './archive-filter.component.vue';
+
+const LINK_NAME_BUILDERS: Record<LinkType, (title: string) => string> = {
+  github: title => `GitHub repository for ${title}`,
+  npm: title => `npm package for ${title}`,
+  docs: title => `Documentation for ${title}`,
+  employer: title => `${title} website`,
+  demo: title => `Live demo of ${title}`,
+};
+
+const CATEGORY_LABELS: Record<ArchiveCategory, string> = { employer: 'Employer', personal: 'Personal', 'open-source': 'Open source' };
+
+const filter = ref<ArchiveFilter>('all');
+const rows = computed(() => ARCHIVE_ROWS.filter(row => matchesArchiveFilter(row, filter.value)));
+const summary = computed(() => `Showing ${rows.value.length} of ${ARCHIVE_ROWS.length} projects`);
+
+function linkName(row: ArchiveRow, type: LinkType): string {
+  return LINK_NAME_BUILDERS[type](row.title);
+}
+
+function rowKey(row: ArchiveRow): string {
+  return `${row.year}-${row.title}`;
+}
 </script>
+
 <template>
-  <div>
-    <h1>Project Archive</h1>
-    <p>{{ ARCHIVE_CAPTION }}</p>
-    <table>
+  <div class="page">
+    <h1 class="heading">Project archive</h1>
+    <p class="intro">Things I've built, at work and on my own, newest first.</p>
+
+    <ArchiveFilterGroup v-model="filter" />
+    <p class="count" role="status" aria-live="polite">{{ summary }}</p>
+
+    <p v-if="rows.length === 0" class="empty">Nothing matches this filter yet. Try another one.</p>
+
+    <ShTable v-else class="table">
+      <template #caption>{{ ARCHIVE_CAPTION }}</template>
       <thead>
         <tr>
-          <th class="year">Year</th>
-          <th class="title">Title</th>
-          <th class="company">Company</th>
-          <th class="tech-stack">Tech Stack</th>
-          <th class="links">Links</th>
+          <th scope="col">Year</th>
+          <th scope="col">Project</th>
+          <th scope="col">Category</th>
+          <th scope="col">Built with</th>
+          <th scope="col">Links</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="row in ARCHIVE_ROWS" :key="row.title">
+        <tr v-for="row in rows" :key="rowKey(row)">
           <td class="year">{{ row.year }}</td>
-          <td class="title">{{ row.title }}</td>
-          <td class="company">{{ row.company || '—' }}</td>
-          <td class="tech-stack">{{ row.tech.join(' · ') }}</td>
-          <td class="links">
-            <a
-              v-for="link in row.links"
-              :key="link.url"
-              :href="link.url"
-              target="_blank"
-              rel="noopener"
-              :aria-label="`${row.title}: ${link.label}`"
-            >
-              <LinkIcon :type="link.type" />
-            </a>
+          <th scope="row" class="project">
+            <span class="title">
+              {{ row.title }}
+              <ShBadge v-if="row.status === 'archived'">archived</ShBadge>
+            </span>
+            <span v-if="row.company" class="company">{{ row.company }}</span>
+          </th>
+          <td class="category">{{ CATEGORY_LABELS[row.category] }}</td>
+          <td>
+            <ul class="tags" aria-label="Built with">
+              <li v-for="technology in row.tech" :key="technology">
+                <ShTag>{{ technology }}</ShTag>
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul class="links">
+              <li v-for="link in row.links" :key="link.url">
+                <a class="link" :href="link.url" target="_blank" rel="noopener" :aria-label="linkName(row, link.type)">
+                  <LinkIcon :type="link.type" />
+                </a>
+              </li>
+            </ul>
           </td>
         </tr>
       </tbody>
-    </table>
+    </ShTable>
+
+    <template v-if="rows.length > 0">
+      <p class="caption">{{ ARCHIVE_CAPTION }}</p>
+      <ul class="cards">
+        <li v-for="row in rows" :key="rowKey(row)" class="card">
+          <p class="meta">
+            <span class="year">{{ row.year }}</span>
+            <span class="category">{{ CATEGORY_LABELS[row.category] }}</span>
+            <ShBadge v-if="row.status === 'archived'">archived</ShBadge>
+          </p>
+          <h2 class="card-title">{{ row.title }}</h2>
+          <p v-if="row.company" class="company">{{ row.company }}</p>
+          <ul class="tags" aria-label="Built with">
+            <li v-for="technology in row.tech" :key="technology">
+              <ShTag>{{ technology }}</ShTag>
+            </li>
+          </ul>
+          <ul v-if="row.links.length > 0" class="links">
+            <li v-for="link in row.links" :key="link.url">
+              <a class="link" :href="link.url" target="_blank" rel="noopener" :aria-label="linkName(row, link.type)">
+                <LinkIcon :type="link.type" />
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </template>
   </div>
 </template>
+
 <style scoped>
-h1 {
+.page {
+  padding-bottom: 96px;
+}
+
+.heading {
   margin-top: 32px;
   font-size: var(--sh-text-display);
   line-height: var(--sh-text-display--line-height);
@@ -48,72 +124,78 @@ h1 {
   letter-spacing: -0.02em;
 }
 
-p {
-  margin-top: 8px;
+.intro {
+  margin: 8px 0 32px;
   color: var(--sh-text-secondary);
 }
 
-table {
-  width: 100%;
-  margin: 64px 0px 100px;
-  border-collapse: collapse;
-  text-align: left;
-}
-
-th {
-  font-size: var(--sh-text-caption);
-  line-height: var(--sh-text-caption--line-height);
-  font-weight: 500;
+.count {
+  margin: 16px 0 24px;
+  font-size: var(--sh-text-body-sm);
   color: var(--sh-text-tertiary);
-  border-bottom: var(--sh-border-width) solid var(--sh-border-default);
 }
 
-td,
-th {
-  padding: 12px 10px;
-}
-
-td {
-  border-bottom: var(--sh-border-width) solid var(--sh-border-subtle);
+.empty {
+  padding: 32px 16px;
+  border: var(--sh-border-width) dashed var(--sh-border-default);
+  border-radius: var(--sh-radius-lg);
+  text-align: center;
   color: var(--sh-text-secondary);
 }
 
-td.year {
+.year {
   font-family: var(--sh-font-mono);
   font-size: var(--sh-text-code);
   color: var(--sh-text-tertiary);
 }
 
-td.title {
-  padding-right: 20px;
-  font-weight: 600;
-  color: var(--sh-text-primary);
-}
-
-td.links {
+.category {
   white-space: nowrap;
-}
-
-td.company {
-  font-size: var(--sh-text-body);
-}
-
-td.tech-stack {
-  font-size: var(--sh-text-body-sm);
-  line-height: var(--sh-text-body-sm--line-height);
-}
-
-td.links a {
-  display: inline-flex;
-  margin-right: 10px;
   color: var(--sh-text-secondary);
 }
 
-td.links a:hover {
+.company {
+  display: block;
+  font-size: var(--sh-text-body-sm);
+  font-weight: 400;
+  color: var(--sh-text-secondary);
+}
+
+.tags,
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.links {
+  flex-wrap: nowrap;
+  gap: 4px;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--sh-radius-md);
+  color: var(--sh-text-secondary);
+}
+
+.link:hover {
   color: var(--sh-accent-text);
 }
 
-svg {
+.link:focus-visible {
+  outline: var(--sh-focus-ring-width) solid var(--sh-focus-ring);
+  outline-offset: var(--sh-focus-ring-offset);
+}
+
+.link svg {
   width: 18px;
   height: 18px;
   fill: none;
@@ -123,25 +205,94 @@ svg {
   stroke-linejoin: round;
 }
 
-@media (max-width: 768px) {
-  table {
-    margin: 48px 0px;
-  }
+.table :deep(th.project) {
+  height: auto;
+  min-width: 220px;
+  padding: 8px 16px;
+  background: transparent;
+  border-bottom: none;
+  text-align: left;
+  font-size: var(--sh-text-body-sm);
+  font-weight: 600;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: normal;
+  color: var(--sh-text-primary);
+}
 
-  table .company {
+.table :deep(tbody tr:not(:last-child) > th.project) {
+  border-bottom: var(--sh-border-width) solid var(--sh-border-subtle);
+}
+
+.table :deep(td),
+.table :deep(th.project) {
+  vertical-align: top;
+}
+
+.title {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.caption,
+.cards {
+  display: none;
+}
+
+.cards {
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  padding: 16px;
+  border: var(--sh-border-width) solid var(--sh-border-default);
+  border-radius: var(--sh-radius-lg);
+  background: var(--sh-surface-card);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--sh-text-caption);
+}
+
+.card-title {
+  margin-top: 4px;
+  font-size: var(--sh-text-h3);
+  line-height: var(--sh-text-h3--line-height);
+  font-weight: 600;
+}
+
+.card .tags {
+  margin-top: 12px;
+}
+
+.card .links {
+  margin-top: 8px;
+}
+
+@media (max-width: 767px) {
+  .table {
     display: none;
   }
 
-  table .tech-stack {
-    display: none;
+  .caption {
+    display: block;
+    margin-bottom: 16px;
+    font-size: var(--sh-text-body-sm);
+    color: var(--sh-text-secondary);
   }
 
-  table .year {
-    padding-left: 0px;
-  }
-
-  table .links {
-    padding-right: 0px;
+  .cards {
+    display: flex;
   }
 }
 </style>
