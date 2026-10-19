@@ -1,236 +1,11 @@
 <script lang="ts" setup>
-interface Project {
-  year: number;
-  title: string;
-  company?: string;
-  tech: string[];
-  links?: {
-    github?: string;
-    demo?: string;
-  };
-}
-
-const projects: Project[] = [
-  {
-    year: 2026,
-    title: 'Novel Forge — AI Novel Generation Platform',
-    tech: ['LangChain', 'LangGraph', 'LlamaIndex', 'pgvector', 'TypeScript', 'Bun'],
-    links: {
-      demo: 'https://web-novel.shadow-apps.com',
-    },
-  },
-  {
-    year: 2026,
-    title: 'Code Atlas — AI Codebase Assistant',
-    tech: ['Python', 'FastAPI', 'LanceDB', 'SQLite FTS5', 'Tree-sitter', 'Ollama'],
-    links: {
-      github: 'https://github.com/shadow-library/code-atlas',
-    },
-  },
-  {
-    year: 2025,
-    title: 'Shadow Identity',
-    tech: ['NestJS', 'TypeScript', 'MongoDB', 'Redis'],
-    links: {
-      github: 'https://github.com/shadow-library/identity',
-    },
-  },
-  {
-    year: 2025,
-    title: 'Shadow Pulse Server',
-    tech: ['NestJS', 'TypeScript', 'RabbitMQ', 'MongoDB'],
-    links: {
-      github: 'https://github.com/shadow-library/pulse-server',
-    },
-  },
-  {
-    year: 2025,
-    title: 'Shadow Pulse Web',
-    tech: ['React', 'TanStack Router', 'Tailwind CSS', 'Ant Design'],
-    links: {},
-  },
-  {
-    year: 2025,
-    title: 'Shadow Modules',
-    tech: ['Bun', 'TypeScript', 'NestJS'],
-    links: {
-      github: 'https://github.com/shadow-library/modules',
-    },
-  },
-  {
-    year: 2025,
-    title: 'Shadow Mongoose',
-    tech: ['Bun', 'TypeScript', 'Mongoose'],
-    links: {
-      github: 'https://github.com/shadow-library/mongoose',
-      demo: 'https://npmjs.com/package/@shadow-library/mongoose',
-    },
-  },
-  {
-    year: 2025,
-    title: 'Shadow Fastify',
-    tech: ['Bun', 'TypeScript', 'Fastify'],
-    links: {
-      github: 'https://github.com/shadow-library/fastify',
-      demo: 'https://npmjs.com/package/@shadow-library/fastify',
-    },
-  },
-  {
-    year: 2024,
-    title: 'Shadow Class Schema',
-    tech: ['Bun', 'TypeScript'],
-    links: {
-      github: 'https://github.com/shadow-library/class-schema',
-      demo: 'https://npmjs.com/package/@shadow-library/class-schema',
-    },
-  },
-  {
-    year: 2024,
-    title: 'Shadow Applications',
-    tech: ['Bun', 'TypeScript'],
-    links: {
-      github: 'https://github.com/shadow-library/app',
-      demo: 'https://npmjs.com/package/@shadow-library/app',
-    },
-  },
-  {
-    year: 2024,
-    title: 'Shadow Common',
-    tech: ['Bun', 'TypeScript'],
-    links: {
-      github: 'https://github.com/shadow-library/common',
-      demo: 'https://npmjs.com/package/@shadow-library/common',
-    },
-  },
-  {
-    title: 'Emirates NBD Retail Banking',
-    year: 2024,
-    company: 'Emirates NBD',
-    tech: ['Node', 'Express', 'Playwright', 'MongoDB'],
-  },
-  {
-    title: 'Portfolio',
-    year: 2023,
-    tech: ['Vue 3', 'TypeScript', 'Tailwind CSS'],
-    links: {
-      github: 'https://github.com/leanderpaul/leanderpaul.github.io',
-      demo: 'https://leanderpaul.github.io',
-    },
-  },
-  {
-    title: 'Shadow Chronicle',
-    year: 2023,
-    tech: ['Angular', 'Tailwind CSS', 'GraphQL', 'Vercel'],
-    links: {
-      github: 'https://github.com/leanderpaul/shadow-chronicle',
-      demo: 'https://chronicle.shadow-apps.com',
-    },
-  },
-  {
-    title: 'Shadow Accounts (v1)',
-    year: 2023,
-    tech: ['Astro', 'Tailwind CSS', 'Vercel'],
-    links: {
-      github: 'https://github.com/leanderpaul/shadow-accounts',
-      demo: 'https://accounts.shadow-apps.com',
-    },
-  },
-  {
-    title: 'Shadow Archive',
-    year: 2023,
-    tech: ['NestJS', 'Fastify', 'GraphQL', 'MongoDB', 'AWS EC2'],
-    links: {
-      github: 'https://github.com/leanderpaul/shadow-archive',
-      demo: 'https://archive.shadow-apps.com',
-    },
-  },
-  {
-    title: 'Shadow Deploy',
-    year: 2023,
-    tech: ['Rust', 'AWS SQS', 'AWS Secrets Manager'],
-    links: {
-      github: 'https://github.com/leanderpaul/shadow-deploy',
-    },
-  },
-  {
-    title: 'Capture',
-    year: 2023,
-    company: 'WTV',
-    tech: ['Node', 'NestJS', 'Mongoose', 'Fastify'],
-    links: {
-      demo: 'https://capture.wtvglobal.com',
-    },
-  },
-  {
-    title: 'Sagus',
-    year: 2021,
-    tech: ['Typescript', 'Node'],
-    links: {
-      github: 'https://github.com/leanderpaul/sagus',
-      demo: 'https://www.npmjs.com/package/sagus',
-    },
-  },
-  {
-    title: 'Zoho Accounts',
-    year: 2020,
-    company: 'Zoho',
-    tech: ['Java', 'Redis', 'MySQL', 'HTML', 'CSS', 'JavaScript'],
-    links: {
-      demo: 'https://accounts.zoho.com',
-    },
-  },
-  {
-    title: 'Library Management System',
-    year: 2019,
-    company: 'Zoho',
-    tech: ['Express', 'Mongoose', 'React', 'Material UI'],
-    links: {
-      github: 'https://github.com/leanderpaul/LibraryManagementSystem',
-    },
-  },
-  {
-    title: 'Shadow 2048',
-    year: 2019,
-    tech: ['React', 'JavaScript', 'Electron'],
-    links: {
-      github: 'https://github.com/leanderpaul/Shadow2048',
-    },
-  },
-  {
-    title: 'Shadow Blog',
-    year: 2019,
-    tech: ['Express', 'React', 'Mongoose', 'Material UI'],
-    links: {
-      github: 'https://github.com/leanderpaul/ShadowBlog',
-    },
-  },
-  {
-    title: 'Pixelview',
-    year: 2018,
-    company: 'Phosphene AI',
-    tech: ['TypeScript', 'Express', 'Mongoose', 'React'],
-    links: {},
-  },
-  {
-    title: 'Pristine',
-    year: 2018,
-    company: 'Phosphene AI',
-    tech: ['Express', 'Mongoose'],
-    links: {},
-  },
-  {
-    title: 'Jute Emporium Website',
-    year: 2018,
-    company: 'Jute Emporium (Freelance)',
-    tech: ['Express', 'Mongoose', 'Handlebars', 'Bootstrap CSS'],
-    links: {},
-  },
-];
+import { ARCHIVE_CAPTION, ARCHIVE_ROWS } from '@app/content';
+import LinkIcon from '@app/components/link-icon.component.vue';
 </script>
 <template>
   <div>
     <h1>Project Archive</h1>
-    <p>A list of the things I've worked on</p>
+    <p>{{ ARCHIVE_CAPTION }}</p>
     <table>
       <thead>
         <tr>
@@ -242,32 +17,21 @@ const projects: Project[] = [
         </tr>
       </thead>
       <tbody>
-        <tr v-for="project in projects">
-          <td class="year">{{ project.year }}</td>
-          <td class="title">{{ project.title }}</td>
-          <td class="company">{{ project.company || '—' }}</td>
-          <td class="tech-stack">
-            <span v-for="tech in project.tech" :key="tech">
-              {{ tech }}
-              <span class="seperator" v-if="tech !== project.tech[project.tech.length - 1]">·</span>
-            </span>
-          </td>
+        <tr v-for="row in ARCHIVE_ROWS" :key="row.title">
+          <td class="year">{{ row.year }}</td>
+          <td class="title">{{ row.title }}</td>
+          <td class="company">{{ row.company || '—' }}</td>
+          <td class="tech-stack">{{ row.tech.join(' · ') }}</td>
           <td class="links">
-            <a v-if="project?.links?.github" :href="project.links.github" target="_blank">
-              <svg viewBox="0 0 24 24">
-                <title>GitHub</title>
-                <path
-                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
-                ></path>
-              </svg>
-            </a>
-            <a v-if="project?.links?.demo" :href="project.links.demo" target="_blank">
-              <svg viewBox="0 0 24 24">
-                <title>Demo</title>
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                <polyline points="15 3 21 3 21 9"></polyline>
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-              </svg>
+            <a
+              v-for="link in row.links"
+              :key="link.url"
+              :href="link.url"
+              target="_blank"
+              rel="noopener"
+              :aria-label="`${row.title}: ${link.label}`"
+            >
+              <LinkIcon :type="link.type" />
             </a>
           </td>
         </tr>
@@ -314,10 +78,6 @@ td.company {
 
 td.tech-stack {
   font-size: 13px;
-}
-
-td.tech-stack .seperator {
-  margin: 0px 5px;
 }
 
 td.links a {

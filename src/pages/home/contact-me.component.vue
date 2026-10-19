@@ -1,13 +1,23 @@
+<script lang="ts" setup>
+import { CONTACT_SECTION, PROFILE, RESUME_FILES, RESUME_VARIANTS } from '@app/content';
+</script>
 <template>
   <div id="contact-me" class="section">
-    <h3 class="heading">What's Next?</h3>
+    <h3 class="heading">{{ CONTACT_SECTION.heading }}</h3>
     <div class="content">
-      <h1>Get In Touch</h1>
-      <p>
-        I'm currently open to Software Architect and Full Stack Developer roles. Whether you have an opportunity, a challenging project, or
-        just want to connect — my inbox is always open.
+      <p>{{ CONTACT_SECTION.text }}</p>
+      <a :href="`mailto:${PROFILE.email}`" class="email">{{ PROFILE.email }}</a>
+      <p class="links">
+        <a :href="PROFILE.links.linkedin" target="_blank" rel="noopener">LinkedIn</a>
+        <a :href="PROFILE.links.github" target="_blank" rel="noopener">GitHub</a>
       </p>
-      <a href="mailto:leanderpaul97@gmail.com" class="btn">Say Hello</a>
+      <ul class="resumes">
+        <li v-for="variant in RESUME_VARIANTS" :key="variant">
+          <span>Résumé ({{ RESUME_FILES[variant].label }})</span>
+          <a :href="RESUME_FILES[variant].file" target="_blank" rel="noopener">View</a>
+          <a :href="RESUME_FILES[variant].file" :download="`Leander_Paul-Resume-${RESUME_FILES[variant].label}.pdf`">Download</a>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -25,27 +35,43 @@
   color: var(--color-primary);
 }
 
-h1 {
-  font-size: 3.5rem;
-}
-
 p {
   max-width: 500px;
   text-align: center;
 }
 
-a {
-  margin-top: 50px;
-  width: 100px;
+.email {
+  margin-top: 30px;
+  font-size: 1.25rem;
+  color: var(--color-primary);
+}
+
+.links {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.resumes {
+  list-style: none;
+  padding: 0;
+  margin-top: 30px;
+}
+
+.resumes li {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.resumes a {
+  color: var(--color-primary);
 }
 
 @media (max-width: 768px) {
   .content {
     margin-bottom: 125px;
-  }
-
-  h1 {
-    font-size: 2.5rem;
   }
 }
 </style>

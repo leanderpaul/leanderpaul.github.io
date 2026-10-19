@@ -1,16 +1,15 @@
 <script lang="ts" setup>
 import { onMounted, ref, watchEffect } from 'vue';
-import { resumeLinks } from '@app/data';
-import { getCountryByDate, getCountryByIP } from '@app/utils';
+import { RESUME_FILES } from '@app/content';
+import { getResumeVariant } from '@app/utils';
 
-const location = ref(getCountryByDate());
+const resumeFile = RESUME_FILES[getResumeVariant()].file;
 const isNavOpen = ref(false);
 const isNavBorder = ref(window.scrollY > 0);
 
 watchEffect(() => (document.body.style.overflow = isNavOpen.value ? 'hidden' : 'auto'));
 onMounted(() => {
   window.addEventListener('scroll', () => (isNavBorder.value = window.scrollY > 0));
-  getCountryByIP().then(country => (location.value = country));
 });
 </script>
 <template>
@@ -39,7 +38,9 @@ onMounted(() => {
         <li>
           <router-link to="/#contact-me">Contact</router-link>
         </li>
-        <a class="btn" :href="resumeLinks[location]" download="Leander_Paul-Resume.pdf">Resume</a>
+        <li class="resume">
+          <a class="btn" :href="resumeFile" target="_blank" rel="noopener">Resume</a>
+        </li>
       </ol>
     </div>
   </nav>
@@ -140,6 +141,18 @@ li a:not(:hover) {
 
 li a::before {
   content: '0' counter(item) '. ';
+  color: var(--color-primary);
+}
+
+li.resume {
+  counter-increment: none;
+}
+
+li.resume a::before {
+  content: none;
+}
+
+li.resume a:not(:hover) {
   color: var(--color-primary);
 }
 

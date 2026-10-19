@@ -1,9 +1,11 @@
+<script lang="ts" setup>
+import { PROFILE } from '@app/content';
+</script>
 <template>
   <div class="intro">
-    <div class="title">Hi, I am Leander Paul</div>
-    <div class="subtitle">
-      AI Engineer & Software Architect — Building Production LLM Systems with LangChain, LangGraph and RAG, on 8 Years of Distributed Systems
-    </div>
+    <div class="title">Hi, I am {{ PROFILE.name }}</div>
+    <div class="subtitle">{{ PROFILE.headline }}</div>
+    <p class="tagline">{{ PROFILE.tagline }}</p>
     <a class="btn" href="#projects">Projects</a>
   </div>
 </template>
@@ -30,6 +32,12 @@
   text-align: center;
   font-size: 1.25rem;
   font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.tagline {
+  max-width: 600px;
+  text-align: center;
   margin-bottom: 3rem;
 }
 

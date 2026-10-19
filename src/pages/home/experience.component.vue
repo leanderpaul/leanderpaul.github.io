@@ -1,12 +1,13 @@
 <script lang="ts" setup>
 import { onMounted, onUnmounted, reactive, ref } from 'vue';
-import { experiences, type Experience } from '@app/data';
+import { EXPERIENCE, formatDateRange, formatRoleTitle, type Role } from '@app/content';
 
-const activeTab = ref(experiences[0] as Experience);
+const roles = EXPERIENCE.filter((entry): entry is Role => entry.kind === 'role');
+const activeTab = ref(roles[0] as Role);
 const activeIndicatorStyle = reactive<{ top: string; left: string; display?: 'none' }>({ top: '1000px', left: '0px', display: 'none' });
 
-function handleClick(event: MouseEvent, experience: Experience) {
-  activeTab.value = experience;
+function handleClick(event: MouseEvent, role: Role) {
+  activeTab.value = role;
   const btn = event.target as HTMLButtonElement;
   activeIndicatorStyle.top = `${btn.offsetTop}px`;
   activeIndicatorStyle.left = `${btn.offsetLeft}px`;
@@ -17,12 +18,6 @@ function positionActiveIndicator() {
   activeIndicatorStyle.top = `${activeTabTitle.offsetTop}px`;
   activeIndicatorStyle.left = `${activeTabTitle.offsetLeft}px`;
   activeIndicatorStyle.display = undefined;
-}
-
-function parseDescription(description: string) {
-  const parts = description.split(/(\*.*?\*)/g);
-  const isBold = (part: string) => part.startsWith('*') && part.endsWith('*');
-  return parts.map(part => ({ isBold: isBold(part), text: part.replace(/\*/g, '') }));
 }
 
 onMounted(() => {
@@ -40,28 +35,31 @@ onUnmounted(() => {
     <div class="content">
       <div class="tab-title">
         <button
-          v-for="experience in experiences"
-          :class="{ active: activeTab.company === experience.company }"
-          @click="handleClick($event, experience)"
+          v-for="role in roles"
+          :key="role.company"
+          :class="{ active: activeTab.company === role.company }"
+          @click="handleClick($event, role)"
         >
-          {{ experience.company }}
+          {{ role.company }}
         </button>
         <div :style="activeIndicatorStyle" class="active-indicator"></div>
       </div>
       <div class="tab-content">
         <h3>
-          <span>{{ activeTab.designation }}</span>
-          <a class="company" :href="activeTab.companyUrl" target="_blank">{{ activeTab.company }}</a>
+          <span>{{ formatRoleTitle(activeTab) }}</span>
+          <a v-if="activeTab.companyUrl" class="company" :href="activeTab.companyUrl" target="_blank" rel="noopener">{{
+            activeTab.company
+          }}</a>
+          <span v-else class="company">{{ activeTab.company }}</span>
         </h3>
         <p class="client" v-if="activeTab.client">
           <span>Client:</span>
-          <a :href="activeTab.clientUrl" target="_blank">{{ activeTab.client }}</a>
+          <a v-if="activeTab.clientUrl" :href="activeTab.clientUrl" target="_blank" rel="noopener">{{ activeTab.client }}</a>
+          <span v-else>{{ activeTab.client }}</span>
         </p>
-        <p class="period">{{ activeTab.startDate }} - {{ activeTab.endDate }}</p>
+        <p class="period">{{ formatDateRange(activeTab.start, activeTab.end) }}</p>
         <ul>
-          <li v-for="item in activeTab.description">
-            <span v-for="part in parseDescription(item)" :class="{ bold: part.isBold }">{{ part.text }}</span>
-          </li>
+          <li v-for="item in activeTab.siteBullets" :key="item">{{ item }}</li>
         </ul>
       </div>
     </div>
@@ -72,7 +70,7 @@ onUnmounted(() => {
   display: flex;
   gap: 50px;
   text-align: justify;
-  height: 600px;
+  min-height: 600px;
 }
 
 .tab-title {
@@ -148,11 +146,6 @@ onUnmounted(() => {
   margin-bottom: 5px;
 }
 
-.tab-content .bold {
-  font-weight: 600;
-  color: var(--text-light);
-}
-
 @media (max-width: 768px) {
   .tab-title {
     overflow-x: auto;
@@ -169,7 +162,7 @@ onUnmounted(() => {
 
   .content {
     flex-direction: column;
-    height: 1100px;
+    min-height: 1100px;
   }
 
   .active-indicator {
