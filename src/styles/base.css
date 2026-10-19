@@ -92,46 +92,6 @@ pre {
   color: var(--sh-text-primary);
 }
 
-.flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: var(--sh-control-height-lg);
-  padding: 8px 24px;
-  border: var(--sh-border-width) solid var(--sh-accent);
-  border-radius: var(--sh-radius-md);
-  background-color: transparent;
-  color: var(--sh-accent-text);
-  font-weight: 500;
-  text-align: center;
-  text-decoration: none;
-  transition:
-    background-color var(--sh-duration-fast) var(--sh-ease-standard),
-    color var(--sh-duration-fast) var(--sh-ease-standard);
-}
-
-.btn:hover {
-  background-color: var(--sh-accent);
-  color: var(--sh-on-accent);
-}
-
-.btn:active {
-  background-color: var(--sh-accent-active);
-  color: var(--sh-on-accent);
-}
-
-@media (pointer: coarse) {
-  .btn {
-    min-height: var(--sh-tap-target);
-  }
-}
-
 @media (max-width: 768px) {
   .section {
     max-width: calc(100vw - 48px);

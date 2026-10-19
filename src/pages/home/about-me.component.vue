@@ -1,44 +1,50 @@
 <script lang="ts" setup>
 import { ABOUT_TEXT } from '@app/content';
+
+import HomeSection from './home-section.component.vue';
 </script>
+
 <template>
-  <div id="about" class="section">
-    <h2 class="heading">About Me</h2>
+  <HomeSection id="about" title="About">
     <div class="content">
-      <div class="profile">
-        <p>{{ ABOUT_TEXT }}</p>
-      </div>
-      <div class="photo">
-        <img src="/images/me.jpeg" alt="Leander Paul" />
-      </div>
+      <p class="text">{{ ABOUT_TEXT }}</p>
+      <img class="photo" src="/images/me.jpeg" alt="Leander Paul" width="380" height="475" loading="lazy" decoding="async" />
     </div>
-  </div>
+  </HomeSection>
 </template>
+
 <style scoped>
 .content {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 200px;
+  align-items: start;
   gap: 48px;
+}
+
+.text {
+  max-width: 68ch;
   color: var(--sh-text-secondary);
 }
 
 .photo {
-  flex: 0 0 300px;
-}
-
-img {
   width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
   object-fit: cover;
   border: var(--sh-border-width) solid var(--sh-border-default);
   border-radius: var(--sh-radius-lg);
+  background: var(--sh-surface-well);
 }
 
 @media (max-width: 768px) {
   .content {
-    flex-direction: column;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
   }
 
   .photo {
-    flex-basis: auto;
+    grid-row: 1;
+    max-width: 160px;
   }
 }
 </style>

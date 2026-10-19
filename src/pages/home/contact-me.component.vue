@@ -1,89 +1,118 @@
 <script lang="ts" setup>
+import { ShCard } from '@app/components/ui';
 import { CONTACT_SECTION, PROFILE, RESUME_FILES, RESUME_VARIANTS } from '@app/content';
+
+import HomeSection from './home-section.component.vue';
 </script>
+
 <template>
-  <div id="contact-me" class="section">
-    <h2 class="heading">{{ CONTACT_SECTION.heading }}</h2>
+  <HomeSection id="contact" :title="CONTACT_SECTION.heading">
+    <template #lead>{{ CONTACT_SECTION.text }}</template>
     <div class="content">
-      <p>{{ CONTACT_SECTION.text }}</p>
-      <a :href="`mailto:${PROFILE.email}`" class="email">{{ PROFILE.email }}</a>
-      <p class="links">
-        <a :href="PROFILE.links.linkedin" target="_blank" rel="noopener">LinkedIn</a>
-        <a :href="PROFILE.links.github" target="_blank" rel="noopener">GitHub</a>
-      </p>
-      <ul class="resumes">
-        <li v-for="variant in RESUME_VARIANTS" :key="variant">
-          <span>Résumé ({{ RESUME_FILES[variant].label }})</span>
-          <a
-            :href="RESUME_FILES[variant].file"
-            target="_blank"
-            rel="noopener"
-            :aria-label="`View ${RESUME_FILES[variant].label} résumé (PDF)`"
-            >View</a
-          >
-          <a
-            :href="RESUME_FILES[variant].file"
-            :download="`Leander_Paul-Resume-${RESUME_FILES[variant].label}.pdf`"
-            :aria-label="`Download ${RESUME_FILES[variant].label} résumé (PDF)`"
-            >Download</a
-          >
-        </li>
-      </ul>
+      <div class="reach">
+        <a class="email" :href="`mailto:${PROFILE.email}`">{{ PROFILE.email }}</a>
+        <ul class="social" role="list">
+          <li><a :href="PROFILE.links.linkedin" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a :href="PROFILE.links.github" target="_blank" rel="noopener">GitHub</a></li>
+        </ul>
+      </div>
+      <ShCard class="resumes">
+        <h3 class="resumes-title">Résumé</h3>
+        <ul class="variants" role="list">
+          <li v-for="variant in RESUME_VARIANTS" :key="variant" class="variant">
+            <span class="label">{{ RESUME_FILES[variant].label }}</span>
+            <span class="actions">
+              <a
+                :href="RESUME_FILES[variant].file"
+                target="_blank"
+                rel="noopener"
+                :aria-label="`View ${RESUME_FILES[variant].label} résumé (PDF)`"
+                >View</a
+              >
+              <a
+                :href="RESUME_FILES[variant].file"
+                :download="`Leander_Paul-Resume-${RESUME_FILES[variant].label}.pdf`"
+                :aria-label="`Download ${RESUME_FILES[variant].label} résumé (PDF)`"
+                >Download</a
+              >
+            </span>
+          </li>
+        </ul>
+      </ShCard>
     </div>
-  </div>
+  </HomeSection>
 </template>
+
 <style scoped>
 .content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 200px;
-}
-
-.heading {
-  text-align: center;
-}
-
-p {
-  max-width: 500px;
-  text-align: center;
-  color: var(--sh-text-secondary);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 20rem);
+  align-items: start;
+  gap: 32px 48px;
 }
 
 .email {
-  margin-top: 32px;
   font-size: var(--sh-text-h2);
   line-height: var(--sh-text-h2--line-height);
-  font-weight: 500;
+  font-weight: 600;
+  overflow-wrap: anywhere;
 }
 
-.links {
+.social {
   display: flex;
-  gap: 20px;
-  margin-top: 20px;
-}
-
-.resumes {
-  margin-top: 32px;
+  flex-wrap: wrap;
+  gap: 0 24px;
+  margin: 12px 0 0;
   padding: 0;
   list-style: none;
 }
 
-.resumes li {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  margin-bottom: 8px;
+.social a,
+.actions a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--sh-tap-target);
+  font-weight: 500;
 }
 
-.resumes span {
+.resumes-title {
+  font-size: var(--sh-text-body);
+  line-height: var(--sh-text-body--line-height);
+  font-weight: 600;
   color: var(--sh-text-secondary);
+}
+
+.variants {
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.variant {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0 16px;
+}
+
+.variant:not(:last-child) {
+  border-bottom: var(--sh-border-width) solid var(--sh-border-subtle);
+}
+
+.label {
+  font-weight: 500;
+  color: var(--sh-text-primary);
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
 }
 
 @media (max-width: 768px) {
   .content {
-    margin-bottom: 125px;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 </style>
