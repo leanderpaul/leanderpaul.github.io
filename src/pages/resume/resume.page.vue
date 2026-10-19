@@ -1,31 +1,25 @@
 <script lang="ts" setup>
-import { computed, onBeforeMount, onBeforeUnmount, onMounted } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { onBeforeMount, onBeforeUnmount, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 
 import {
-  DEFAULT_RESUME_VARIANT,
   EMPLOYMENT_LABELS,
   EXPERIENCE,
   PROFILE,
   RESUME_CONTACT_LINKS,
   RESUME_EDUCATION,
-  RESUME_FILES,
   RESUME_OPEN_SOURCE_LINE,
   RESUME_PROJECT,
   RESUME_SUMMARY,
   SKILL_GROUPS,
   type EducationEntry,
-  type ResumeVariant,
   type Role,
-  type TimelineEntry,
   formatDateRange,
   formatYearMonth,
   formatYearRange,
-  isResumeVariant,
 } from '@app/content';
 
-interface ResumeRoleEntry {
-  kind: 'role';
+interface ResumeEntry {
   key: string;
   heading: string;
   meta: string;
@@ -33,35 +27,19 @@ interface ResumeRoleEntry {
   technologies: string;
 }
 
-interface ResumeBreakEntry {
-  kind: 'break';
-  key: string;
-  dates: string;
-  text: string;
-}
-
-type ResumeEntry = ResumeRoleEntry | ResumeBreakEntry;
-
 const META_SEPARATOR = ' · ';
 
-const route = useRoute();
 const router = useRouter();
 
-const variant = computed(() => (isResumeVariant(route.query.variant) ? route.query.variant : DEFAULT_RESUME_VARIANT));
-const logistics = computed(() => RESUME_FILES[variant.value].logistics);
-const education = computed(() =>
-  RESUME_EDUCATION.map(entry => ({ degree: entry.degree, details: formatEducationDetails(entry, variant.value) })),
-);
+const education = RESUME_EDUCATION.map(entry => ({ degree: entry.degree, details: formatEducationDetails(entry) }));
 
 const contactLinks = RESUME_CONTACT_LINKS.map((link, index) => ({ ...link, separator: index > 0 ? META_SEPARATOR : '' }));
 const entries: ResumeEntry[] = EXPERIENCE.map(toResumeEntry);
 const projectHeading = `${RESUME_PROJECT.name} — ${RESUME_PROJECT.descriptor}`;
 const projectYearsSuffix = `${META_SEPARATOR}${formatYearRange(RESUME_PROJECT.startYear, RESUME_PROJECT.endYear)}`;
 
-function formatEducationDetails(entry: EducationEntry, resumeVariant: ResumeVariant): string {
-  const details = `${entry.institution} — ${formatYearRange(entry.startYear, entry.endYear)}`;
-  const grade = entry.grades?.[resumeVariant];
-  return grade ? `${details}${META_SEPARATOR}${grade}` : details;
+function formatEducationDetails(entry: EducationEntry): string {
+  return `${entry.institution} — ${formatYearRange(entry.startYear, entry.endYear)}`;
 }
 
 function formatRoleHeading(role: Role): string {
@@ -70,15 +48,11 @@ function formatRoleHeading(role: Role): string {
   return `${title} — ${role.company}`;
 }
 
-function toResumeEntry(entry: TimelineEntry): ResumeEntry {
-  const key = formatYearMonth(entry.start);
+function toResumeEntry(entry: Role): ResumeEntry {
   const dates = formatDateRange(entry.start, entry.end);
-  if (entry.kind === 'break') return { kind: 'break', key, dates, text: entry.text };
-
   const meta = [entry.client && `Client: ${entry.client}`, entry.location, dates].filter(Boolean).join(META_SEPARATOR);
   return {
-    kind: 'role',
-    key,
+    key: formatYearMonth(entry.start),
     heading: formatRoleHeading(entry),
     meta,
     bullets: entry.resumeBullets,
@@ -122,7 +96,7 @@ onBeforeUnmount(() => {
     <div class="intro">
       <h1>{{ PROFILE.name }}</h1>
       <p class="headline">{{ PROFILE.headline }}</p>
-      <p class="logistics">{{ logistics }}</p>
+      <p class="location">{{ PROFILE.location }}</p>
       <p class="contact">
         <span data-contact="phone"></span>
         <span v-for="link in contactLinks" :key="link.kind"
@@ -138,17 +112,14 @@ onBeforeUnmount(() => {
 
     <section aria-labelledby="resume-experience">
       <h2 id="resume-experience">Experience</h2>
-      <template v-for="entry in entries" :key="entry.key">
-        <div v-if="entry.kind === 'role'" class="entry">
+      <div v-for="entry in entries" :key="entry.key" class="entry">
           <h3>{{ entry.heading }}</h3>
           <p class="meta">{{ entry.meta }}</p>
           <ul>
             <li v-for="bullet in entry.bullets" :key="bullet">{{ bullet }}</li>
           </ul>
           <p class="technologies"><strong>Technologies:</strong> {{ entry.technologies }}</p>
-        </div>
-        <p v-else class="entry career-break"><strong>Career break</strong>{{ META_SEPARATOR }}{{ entry.dates }}: {{ entry.text }}</p>
-      </template>
+      </div>
     </section>
 
     <section aria-labelledby="resume-projects">
@@ -228,7 +199,7 @@ h1 {
   color: var(--sh-accent-text);
 }
 
-.logistics,
+.location,
 .contact {
   margin-top: 2pt;
   color: var(--sh-text-secondary);
@@ -289,7 +260,6 @@ li + li {
 }
 
 .technologies strong,
-.career-break strong,
 .line strong {
   font-weight: 600;
   color: var(--sh-text-primary);
@@ -306,7 +276,6 @@ li {
 }
 
 li,
-.career-break,
 .open-source,
 .line {
   break-inside: avoid;

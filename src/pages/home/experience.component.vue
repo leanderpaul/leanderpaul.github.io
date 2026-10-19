@@ -17,7 +17,7 @@ function isPresent(end: YearMonth | Present): end is Present {
   <HomeSection id="experience" title="Experience">
     <ShTimeline :items="EXPERIENCE">
       <template #default="{ item }">
-        <article v-if="item.kind === 'role'" class="role">
+        <article class="role">
           <header class="header">
             <h3 class="title">{{ item.title }}</h3>
             <ShBadge :intent="item.employment === 'full-time' ? 'info' : 'neutral'">{{ EMPLOYMENT_LABELS[item.employment] }}</ShBadge>
@@ -49,12 +49,6 @@ function isPresent(end: YearMonth | Present): end is Present {
             </li>
           </ul>
         </article>
-        <p v-else class="break">
-          <time :datetime="toDateTime(item.start)">{{ formatYearMonth(item.start) }}</time>
-          –
-          <time :datetime="toDateTime(item.end)">{{ formatYearMonth(item.end) }}</time>
-          · {{ item.text }}
-        </p>
       </template>
     </ShTimeline>
   </HomeSection>
@@ -124,13 +118,5 @@ function isPresent(end: YearMonth | Present): end is Present {
   margin: 12px 0 0;
   padding: 0;
   list-style: none;
-}
-
-.break {
-  padding: 2px 0;
-  font-size: var(--sh-text-code);
-  line-height: var(--sh-text-code--line-height);
-  color: var(--sh-text-tertiary);
-  overflow-wrap: anywhere;
 }
 </style>

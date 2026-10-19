@@ -1,12 +1,11 @@
-import { type ContactSection, type Profile, type ProofPoint, type SiteMeta } from './content.types';
+import { type ContactSection, type Profile, type SiteMeta } from './content.types';
 
 export const PROFILE: Profile = {
   name: 'Leander Paul',
   headline: 'Senior Backend Engineer — Identity & Banking Platforms',
   tagline:
     'Authorization, identity and backend systems for banking and platform teams: OTP, IVR and Nafath at Emirates NBD, IAM at Zoho, and now my own OIDC identity provider. Also building LLM applications.',
-  location: 'Dubai, United Arab Emirates',
-  availability: "Dubai · one month's notice",
+  location: 'Dubai, UAE',
   email: 'leanderpaul97@gmail.com',
   links: {
     linkedin: 'https://www.linkedin.com/in/leander-paul',
@@ -49,16 +48,11 @@ export const SITE_META: SiteMeta = {
 };
 
 export const ABOUT_TEXT =
-  "I'm a backend engineer in Dubai. At Emirates NBD, through Sphere IT, I work on the retail mobile-banking backend: I architected the authorization microservice behind OTP, IVR and Nafath sign-in, built the manual-review stage of the in-app credit card application, and take on the production issues application support can't resolve. Before that I worked on Zoho Accounts IAM, built backend services for Capture at WTV in London, and led a three-person team at Phosphene AI. Outside work I build Shadow Platform, a public TypeScript monorepo that includes my own OIDC identity provider. I grew up in the Gulf and did my schooling in Qatar; my parents live in Dubai, which is why I made it home.";
+  "I'm a backend engineer based in Dubai. I grew up in the Gulf and did my schooling in Qatar; my parents live in Dubai, which is why I made it home. I enjoy the kind of debugging that needs a real understanding of the system underneath. Outside work I build Shadow Platform, read novels and follow science and technology.";
 
 export const CONTACT_SECTION: ContactSection = {
   heading: 'Get in touch',
-  text: "I'm looking for senior backend, identity and platform engineering roles in the UAE. I'm based in Dubai and available on one month's notice.",
+  text: "I'm looking for senior backend, identity and platform engineering roles in the UAE. I'm based in Dubai.",
 };
 
-export const PROOF_POINTS: ProofPoint[] = [
-  { value: '8+', label: 'years of experience' },
-  { value: 'OTP · IVR · Nafath', label: 'authorization at Emirates NBD' },
-  { value: 'IAM', label: 'Zoho Accounts, 2020–2022' },
-  { value: 'OIDC', label: 'my own identity provider, public on GitHub' },
-];
+export const HERO_CONTEXT = ['8+ years', 'Emirates NBD (via Sphere IT)', 'previously Zoho Accounts IAM'];

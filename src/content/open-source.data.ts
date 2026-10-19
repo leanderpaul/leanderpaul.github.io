@@ -9,8 +9,7 @@ export const OPEN_SOURCE_INTRO =
 export const OPEN_SOURCE_PACKAGES: OpenSourcePackage[] = [
   {
     name: '@shadow-library/app',
-    purpose:
-      'Dependency-injection framework for Node.js and Bun applications (HTTP servers, CLIs, workers), with modules and lifecycle hooks.',
+    purpose: 'Dependency-injection framework for Node.js and Bun services, CLIs and workers.',
     links: [
       createLink('npm', 'https://www.npmjs.com/package/@shadow-library/app'),
       createLink('github', 'https://github.com/shadow-library/platform/tree/main/packages/app'),

@@ -12,7 +12,6 @@ export interface Profile {
   headline: string;
   tagline: string;
   location: string;
-  availability: string;
   email: string;
   links: ProfileLinks;
 }
@@ -45,15 +44,9 @@ export interface ContactSection {
   text: string;
 }
 
-export interface ProofPoint {
-  value: string;
-  label: string;
-}
-
 export type EmploymentType = 'full-time' | 'contract' | 'freelance';
 
 export interface Role {
-  kind: 'role';
   company: string;
   companyUrl?: string;
   client?: string;
@@ -68,15 +61,6 @@ export interface Role {
   resumeBullets: string[];
   technologies: string[];
 }
-
-export interface CareerBreak {
-  kind: 'break';
-  start: YearMonth;
-  end: YearMonth;
-  text: string;
-}
-
-export type TimelineEntry = Role | CareerBreak;
 
 export type Ownership = 'employer' | 'personal';
 
@@ -164,21 +148,11 @@ export interface SkillGroup {
   skills: string[];
 }
 
-export type ResumeVariant = 'ae' | 'in' | 'global';
-
-export interface ResumeFile {
-  variant: ResumeVariant;
-  label: string;
-  file: string;
-  logistics: string;
-}
-
 export interface EducationEntry {
   degree: string;
   institution: string;
   startYear: number;
   endYear: number;
-  grades?: Partial<Record<ResumeVariant, string>>;
 }
 
 export interface ResumeProject {

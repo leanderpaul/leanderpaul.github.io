@@ -5,16 +5,14 @@ import Experience from './experience.component.vue';
 import FeaturedWork from './featured-work.component.vue';
 import Hero from './hero.component.vue';
 import OpenSource from './open-source.component.vue';
-import ProofStrip from './proof-strip.component.vue';
 import Skills from './skills.component.vue';
 </script>
 
 <template>
   <div>
     <Hero />
-    <ProofStrip />
-    <FeaturedWork class="band" />
     <Experience class="band" />
+    <FeaturedWork class="band" />
     <OpenSource class="band" />
     <Skills class="band" />
     <AboutMe class="band" />

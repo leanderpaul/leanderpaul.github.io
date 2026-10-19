@@ -1,11 +1,13 @@
 <script lang="ts" setup>
 import { SOCIAL_LINKS } from './social-links.util';
+
+const FOOTER_LINKS = SOCIAL_LINKS.filter(link => link.icon !== 'email');
 </script>
 <template>
   <footer>
     <nav aria-label="Footer">
       <ul>
-        <li v-for="link in SOCIAL_LINKS" :key="link.label">
+        <li v-for="link in FOOTER_LINKS" :key="link.label">
           <a :href="link.href" :target="link.external ? '_blank' : undefined" :rel="link.external ? 'noopener' : undefined">{{
             link.label
           }}</a>

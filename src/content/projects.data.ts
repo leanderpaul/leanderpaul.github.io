@@ -239,7 +239,7 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
     ownership: 'personal',
     status: 'dev-only',
     summary:
-      'My own OIDC/OAuth 2.1 identity provider inside Shadow Platform: PKCE-only authorization code flow, refresh-token rotation with reuse detection, an RBAC decision point, M2M and workload identity, SAML 2.0 IdP, passkeys, TOTP and back-channel logout.',
+      'My own OIDC/OAuth 2.1 identity provider. Every client uses PKCE, a reused refresh token revokes the whole token family and the session, and back-channel logout goes through a database outbox with retries, so a relying party that is briefly down still receives it.',
     tags: ['TypeScript', 'Bun', 'Fastify', 'PostgreSQL', 'Drizzle', 'Redis'],
     links: [
       createLink('github', 'https://github.com/shadow-library/platform/tree/main/apps/identity-server'),
@@ -254,7 +254,7 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
     ownership: 'personal',
     status: 'dev-only',
     summary:
-      'An AI novel-authoring app built on checkpointed LangGraph workflows with a generate → judge → repair loop, calling models through Synapse, my internal AI gateway with a model catalog, failover, budgets and a usage ledger.',
+      'Novel-authoring workflows in LangGraph, checkpointed in PostgreSQL. A judge model reviews each draft and a repair step patches it only where the target text occurs exactly once; model calls go through Synapse, my AI gateway with failover and budgets.',
     tags: ['TypeScript', 'LangGraph', 'LangChain', 'PostgreSQL', 'pgvector'],
     links: [
       createLink('docs', 'https://github.com/shadow-library/platform/blob/main/docs/novel-forge/novel-forge.md', 'Novel Forge docs'),
@@ -269,7 +269,7 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
     ownership: 'personal',
     status: 'dev-only',
     summary:
-      'A Rust code knowledge graph for coding agents, served over a CLI and an MCP server, with an A/B evaluation harness. Its own evaluation found no benefit on 11 tasks, and the results and threats to validity are published.',
+      'A Rust code knowledge graph served to coding agents over a CLI and an MCP server. Its A/B evaluation on 11 tasks found no measurable benefit, and the results and threats to validity are published.',
     tags: ['Rust', 'Tree-sitter', 'SQLite', 'MCP'],
     links: [createLink('github', 'https://github.com/shadow-library/code-atlas'), CODE_ATLAS_RESULTS],
     caseStudy: CODE_ATLAS_CASE_STUDY,

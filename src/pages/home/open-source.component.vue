@@ -50,8 +50,8 @@ function splitScope(name: string): [string, string] {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  gap: 8px 24px;
-  padding: 16px 24px;
+  gap: 4px 24px;
+  padding: 12px 20px;
 }
 
 .package:not(:last-child) {

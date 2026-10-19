@@ -2,22 +2,20 @@
 import { computed, onBeforeUnmount, onMounted, ref, useTemplateRef, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
-import { RESUME_FILES } from '@app/content';
-import { getResumeVariant } from '@app/utils';
+import { RESUME_DOWNLOAD_NAME, RESUME_FILE } from '@app/content';
 
 import { ShButton } from './ui';
 import ThemeToggle from './theme-toggle.component.vue';
 
 const NAV_LINKS = [
-  { label: 'Work', hash: '#work' },
   { label: 'Experience', hash: '#experience' },
+  { label: 'Work', hash: '#work' },
   { label: 'Open source', hash: '#open-source' },
   { label: 'Contact', hash: '#contact' },
 ];
 const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled])';
 
 const route = useRoute();
-const resumeFile = RESUME_FILES[getResumeVariant()].file;
 const mobileQuery = window.matchMedia('(max-width: 767px)');
 const isMobile = ref(mobileQuery.matches);
 const isOpen = ref(false);
@@ -135,7 +133,7 @@ onBeforeUnmount(() => {
               </router-link>
             </li>
             <li class="resume">
-              <ShButton variant="secondary" :href="resumeFile" target="_blank" rel="noopener" aria-label="Résumé (PDF, opens in a new tab)"
+              <ShButton variant="secondary" :href="RESUME_FILE" :download="RESUME_DOWNLOAD_NAME" aria-label="Download résumé (PDF)"
                 >Résumé</ShButton
               >
             </li>

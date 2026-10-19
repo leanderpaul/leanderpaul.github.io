@@ -1,36 +1,22 @@
 <script lang="ts" setup>
 import { ShButton } from '@app/components/ui';
-import { PROFILE, RESUME_FILES } from '@app/content';
-import { getResumeVariant } from '@app/utils';
-
-const resumeFile = RESUME_FILES[getResumeVariant()].file;
+import { HERO_CONTEXT, PROFILE, RESUME_DOWNLOAD_NAME, RESUME_FILE } from '@app/content';
 </script>
 
 <template>
   <section class="hero" aria-labelledby="hero-title">
-    <p class="availability">{{ PROFILE.availability }}</p>
+    <p class="location">Based in {{ PROFILE.location }}</p>
     <h1 id="hero-title" class="name">{{ PROFILE.name }}</h1>
     <p class="headline">{{ PROFILE.headline }}</p>
+    <p class="context">{{ HERO_CONTEXT.join(' · ') }}</p>
     <p class="tagline">{{ PROFILE.tagline }}</p>
     <div class="actions">
-      <router-link v-slot="{ href, navigate }" custom :to="{ hash: '#work' }">
-        <ShButton variant="primary" size="lg" :href="href" @click="navigate">View selected work</ShButton>
+      <ShButton variant="primary" size="lg" :href="RESUME_FILE" :download="RESUME_DOWNLOAD_NAME">Download résumé</ShButton>
+      <router-link v-slot="{ href, navigate }" custom :to="{ hash: '#contact' }">
+        <ShButton variant="secondary" size="lg" :href="href" @click="navigate">Contact</ShButton>
       </router-link>
-      <ShButton
-        variant="secondary"
-        size="lg"
-        :href="resumeFile"
-        target="_blank"
-        rel="noopener"
-        aria-label="Résumé (PDF, opens in a new tab)"
-      >
-        Résumé
-      </ShButton>
       <ShButton variant="secondary" size="lg" :href="PROFILE.links.github" target="_blank" rel="noopener">GitHub</ShButton>
     </div>
-    <p class="email">
-      <a :href="`mailto:${PROFILE.email}`">{{ PROFILE.email }}</a>
-    </p>
   </section>
 </template>
 
@@ -39,7 +25,7 @@ const resumeFile = RESUME_FILES[getResumeVariant()].file;
   padding: 112px 0 56px;
 }
 
-.availability {
+.location {
   margin-bottom: 16px;
   font-family: var(--sh-font-mono);
   font-size: var(--sh-text-code);
@@ -65,9 +51,15 @@ const resumeFile = RESUME_FILES[getResumeVariant()].file;
   text-wrap: balance;
 }
 
+.context {
+  margin-top: 12px;
+  font-weight: 500;
+  color: var(--sh-text-primary);
+}
+
 .tagline {
   max-width: 64ch;
-  margin-top: 20px;
+  margin-top: 16px;
   color: var(--sh-text-secondary);
 }
 
@@ -76,20 +68,6 @@ const resumeFile = RESUME_FILES[getResumeVariant()].file;
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 32px;
-}
-
-.email {
-  margin-top: 24px;
-  font-family: var(--sh-font-mono);
-  font-size: var(--sh-text-code);
-  line-height: var(--sh-text-code--line-height);
-  overflow-wrap: anywhere;
-}
-
-.email a {
-  display: inline-flex;
-  align-items: center;
-  min-height: var(--sh-tap-target);
 }
 
 .headline,
