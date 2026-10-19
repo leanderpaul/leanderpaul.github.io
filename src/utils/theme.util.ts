@@ -24,7 +24,7 @@ export function getSystemTheme(): Theme {
 
 export function getCurrentTheme(): Theme {
   const applied = document.documentElement.dataset.theme;
-  return isTheme(applied) ? applied : (getStoredTheme() ?? getSystemTheme());
+  return isTheme(applied) ? applied : getStoredTheme() ?? getSystemTheme();
 }
 
 export function applyTheme(theme: Theme): void {

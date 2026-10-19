@@ -108,7 +108,8 @@ async function readContact(): Promise<ResumeContact> {
   if (typeof phone !== 'string' || !DISPLAY_PHONE_PATTERN.test(phone.trim())) {
     throw new ResumeBuildError(`${displayPath}: "phone" must be a display string of digits, spaces, "+", "(", ")" or "-"`);
   }
-  if (typeof tel !== 'string' || !E164_PATTERN.test(tel)) throw new ResumeBuildError(`${displayPath}: "tel" must be an E.164 number such as +971…`);
+  if (typeof tel !== 'string' || !E164_PATTERN.test(tel))
+    throw new ResumeBuildError(`${displayPath}: "tel" must be an E.164 number such as +971…`);
   return { phone: phone.trim(), tel };
 }
 
@@ -307,7 +308,8 @@ function assertPrintablePdf(pdf: Buffer, variant: ResumeVariant): void {
   const text = pdf.toString('latin1');
   const pages = text.match(/\/Type\s*\/Page(?![A-Za-z])/g)?.length ?? 0;
   if (pages === 0 || pages > MAX_PAGES) throw new ResumeBuildError(`${variant}: expected 1–${MAX_PAGES} pages, found ${pages}`);
-  if (/\/Subtype\s*\/Type3\b/.test(text)) throw new ResumeBuildError(`${variant}: the PDF contains a Type3 font, which breaks text extraction`);
+  if (/\/Subtype\s*\/Type3\b/.test(text))
+    throw new ResumeBuildError(`${variant}: the PDF contains a Type3 font, which breaks text extraction`);
   if (!/\/FontFile2\b/.test(text)) throw new ResumeBuildError(`${variant}: no embedded TrueType font found`);
 }
 

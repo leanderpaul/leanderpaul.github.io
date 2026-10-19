@@ -3,7 +3,15 @@ import { computed, ref } from 'vue';
 
 import LinkIcon from '@app/components/link-icon.component.vue';
 import { ShBadge, ShTable, ShTag } from '@app/components/ui';
-import { ARCHIVE_CAPTION, ARCHIVE_ROWS, getLinkName, matchesArchiveFilter, type ArchiveCategory, type ArchiveFilter, type ArchiveRow } from '@app/content';
+import {
+  ARCHIVE_CAPTION,
+  ARCHIVE_ROWS,
+  getLinkName,
+  matchesArchiveFilter,
+  type ArchiveCategory,
+  type ArchiveFilter,
+  type ArchiveRow,
+} from '@app/content';
 
 import ArchiveFilterGroup from './archive-filter.component.vue';
 
