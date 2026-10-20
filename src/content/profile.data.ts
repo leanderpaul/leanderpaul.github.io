@@ -1,4 +1,4 @@
-import { type ContactSection, type Profile, type SiteMeta } from './content.types';
+import { type ContactSection, type Profile, type ProfileFact, type ProfileToken, type SiteMeta } from './content.types';
 
 export const PROFILE: Profile = {
   name: 'Leander Paul',
@@ -50,9 +50,30 @@ export const SITE_META: SiteMeta = {
 export const ABOUT_TEXT =
   "I'm a backend engineer based in Dubai. I grew up in the Gulf and did my schooling in Qatar; my parents live in Dubai, which is why I made it home. I enjoy the kind of debugging that needs a real understanding of the system underneath. Outside work I build Shadow Platform, read novels and follow science and technology.";
 
+export const ABOUT_FACTS: ProfileFact[] = [
+  { label: 'Based in', value: PROFILE.location },
+  { label: 'Grew up', value: 'The Gulf, schooled in Qatar' },
+  { label: 'Building', value: 'Shadow Platform' },
+  { label: 'Off-hours', value: 'Novels, science and technology' },
+];
+
 export const CONTACT_SECTION: ContactSection = {
   heading: 'Get in touch',
   text: "I'm looking for senior backend, identity and platform engineering roles in the UAE. I'm based in Dubai.",
 };
 
 export const HERO_CONTEXT = ['8+ years', 'Emirates NBD (via Sphere IT)', 'previously Zoho Accounts IAM'];
+
+export const PROFILE_TOKEN: ProfileToken = {
+  header: { alg: 'EdDSA', typ: 'JWT' },
+  payload: {
+    iss: PROFILE.links.website,
+    sub: 'leander-paul',
+    name: PROFILE.name,
+    role: 'Senior Backend Engineer',
+    focus: ['identity', 'banking platforms'],
+    loc: PROFILE.location,
+    exp: '8+ years',
+    open_to: 'backend, identity, platform roles',
+  },
+};

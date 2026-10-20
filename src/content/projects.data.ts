@@ -29,7 +29,7 @@ const PLATFORM_DIAGRAM_SOURCE = createLink(
 );
 
 function createPlatformDiagram(caption: string): CaseStudyDiagram {
-  return { text: PLATFORM_DIAGRAM_TEXT, caption, source: PLATFORM_DIAGRAM_SOURCE };
+  return { kind: 'platform-services', text: PLATFORM_DIAGRAM_TEXT, caption, source: PLATFORM_DIAGRAM_SOURCE };
 }
 
 const IDENTITY_CASE_STUDY: CaseStudy = {

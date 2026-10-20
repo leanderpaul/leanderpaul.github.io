@@ -39,9 +39,21 @@ export interface OgImage {
   height: number;
 }
 
+export interface ProfileFact {
+  label: string;
+  value: string;
+}
+
 export interface ContactSection {
   heading: string;
   text: string;
+}
+
+export type TokenClaims = Record<string, string | string[]>;
+
+export interface ProfileToken {
+  header: TokenClaims;
+  payload: TokenClaims;
 }
 
 export type EmploymentType = 'full-time' | 'contract' | 'freelance';
@@ -83,7 +95,10 @@ export interface KeyDecision {
   why: string;
 }
 
+export type DiagramKind = 'platform-services';
+
 export interface CaseStudyDiagram {
+  kind: DiagramKind;
   text: string;
   caption: string;
   source: ProjectLink;
