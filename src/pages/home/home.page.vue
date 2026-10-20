@@ -9,7 +9,7 @@ import Skills from './skills.component.vue';
 </script>
 
 <template>
-  <div>
+  <div class="home">
     <Hero />
     <Experience class="band" />
     <FeaturedWork class="band" />
@@ -21,16 +21,19 @@ import Skills from './skills.component.vue';
 </template>
 
 <style scoped>
+.home {
+  counter-reset: section;
+}
+
 .band {
   max-width: none;
   margin: 0;
-  padding: 64px 0;
-  border-top: var(--sh-border-width) solid var(--sh-border-subtle);
+  padding: 80px 0;
 }
 
 @media (max-width: 768px) {
   .band {
-    padding: 48px 0;
+    padding: 56px 0;
   }
 }
 </style>
