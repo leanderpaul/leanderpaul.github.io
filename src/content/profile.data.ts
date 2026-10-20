@@ -48,7 +48,7 @@ export const SITE_META: SiteMeta = {
 };
 
 export const ABOUT_TEXT =
-  "I'm a backend engineer based in Dubai. I grew up in the Gulf and did my schooling in Qatar; my parents live in Dubai, which is why I made it home. I enjoy the kind of debugging that needs a real understanding of the system underneath. Outside work I build Shadow Platform, read novels and follow science and technology.";
+  "I'm a backend engineer. I grew up in the Gulf, did my schooling in Qatar, and now live in Dubai. I enjoy the kind of debugging that needs a real understanding of the system underneath. Outside work I build Shadow Platform, read novels and follow science and technology.";
 
 export const ABOUT_FACTS: ProfileFact[] = [
   { label: 'Based in', value: PROFILE.location },
