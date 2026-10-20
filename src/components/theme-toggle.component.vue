@@ -1,16 +1,46 @@
 <script lang="ts" setup>
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
-import { type Theme, applyTheme, getCurrentTheme, getStoredTheme, storeTheme, watchSystemTheme } from '@app/utils';
+import { type Theme, applyTheme, getCurrentTheme, getStoredTheme, startViewTransition, storeTheme, watchSystemTheme } from '@app/utils';
+
+const REVEAL_DURATION_MS = 480;
 
 const theme = ref<Theme>(getCurrentTheme());
 const isDark = computed(() => theme.value === 'dark');
 let stopWatching: (() => void) | undefined;
 
-function toggle() {
-  const next: Theme = isDark.value ? 'light' : 'dark';
+function setTheme(next: Theme) {
   theme.value = next;
   applyTheme(next);
   storeTheme(next);
+}
+
+function revealFrom(origin: DOMRect, next: Theme) {
+  const root = document.documentElement;
+  root.dataset.transition = 'theme';
+  const transition = startViewTransition(() => setTheme(next));
+  if (!transition) {
+    delete root.dataset.transition;
+    setTheme(next);
+    return;
+  }
+  const x = origin.left + origin.width / 2;
+  const y = origin.top + origin.height / 2;
+  const radius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+  transition.ready
+    .then(() => {
+      const clipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`];
+      root.animate(
+        { clipPath },
+        { duration: REVEAL_DURATION_MS, easing: 'cubic-bezier(0.3, 0, 0, 1)', pseudoElement: '::view-transition-new(root)' },
+      );
+    })
+    .catch(() => undefined);
+  transition.finished.finally(() => delete root.dataset.transition);
+}
+
+function toggle(event: MouseEvent) {
+  if (!(event.currentTarget instanceof HTMLElement)) return;
+  revealFrom(event.currentTarget.getBoundingClientRect(), isDark.value ? 'light' : 'dark');
 }
 
 onMounted(() => {
@@ -61,8 +91,8 @@ onBeforeUnmount(() => stopWatching?.());
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: var(--sh-tap-target);
+  height: var(--sh-tap-target);
   padding: 0px;
   color: var(--sh-text-primary);
   background-color: transparent;
@@ -77,5 +107,19 @@ onBeforeUnmount(() => stopWatching?.());
 .theme-toggle:hover {
   color: var(--sh-accent-text);
   background-color: var(--sh-accent-soft);
+}
+
+.theme-toggle svg {
+  transition: rotate var(--sh-duration-slow) var(--sh-ease-emphasized);
+}
+
+.theme-toggle:hover svg {
+  rotate: 20deg;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle svg {
+    transition: none;
+  }
 }
 </style>

@@ -1,8 +1,9 @@
-import { createApp } from 'vue';
+import { createApp, nextTick } from 'vue';
 import { createRouter, createWebHistory, type RouteLocationNormalized, type RouteLocationRaw } from 'vue-router';
 
 import App from './App.vue';
 import { FEATURED_SLUGS, findRouteMeta } from '@app/content';
+import { startViewTransition } from '@app/utils';
 
 import './styles/index.css';
 
@@ -33,11 +34,35 @@ const router = createRouter({
   ],
 });
 
+let finishRouteTransition: (() => void) | undefined;
+
+function transitionBetweenPages(to: RouteLocationNormalized, from: RouteLocationNormalized): Promise<void> | undefined {
+  if (from.matched.length === 0 || to.path === from.path) return undefined;
+  return new Promise(resolve => {
+    const transition = startViewTransition(
+      () =>
+        new Promise<void>(done => {
+          finishRouteTransition = done;
+          resolve();
+        }),
+    );
+    if (!transition) resolve();
+  });
+}
+
 router.beforeEach(stripTrailingSlash);
+
+router.beforeResolve(transitionBetweenPages);
 
 router.afterEach((to, _from, failure) => {
   if (failure) return;
   document.title = findRouteMeta(to.path)?.title ?? NOT_FOUND_TITLE;
+});
+
+router.afterEach(async () => {
+  await nextTick();
+  finishRouteTransition?.();
+  finishRouteTransition = undefined;
 });
 
 createApp(App).use(router).mount('#app');
