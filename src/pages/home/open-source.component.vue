@@ -51,7 +51,12 @@ function splitScope(name: string): [string, string] {
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: 4px 24px;
-  padding: 12px 20px;
+  padding: 18px 24px;
+  transition: background-color var(--sh-duration-fast) var(--sh-ease-standard);
+}
+
+.package:hover {
+  background-color: var(--sh-surface-well);
 }
 
 .package:not(:last-child) {
@@ -62,7 +67,7 @@ function splitScope(name: string): [string, string] {
   font-family: var(--sh-font-mono);
   font-size: var(--sh-text-body-lg);
   line-height: var(--sh-text-body-lg--line-height);
-  font-weight: 500;
+  font-weight: 600;
   overflow-wrap: anywhere;
 }
 
@@ -96,8 +101,9 @@ function splitScope(name: string): [string, string] {
   font-size: var(--sh-text-body-sm);
   line-height: var(--sh-text-body-sm--line-height);
   font-weight: 500;
-  color: var(--sh-text-secondary);
+  color: var(--sh-text-primary);
   text-decoration: none;
+  border: var(--sh-border-width) solid var(--sh-border-default);
   transition:
     color var(--sh-duration-fast) var(--sh-ease-standard),
     background-color var(--sh-duration-fast) var(--sh-ease-standard);
@@ -125,12 +131,13 @@ function splitScope(name: string): [string, string] {
   }
 
   .links {
-    margin-left: -10px;
+    gap: 8px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .link {
+  .link,
+  .package {
     transition: none;
   }
 }
