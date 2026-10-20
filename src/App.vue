@@ -2,7 +2,7 @@
 import { computed, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
-import { Footer, Navbar, SocialRail } from '@app/components';
+import { Footer, Navbar } from '@app/components';
 
 const route = useRoute();
 const router = useRouter();
@@ -24,13 +24,13 @@ function focusMain() {
       <router-view />
     </main>
     <template v-if="hasChrome">
-      <SocialRail />
       <Footer />
     </template>
   </div>
 </template>
 <style scoped>
 .app {
+  overflow-x: clip;
   display: flex;
   flex-direction: column;
   min-height: var(--sh-viewport-height);
@@ -47,7 +47,7 @@ main:focus-visible {
 .container {
   display: flex;
   width: 100%;
-  max-width: 1024px;
+  max-width: 1152px;
   margin: 0px auto;
   padding: 70px 80px 0px 80px;
 }

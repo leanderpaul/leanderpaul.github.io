@@ -160,20 +160,27 @@ nav {
   padding: 0px 48px;
   z-index: var(--sh-z-shell);
   font-size: var(--sh-text-body);
-  background-color: var(--sh-surface-app);
+  background-color: transparent;
   border-bottom: var(--sh-border-width) solid transparent;
   transition:
     height var(--sh-duration-normal) var(--sh-ease-standard),
-    border-color var(--sh-duration-normal) var(--sh-ease-standard);
+    border-color var(--sh-duration-normal) var(--sh-ease-standard),
+    background-color var(--sh-duration-normal) var(--sh-ease-standard);
 }
 
 nav.bordered {
   height: 70px;
+  background-color: color-mix(in srgb, var(--sh-surface-app) 78%, transparent);
+  backdrop-filter: saturate(1.4) blur(14px);
 }
 
 nav.bordered:not(.open) {
   border-bottom-color: var(--sh-border-default);
   box-shadow: var(--sh-shadow-e1);
+}
+
+nav.open {
+  background-color: var(--sh-surface-app);
 }
 
 svg {
@@ -263,6 +270,10 @@ li {
 }
 
 li > a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--sh-tap-target);
+  font-weight: 500;
   text-decoration: none;
 }
 

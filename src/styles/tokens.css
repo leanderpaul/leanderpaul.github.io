@@ -402,9 +402,18 @@
 :root {
   --sh-text-hero: clamp(2.25rem, 1.5rem + 3vw, 3.5rem);
   --sh-text-hero--line-height: 1.1;
+  --sh-text-section: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+  --sh-text-section--line-height: 1.2;
   /* Chromium embeds variable fonts such as Inter in PDFs as Type 3 glyphs, which scrambles text extraction. */
   --sh-font-print: Arial, Helvetica, sans-serif;
   /* The platform's light tertiary (#707784) is 4.16:1 on --sh-surface-app, below WCAG AA. */
   --sh-neutral-550: #656c79;
   --sh-text-tertiary: var(--sh-neutral-550);
+}
+
+:root[data-theme='dark'] {
+  --sh-surface-app: #0b0b12;
+  --sh-surface-card: #12121b;
+  --sh-surface-raised: #191924;
+  --sh-border-default: #2a2a38;
 }
