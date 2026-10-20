@@ -2,8 +2,10 @@
 import LinkIcon from '@app/components/link-icon.component.vue';
 import { ShBadge, ShCard, ShTag } from '@app/components/ui';
 import { FEATURED_PROJECTS, getLinkName, type Ownership } from '@app/content';
+import { vReveal } from '@app/utils';
 
 import HomeSection from './home-section.component.vue';
+import ProjectSketch from './project-sketch.component.vue';
 
 const OWNERSHIP_LABELS: Record<Ownership, string> = { employer: 'Employer project', personal: 'Personal project' };
 </script>
@@ -11,8 +13,11 @@ const OWNERSHIP_LABELS: Record<Ownership, string> = { employer: 'Employer projec
 <template>
   <HomeSection id="work" title="Selected work">
     <ul class="cards" role="list">
-      <li v-for="project in FEATURED_PROJECTS" :key="project.slug">
+      <li v-for="project in FEATURED_PROJECTS" :key="project.slug" v-reveal class="cell">
         <ShCard as="article" interactive class="card">
+          <div class="visual">
+            <ProjectSketch :slug="project.slug" />
+          </div>
           <header class="header">
             <h3 class="title">{{ project.title }}</h3>
             <ShBadge>{{ OWNERSHIP_LABELS[project.ownership] }}</ShBadge>
@@ -54,14 +59,43 @@ const OWNERSHIP_LABELS: Record<Ownership, string> = { employer: 'Employer projec
 <style scoped>
 .cards {
   display: grid;
-  gap: 16px;
+  gap: 20px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
+.cell {
+  display: flex;
+}
+
 .cards .card {
-  padding: 24px;
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 20px 24px 12px;
+  overflow: hidden;
+  transition:
+    border-color var(--sh-duration-normal) var(--sh-ease-standard),
+    box-shadow var(--sh-duration-normal) var(--sh-ease-standard),
+    translate var(--sh-duration-normal) var(--sh-ease-standard);
+}
+
+.cards .card:hover,
+.cards .card:focus-within {
+  border-color: color-mix(in srgb, var(--sh-accent) 45%, var(--sh-border-default));
+  box-shadow: 0 18px 40px -24px color-mix(in srgb, var(--sh-accent) 45%, transparent);
+  translate: 0 -3px;
+}
+
+.visual {
+  margin: -20px -24px 20px;
+  padding: 24px 28px;
+  border-bottom: var(--sh-border-width) solid var(--sh-border-subtle);
+  background-color: var(--sh-surface-well);
+  background-image: radial-gradient(color-mix(in srgb, var(--sh-text-primary) 10%, transparent) 1px, transparent 1.5px);
+  background-size: 16px 16px;
 }
 
 .header {
@@ -88,7 +122,7 @@ const OWNERSHIP_LABELS: Record<Ownership, string> = { employer: 'Employer projec
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin: 16px 0 0;
+  margin: 16px 0;
   padding: 0;
   list-style: none;
 }
@@ -99,7 +133,7 @@ const OWNERSHIP_LABELS: Record<Ownership, string> = { employer: 'Employer projec
   align-items: center;
   justify-content: space-between;
   gap: 0 16px;
-  margin-top: 16px;
+  margin-top: auto;
   padding-top: 8px;
   border-top: var(--sh-border-width) solid var(--sh-border-subtle);
 }
@@ -164,19 +198,70 @@ const OWNERSHIP_LABELS: Record<Ownership, string> = { employer: 'Employer projec
 }
 
 .archive {
-  margin-top: 24px;
+  margin-top: 28px;
+}
+
+@media (min-width: 900px) {
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cell:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .cell:first-child .card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: auto auto auto 1fr;
+    column-gap: 32px;
+    padding-top: 28px;
+  }
+
+  .cell:first-child .card > :not(.visual) {
+    grid-column: 2;
+  }
+
+  .cell:first-child .visual {
+    display: grid;
+    grid-row: 1 / -1;
+    place-items: center;
+    margin: -28px 0 -12px -24px;
+    padding: 32px;
+    border-right: var(--sh-border-width) solid var(--sh-border-subtle);
+    border-bottom: 0;
+  }
+
+  .cell:first-child .footer {
+    align-self: end;
+  }
+
+  .cell:first-child .title {
+    font-size: var(--sh-text-h1);
+    line-height: var(--sh-text-h1--line-height);
+  }
 }
 
 @media (max-width: 640px) {
   .cards .card {
-    padding: 20px;
+    padding: 20px 20px 12px;
+  }
+
+  .visual {
+    margin: -20px -20px 20px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .arrow,
-  .icon-link {
+  .icon-link,
+  .cards .card {
     transition: none;
+  }
+
+  .cards .card:hover,
+  .cards .card:focus-within {
+    translate: none;
   }
 }
 </style>
