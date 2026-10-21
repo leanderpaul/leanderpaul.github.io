@@ -27,6 +27,10 @@ export const SKILL_GROUPS: SkillGroup[] = [
     skills: ['AWS (EC2, S3, Lambda, SQS)', 'Docker', 'Kubernetes (k3d)', 'GitOps', 'CI/CD (GitHub Actions)'],
   },
   {
+    name: 'AI-assisted engineering',
+    skills: ['Claude Code', 'AWS Bedrock', 'AI-assisted code review', 'AI-assisted debugging'],
+  },
+  {
     name: 'Applied AI (personal projects)',
     skills: ['LangGraph', 'LangChain', 'pgvector', 'structured output', 'LLM evaluation', 'MCP'],
   },

@@ -3,6 +3,8 @@ import { type Role } from './content.types';
 const SPHERE_SITE_BULLETS = [
   "Architected the retail app's authorization microservice: OTP, IVR and Nafath (Saudi national identity) steps, with validation checks such as device trust defined in database configuration and run between steps, cancelling the flow when a check fails.",
   'Built the manual-review stage for partially eligible credit card applicants and contributed to the in-app application journey, integrating external credit-scoring and employment-verification services.',
+  'Work in a small AI-first squad set up to deliver more with fewer engineers; squad velocity rose from 40–50 to 75–80 story points per sprint.',
+  'Use Claude Code through AWS Bedrock to write code, review changes for security issues and bugs, and debug and fix defects. Every change is reviewed by hand before approval, and the model sees only code, never customer data.',
   'Own escalated production incidents on live banking services, from root-cause analysis to shipped fix.',
   "Led the disaster-recovery environment setup for the team's services, completed in compliance with SAMA (Saudi Central Bank) regulations.",
 ];
@@ -30,6 +32,7 @@ const FREELANCE_SITE_BULLETS = [
 const SPHERE_RESUME_BULLETS = [
   "Architected the retail app's OTP, IVR and Nafath authorization microservice, with database-configured validation checks between steps.",
   'Built manual review for partially eligible credit-card applicants and integrated credit-scoring and employment-verification services into the application journey.',
+  'Deliver in a small AI-first squad using Claude Code (AWS Bedrock) for coding, security review and debugging, with manual review of every change; squad velocity rose from 40–50 to 75–80 story points per sprint.',
   'Own escalated production incidents on live banking services, from root-cause analysis to shipped fix.',
   "Led disaster-recovery environment setup for the team's services, meeting SAMA requirements.",
 ];
@@ -68,8 +71,8 @@ export const EXPERIENCE: Role[] = [
     end: 'present',
     siteBullets: SPHERE_SITE_BULLETS,
     resumeBullets: SPHERE_RESUME_BULLETS,
-    technologies: ['Java', 'Spring Boot', 'Node.js', 'Express'],
-    resumeTechnologies: ['Java', 'Spring Boot', 'Node.js', 'Express'],
+    technologies: ['Java', 'Spring Boot', 'Node.js', 'Express', 'Claude Code', 'AWS Bedrock'],
+    resumeTechnologies: ['Java', 'Spring Boot', 'Node.js', 'Express', 'Claude Code', 'AWS Bedrock'],
   },
   {
     company: 'WTV Global',

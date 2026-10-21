@@ -39,6 +39,8 @@ export const SITE_META: SiteMeta = {
     'TypeScript',
     'PostgreSQL',
     'Redis',
+    'Claude Code',
+    'AI-assisted development',
     'Dubai',
     'UAE',
   ],
@@ -48,7 +50,7 @@ export const SITE_META: SiteMeta = {
 };
 
 export const ABOUT_TEXT =
-  "I'm a backend engineer. I grew up in the Gulf, did my schooling in Qatar, and now live in Dubai. I enjoy the kind of debugging that needs a real understanding of the system underneath. Outside work I build Shadow Platform, read novels and follow science and technology.";
+  "I'm a backend engineer. I grew up in the Gulf, did my schooling in Qatar, and now live in Dubai. I enjoy the kind of debugging that needs a real understanding of the system underneath. Most of my day-to-day coding now goes through AI tools; my part is the judgement around them: design, review, debugging and deciding what is ready for production. Outside work I build Shadow Platform, read novels and follow science and technology.";
 
 export const ABOUT_FACTS: ProfileFact[] = [
   { label: 'Based in', value: PROFILE.location },

@@ -11,7 +11,7 @@ export const RESUME_FILE = '/resumes/Resume-AE.pdf';
 export const RESUME_PAGE_BREAK_BEFORE = 'Phosphene AI';
 
 export const RESUME_SUMMARY =
-  'Senior backend engineer with 8+ years of experience across banking, identity and backend platforms. Currently building authorization services for Emirates NBD in Dubai, with production incident and disaster-recovery ownership. Previously worked on Zoho Accounts IAM.';
+  'Senior backend engineer with 8+ years of experience across banking, identity and backend platforms. Building authorization services for Emirates NBD in Dubai in a small AI-first squad, with production incident and disaster-recovery ownership. Previously worked on Zoho Accounts IAM.';
 
 export const RESUME_EDUCATION: EducationEntry[] = [
   {
