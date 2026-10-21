@@ -87,7 +87,7 @@ function isCollapsible(index: number): boolean {
 
 .role {
   display: grid;
-  grid-template-columns: 8.5rem minmax(0, 1fr);
+  grid-template-columns: 9.5rem minmax(0, 1fr);
   gap: 0 32px;
 }
 
@@ -102,6 +102,7 @@ function isCollapsible(index: number): boolean {
 
 .period {
   color: var(--sh-text-primary);
+  white-space: nowrap;
 }
 
 .where {
