@@ -5,7 +5,7 @@ export const PROFILE: Profile = {
   name: 'Leander Paul',
   headline: 'Senior Backend Engineer — Identity & Banking Platforms',
   tagline:
-    'Authorization, identity and backend systems for banking and platform teams: OTP, IVR and Nafath at Emirates NBD, IAM at Zoho, and now my own OIDC identity provider. Also building LLM applications.',
+    "Backend and identity systems for banking and platform teams: ENBD X KSA's mobile and online banking backend at Emirates NBD, IAM at Zoho, and now my own OIDC identity provider. Also building LLM applications.",
   location: 'Dubai, UAE',
   email: 'leanderpaul97@gmail.com',
   links: {
@@ -20,7 +20,7 @@ export const SITE_META: SiteMeta = {
   url: 'https://leanderpaul.github.io',
   title: 'Leander Paul — Senior Backend Engineer, Identity & Banking Platforms',
   description:
-    'Leander Paul — Senior Backend Engineer in Dubai, focused on identity and banking platforms: OTP, IVR and Nafath authorization at Emirates NBD, Zoho Accounts IAM, and a public OIDC/OAuth 2.1 identity provider.',
+    "Leander Paul — Senior Backend Engineer in Dubai, focused on identity and banking platforms: ENBD X KSA's mobile and online banking backend at Emirates NBD, Zoho Accounts IAM, and a public OIDC/OAuth 2.1 identity provider.",
   keywords: [
     'Leander Paul',
     'Senior Backend Engineer',
@@ -33,6 +33,9 @@ export const SITE_META: SiteMeta = {
     'Authentication',
     'Authorization',
     'Banking',
+    'Retail banking',
+    'Digital onboarding',
+    'Instant payments',
     'Fintech',
     'Java',
     'Spring Boot',

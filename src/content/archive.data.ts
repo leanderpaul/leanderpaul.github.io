@@ -140,7 +140,7 @@ export const ARCHIVE_ROWS: ArchiveRow[] = [
   },
   {
     year: 2024,
-    title: 'Emirates NBD retail mobile banking',
+    title: 'ENBD X KSA retail banking app',
     category: 'employer',
     status: 'live',
     company: 'Emirates NBD (via Sphere IT)',

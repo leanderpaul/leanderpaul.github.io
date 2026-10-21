@@ -1,6 +1,8 @@
 import { type Role } from './content.types';
 
 const SPHERE_SITE_BULLETS = [
+  "Part of the team that owns the mobile and online banking backend of ENBD X KSA, Emirates NBD's retail banking app in Saudi Arabia: the microservices behind login, new account opening, credit card applications, Request to Pay and instant payments.",
+  'Built the mobile and online side of Request to Pay and instant payments: checking the balance, verifying the payment details and posting the payment, calling the other microservices for the data and changes each step needs.',
   "Architected the retail app's authorization microservice: OTP, IVR and Nafath (Saudi national identity) steps, with validation checks such as device trust defined in database configuration and run between steps, cancelling the flow when a check fails.",
   'Built the manual-review stage for partially eligible credit card applicants and contributed to the in-app application journey, integrating external credit-scoring and employment-verification services.',
   'Work in a small AI-first squad set up to deliver more with fewer engineers; squad velocity rose from 40–50 to 75–80 story points per sprint.',
@@ -30,6 +32,8 @@ const FREELANCE_SITE_BULLETS = [
 ];
 
 const SPHERE_RESUME_BULLETS = [
+  "Part of the team owning the mobile and online banking backend of ENBD X KSA, Emirates NBD's Saudi retail banking app: login, account opening, credit cards and payments.",
+  'Built the mobile and online Request to Pay and instant-payment flow: balance check, payment verification and posting, orchestrating calls to other microservices.',
   "Architected the retail app's OTP, IVR and Nafath authorization microservice, with database-configured validation checks between steps.",
   'Built manual review for partially eligible credit-card applicants and integrated credit-scoring and employment-verification services into the application journey.',
   'Deliver in a small AI-first squad using Claude Code (AWS Bedrock) for coding, security review and debugging, with manual review of every change; squad velocity rose from 40–50 to 75–80 story points per sprint.',

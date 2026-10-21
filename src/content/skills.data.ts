@@ -19,6 +19,10 @@ export const SKILL_GROUPS: SkillGroup[] = [
     ],
   },
   {
+    name: 'Banking domain',
+    skills: ['retail banking', 'digital account opening', 'credit card applications', 'Request to Pay', 'instant payments'],
+  },
+  {
     name: 'Data & messaging',
     skills: ['PostgreSQL', 'Drizzle ORM', 'Redis', 'MongoDB', 'RabbitMQ', 'AWS SQS'],
   },
