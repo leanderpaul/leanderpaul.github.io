@@ -1,4 +1,4 @@
-import { type ContactLink, type EducationEntry, type ResumeProject } from './content.types';
+import { type ContactLink, type ResumeProject } from './content.types';
 import { toDisplayUrl } from './content.util';
 import { PROFILE } from './profile.data';
 import { SHADOW_PLATFORM_RESUME_BULLETS } from './projects.data';
@@ -12,21 +12,6 @@ export const RESUME_PAGE_BREAK_BEFORE = 'Phosphene AI';
 
 export const RESUME_SUMMARY =
   'Senior backend engineer with 8+ years of experience across banking, identity and backend platforms. Building authorization services for Emirates NBD in Dubai in a small AI-first squad, with production incident and disaster-recovery ownership. Previously worked on Zoho Accounts IAM.';
-
-export const RESUME_EDUCATION: EducationEntry[] = [
-  {
-    degree: 'MSc Computer Science',
-    institution: 'Queen Mary University of London',
-    startYear: 2022,
-    endYear: 2023,
-  },
-  {
-    degree: 'Bachelor of Technology',
-    institution: "St. Joseph's College of Engineering (Anna University), Chennai",
-    startYear: 2016,
-    endYear: 2020,
-  },
-];
 
 export const RESUME_PROJECT: ResumeProject = {
   name: 'Shadow Platform',

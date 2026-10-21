@@ -27,6 +27,7 @@ import HomeSection from './home-section.component.vue';
           <div v-for="fact in ABOUT_FACTS" :key="fact.label" class="fact">
             <dt>{{ fact.label }}</dt>
             <dd>{{ fact.value }}</dd>
+            <dd v-if="fact.detail" class="detail">{{ fact.detail }}</dd>
           </div>
         </dl>
       </div>
@@ -306,6 +307,14 @@ dd {
   margin: 4px 0 0;
   font-weight: 500;
   color: var(--sh-text-primary);
+}
+
+.detail {
+  margin-top: 2px;
+  font-size: var(--sh-text-body-sm);
+  line-height: var(--sh-text-body-sm--line-height);
+  font-weight: 400;
+  color: var(--sh-text-secondary);
 }
 
 @media (max-width: 768px) {

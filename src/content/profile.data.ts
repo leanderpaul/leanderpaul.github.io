@@ -1,4 +1,5 @@
 import { type ContactSection, type Profile, type ProfileFact, type ProfileToken, type SiteMeta } from './content.types';
+import { BACHELORS_DEGREE, MASTERS_DEGREE } from './education.data';
 
 export const PROFILE: Profile = {
   name: 'Leander Paul',
@@ -55,6 +56,8 @@ export const ABOUT_TEXT =
 export const ABOUT_FACTS: ProfileFact[] = [
   { label: 'Based in', value: PROFILE.location },
   { label: 'Grew up', value: 'The Gulf, schooled in Qatar' },
+  { label: "Master's", value: MASTERS_DEGREE.degree, detail: MASTERS_DEGREE.institution },
+  { label: "Bachelor's", value: BACHELORS_DEGREE.degree, detail: BACHELORS_DEGREE.institution },
   { label: 'Building', value: 'Shadow Platform' },
   { label: 'Off-hours', value: 'Novels, science and technology' },
 ];

@@ -3,11 +3,11 @@ import { onBeforeMount, onBeforeUnmount, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 
 import {
+  EDUCATION,
   EMPLOYMENT_LABELS,
   EXPERIENCE,
   PROFILE,
   RESUME_CONTACT_LINKS,
-  RESUME_EDUCATION,
   RESUME_OPEN_SOURCE_LINE,
   RESUME_PAGE_BREAK_BEFORE,
   RESUME_PROJECT,
@@ -33,7 +33,7 @@ const META_SEPARATOR = ' · ';
 
 const router = useRouter();
 
-const education = RESUME_EDUCATION.map(entry => ({
+const education = EDUCATION.map(entry => ({
   degree: entry.degree,
   institution: entry.institution,
   years: formatYearRange(entry.startYear, entry.endYear),

@@ -1,6 +1,7 @@
 export * from './archive.data';
 export * from './content.types';
 export * from './content.util';
+export * from './education.data';
 export * from './experience.data';
 export * from './open-source.data';
 export * from './profile.data';

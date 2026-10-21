@@ -42,6 +42,7 @@ export interface OgImage {
 export interface ProfileFact {
   label: string;
   value: string;
+  detail?: string;
 }
 
 export interface ContactSection {
